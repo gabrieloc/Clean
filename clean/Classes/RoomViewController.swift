@@ -27,6 +27,7 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 	}
 	
 	private let character = Character()
+	private var camera: SCNNode!
 	
 	// Camera
 	private var currentGround: SCNNode!
@@ -55,14 +56,16 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 		self.roomView.scene = scene
 		self.roomView.playing = true
 		self.roomView.loops = true
-		
-		setupCamera()
-		setupSounds()
-		
+
 		scene.rootNode.addChildNode(character.node)
 		
 		let startPosition = scene.rootNode.childNodeWithName("startingPoint", recursively: true)!
 		character.node.transform = startPosition.transform
+		
+		camera = scene.rootNode.childNodeWithName("camera", recursively: true)!
+		let lookAtConstraint = SCNLookAtConstraint(target: character.node)
+		lookAtConstraint.gimbalLockEnabled = true;
+		camera.constraints = [lookAtConstraint]
 		
 		// Collisions
 		var collisionNodes = [SCNNode]()
@@ -91,35 +94,7 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 			node.physicsBody!.physicsShape = SCNPhysicsShape(node: node, options: [SCNPhysicsShapeTypeKey: SCNPhysicsShapeTypeBoundingBox])
 		}
 	}
-	
-	// MARK: Camera
-	
-	func setupCamera() {
-//		let panGesture = UIPanGestureRecognizer(target: self, action: "didPan:")
-//		sceneView.addGestureRecognizer(panGesture)
-	}
-	
-	func updateCameraWithCurrentGround(node: SCNNode) {
-		if currentGround == nil {
-			currentGround = node
-			return
-		}
-		
-		if node != currentGround {
-			currentGround = node
-//			if var position = groundToCameraPosition[node] {
-//				if node = mainGround && character.node.position.x < 2.5 {
-//					position = SCNVector3
-//				}
-				//TODO
-//			}
-		}
-	}
-	
-	func setupSounds() {
-		
-	}
-	
+
 	// MARK: Character Movement
 	
 	private func characterDirection() -> float3 {
@@ -144,10 +119,9 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 		let scene = roomView.scene!
 		let direction = characterDirection()
 		
-		let groundNode = character.walkInDirection(direction, time: time, scene: scene)
-		if let groundNode = groundNode {
-			updateCameraWithCurrentGround(groundNode)
-		}
+		character.walkInDirection(direction, time: time, scene: scene)
+		
+		let characterPosition = character.node.position
 	}
 	
 	// MARK: SCNPhysicsContactDelegate

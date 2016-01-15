@@ -10,6 +10,7 @@ import SceneKit
 
 enum GroundType: Int {
 	case InTheAir
+	case Surface
 }
 
 class Character {
@@ -46,7 +47,7 @@ class Character {
 	
 	// MARK: Movement
 	
-	static let speedFactor = Float(2.5)
+	static let speedFactor = Float(1.5)
 	private var groundType = GroundType.InTheAir
 	private var previousUpdateTime = NSTimeInterval(0.0)
 	private var accelerationY = SCNFloat(0.0) // gravity simulation
@@ -65,11 +66,11 @@ class Character {
 		}
 		
 		let deltaTime = Float(min(time - previousUpdateTime, 1.0 / 60.0))
-		let characterSpeed = deltaTime * Character.speedFactor
+		let characterSpeed = deltaTime * Character.speedFactor * 2.0
 		previousUpdateTime = time
 		
 		// move
-		if direction.x != 0.0 && direction.z != 0.0 {
+		if direction.x != 0.0 && direction.z != 0.0 && groundType != .InTheAir {
 			let position = float3(node.position)
 			node.position = SCNVector3(position + direction * characterSpeed)
 			directionAngle = SCNFloat(atan2(direction.x, direction.z))
@@ -115,14 +116,10 @@ class Character {
 			if groundAltitude > position.y {
 				accelerationY = 0
 				position.y = groundAltitude
+				groundType = .Surface
 			}
 			
-//			print(position)
 			node.position = position
-		}
-		else {
-			// error moving character, revert to initial position
-//			node.position = initialPosition
 		}
 
 		return groundNode

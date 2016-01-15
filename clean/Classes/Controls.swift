@@ -18,17 +18,17 @@ extension RoomViewController {
 	private static let controllerDirectionLimit = float2(1.0)
 	
 	internal func controllerDirection() -> float2 {
-		if let dpad = controllerDPad {
-			if dpad.xAxis.value == 0.0 && dpad.yAxis.value == 0.0 {
-				controllerStoredDirection = float2(0.0)
-			} else {
-				let inputValue = float2(dpad.xAxis.value, -dpad.yAxis.value * RoomViewController.controllerAcceleration)
-				print(inputValue)
-				controllerStoredDirection = clamp(controllerStoredDirection + inputValue,
-					min: -RoomViewController.controllerDirectionLimit,
-					max: RoomViewController.controllerDirectionLimit)
-			}
-		}
+//		if let dpad = controllerDPad {
+//			if dpad.xAxis.value == 0.0 && dpad.yAxis.value == 0.0 {
+//				controllerStoredDirection = float2(0.0)
+//			} else {
+//				let inputValue = float2(dpad.xAxis.value, -dpad.yAxis.value * RoomViewController.controllerAcceleration)
+//				print(inputValue)
+//				controllerStoredDirection = clamp(controllerStoredDirection + inputValue,
+//					min: -RoomViewController.controllerDirectionLimit,
+//					max: RoomViewController.controllerDirectionLimit)
+//			}
+//		}
 		return controllerStoredDirection
 	}
 	
