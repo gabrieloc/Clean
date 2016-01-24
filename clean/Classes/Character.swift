@@ -15,15 +15,15 @@ enum GroundType : Int {
 
 enum Action : Int {
 	case Idle
-	case Walking
-	case Lifting
-//	case Dropping
+	case Walk
+	case Lift
+	case Drop
 }
 
 class Character {
 	
 	init() {
-		let initialSceneName = sceneNameForAction(.Idle)
+		let initialSceneName = sceneNameForAction(currentAction)
 		let characterScene = SCNScene(named: initialSceneName)!
 		let characterTopLevelNode = characterScene.rootNode.childNodes[0]
 		node.addChildNode(characterTopLevelNode)
@@ -51,7 +51,6 @@ class Character {
 			if isLifting {
 				let offset = node.convertPosition(SCNVector3Make(0, 0, 2), toNode: lifting)
 				let liftedFinalPosition = SCNVector3Make(lifting.position.x + offset.x, 1, lifting.position.z + offset.z)
-				print(liftedFinalPosition)
 				lifting.position = liftedFinalPosition
 			}
 		}
@@ -88,7 +87,7 @@ class Character {
 	
 	func liftObject(object: SCNNode) {
 		lifting = object
-		transitionToAction(.Lifting)
+		transitionToAction(.Lift)
 	}
 	
 	// MARK: Movement
@@ -101,28 +100,27 @@ class Character {
 	private var directionAngle: SCNFloat = 0.0 {
 		didSet {
 			if directionAngle != oldValue {
-				node.runAction(SCNAction.rotateToX(0.0, y: CGFloat(directionAngle), z: 0.0, duration: 0.1, shortestUnitArc: true))
+				node.runAction(SCNAction.rotateToX(0.0, y: CGFloat(directionAngle), z: 0.0, duration: 0.2, shortestUnitArc: true))
 			}
 		}
 	}
 	
 	func height() -> CGFloat {
-//		let (min, max) = node.boundingBox
-//		return max.y - min.y
-		return CGFloat(1.0)
+		let (min, max) = node.boundingBox
+		return max.y - min.y
 	}
 	
 	func walkInDirection(direction: float3, time: NSTimeInterval, scene: SCNScene) -> SCNNode? {
 		if previousUpdateTime == 0.0 {
 			previousUpdateTime = time
 		}
-		
+	
 		let deltaTime = Float(min(time - previousUpdateTime, 1.0 / 60.0))
 		let characterSpeed = deltaTime * Character.speedFactor
 		previousUpdateTime = time
 		
 		// move
-		if direction.x != 0.0 || direction.z != 0.0 {// && groundType != .InTheAir {
+		if (direction.x != 0.0 || direction.z != 0.0) && currentAction != .Lift {
 			let position = float3(node.position)
 			node.position = SCNVector3(position + direction * characterSpeed)
 			directionAngle = SCNFloat(atan2(direction.x, direction.z))
@@ -146,6 +144,7 @@ class Character {
 	
 	// MARK: Animations
 	
+	var currentAction: Action = .Idle
 	private func transitionToAction(action: Action) {
 		let key = identifierForAction(action)
 		if node.animationForKey(key) == nil  {
@@ -163,10 +162,12 @@ class Character {
 		switch(action) {
 		case .Idle:
 			return isLifting ? "idle-lifting" : "idle"
-		case .Walking:
+		case .Walk:
 			return isLifting ? "walk-lifting" : "walk"
-		case .Lifting:
+		case .Lift:
 			return "lift"
+		case .Drop:
+			return "drop"
 		}
 	}
 	
@@ -188,11 +189,11 @@ class Character {
 		let animation = CAAnimation.animationWithSceneNamed(name)!
 		animation.fadeInDuration = transitionDurationForAction(action)
 		
-		if action != .Lifting {
+		if action != .Lift {
 			animation.repeatCount = Float.infinity
 		}
 		
-		if action == .Walking {
+		if action == .Walk {
 			animation.speed = Character.speedFactor
 		}
 		
@@ -203,7 +204,7 @@ class Character {
 		didSet {
 			if oldValue != isWalking {
 				if isWalking {
-					transitionToAction(.Walking)
+					transitionToAction(.Walk)
 				} else {
 					transitionToAction(.Idle)
 				}
