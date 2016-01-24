@@ -6,17 +6,18 @@
 //  Copyright © 2015 Gabrieloc. All rights reserved.
 //
 
-import UIKit
+
 import SceneKit
 import GameController
 
-// Collision bit masks
-let BitmaskCollision        = 1 << 2
-let BitmaskWater            = 1 << 3
+let BitmaskCollision = 1 << 2
+let BitmaskLiftable  = 1 << 3
 
 #if os(iOS) || os(tvOS)
+	import UIKit
 	typealias ViewController = UIViewController
 #elseif os(OSX)
+	import AppKit
 	typealias ViewController = NSViewController
 #endif
 
@@ -26,13 +27,10 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 		return view as! RoomView
 	}
 	
-	private let character = Character()
-	private var camera: SCNNode!
+	let character = Character()
+	private var cameraNode: SCNNode!
 	
 	// Camera
-	private var currentGround: SCNNode!
-	private var mainGround: SCNNode!
-	private var groundToCameraPosition = [SCNNode: SCNVector3]()
 	
 	// Controls
 	internal var controllerDPad: GCControllerDirectionPad?
@@ -56,35 +54,43 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 		self.roomView.scene = scene
 		self.roomView.playing = true
 		self.roomView.loops = true
+		self.roomView.showsStatistics = true
+//		self.roomView.allowsCameraControl = true
 
 		scene.rootNode.addChildNode(character.node)
 		
-		let startPosition = scene.rootNode.childNodeWithName("startingPoint", recursively: true)!
-		character.node.transform = startPosition.transform
+		let startPosition = scene.rootNode.childNodeWithName("startingPoint", recursively: true)!.position
+		character.node.position = startPosition
 		
-		camera = scene.rootNode.childNodeWithName("camera", recursively: true)!
-		let lookAtConstraint = SCNLookAtConstraint(target: character.node)
-		lookAtConstraint.gimbalLockEnabled = true;
-		camera.constraints = [lookAtConstraint]
-		
+		cameraNode = scene.rootNode.childNodeWithName("camera", recursively: true)!
+//		let lookAtConstraint = SCNLookAtConstraint(target: character.node)
+//		lookAtConstraint.gimbalLockEnabled = true;
+//		cameraNode.constraints = [lookAtConstraint]
+
 		// Collisions
-		var collisionNodes = [SCNNode]()
-		scene.rootNode.enumerateChildNodesUsingBlock { (node, _) in
-			switch node.name {
-			case let .Some(s) where s.rangeOfString("collision") != nil:
-				collisionNodes.append(node)
-			default:
-				break;
-			}
-		}
-		
-		for node in collisionNodes {
-			node.hidden = false
-			setupCollisionNode(node)
-		}
+//		var collisionNodes = [SCNNode]()
+//		scene.rootNode.enumerateChildNodesUsingBlock { (node, _) in
+//			switch node.name {
+//			case let .Some(s) where s.rangeOfString("collision") != nil:
+//				collisionNodes.append(node)
+//			default:
+//				break;
+//			}
+//		}
 		
 		scene.physicsWorld.contactDelegate = self
 		roomView.delegate = self
+		
+		let box = LiftableObject()
+		box.node.position = SCNVector3Make(2, 1, 2)
+		scene.rootNode.addChildNode(box.node)
+		
+//		for node in collisionNodes {
+//			node.hidden = false
+//			setupCollisionNode(node)
+//		}
+		
+		setupGameControllers()
 	}
 	
 	private func setupCollisionNode(node: SCNNode) {
@@ -118,17 +124,21 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 	func renderer(renderer: SCNSceneRenderer, updateAtTime time: NSTimeInterval) {
 		let scene = roomView.scene!
 		let direction = characterDirection()
-		
 		character.walkInDirection(direction, time: time, scene: scene)
 		
 		let characterPosition = character.node.position
+		cameraNode.position = SCNVector3Make(characterPosition.x - 2, cameraNode.position.y, characterPosition.z + 4)
+//		cameraNode.rotation = SCNVector4Make(33, 45, 0, 0)
 	}
-	
+
 	// MARK: SCNPhysicsContactDelegate
 	
 	func physicsWorld(world: SCNPhysicsWorld, didBeginContact contact: SCNPhysicsContact) {
 		contact.match(category: BitmaskCollision) { (matching, other) in
 			self.characterNode(other, hitWall: matching, withContact: contact)
+		}
+		contact.match(category: BitmaskLiftable) { (matching, _) in
+			self.character.liftObject(matching)
 		}
 	}
 	

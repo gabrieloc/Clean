@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C0095E741C30714F00C48D4C /* alec.png in Resources */ = {isa = PBXBuildFile; fileRef = C0095E731C30714F00C48D4C /* alec.png */; };
 		C0095E761C361A9400C48D4C /* game.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C0095E751C361A9400C48D4C /* game.scnassets */; };
+		C03D043A1C48B536009C33F2 /* LiftableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03D04391C48B536009C33F2 /* LiftableObject.swift */; };
 		C04215881C2FA68B0006413C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04215871C2FA68B0006413C /* AppDelegate.swift */; };
 		C042158A1C2FA68B0006413C /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C04215891C2FA68B0006413C /* art.scnassets */; };
 		C042158C1C2FA68B0006413C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C042158B1C2FA68B0006413C /* GameViewController.swift */; };
@@ -16,15 +17,29 @@
 		C04215911C2FA68B0006413C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C04215901C2FA68B0006413C /* Assets.xcassets */; };
 		C04215941C2FA68B0006413C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C04215921C2FA68B0006413C /* LaunchScreen.storyboard */; };
 		C04215B81C2FA6A70006413C /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04215B71C2FA6A70006413C /* RoomViewController.swift */; };
+		C06653141C5556AE0028D091 /* Dropzone.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06653131C5556AE0028D091 /* Dropzone.swift */; };
+		C06653151C5556B50028D091 /* Dropzone.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06653131C5556AE0028D091 /* Dropzone.swift */; };
 		C074B0E21C39B6CE00EF4E76 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074B0E11C39B6CE00EF4E76 /* Character.swift */; };
 		C074B0E41C39B92000EF4E76 /* SceneKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074B0E31C39B92000EF4E76 /* SceneKitExtensions.swift */; };
 		C074B0E61C39C3BF00EF4E76 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074B0E51C39C3BF00EF4E76 /* RoomView.swift */; };
 		C074B0EC1C39E8AC00EF4E76 /* Controls.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074B0EB1C39E8AC00EF4E76 /* Controls.swift */; };
+		C09C12541C49B18B00D1DB6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09C12531C49B18B00D1DB6A /* AppDelegate.swift */; };
+		C09C12581C49B18B00D1DB6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C09C12571C49B18B00D1DB6A /* Assets.xcassets */; };
+		C09C125B1C49B18B00D1DB6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C09C12591C49B18B00D1DB6A /* Main.storyboard */; };
+		C09C12601C49B1EA00D1DB6A /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04215B71C2FA6A70006413C /* RoomViewController.swift */; };
+		C09C12611C49B1EE00D1DB6A /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074B0E51C39C3BF00EF4E76 /* RoomView.swift */; };
+		C09C12621C49B1F800D1DB6A /* game.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C0095E751C361A9400C48D4C /* game.scnassets */; };
+		C09C12631C49B20700D1DB6A /* LiftableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03D04391C48B536009C33F2 /* LiftableObject.swift */; };
+		C09C12641C49B20700D1DB6A /* Controls.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074B0EB1C39E8AC00EF4E76 /* Controls.swift */; };
+		C09C12651C49B20700D1DB6A /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074B0E11C39B6CE00EF4E76 /* Character.swift */; };
+		C09C12661C49B20700D1DB6A /* SceneKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074B0E31C39B92000EF4E76 /* SceneKitExtensions.swift */; };
+		C09C12671C49B32F00D1DB6A /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C04215891C2FA68B0006413C /* art.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C0095E731C30714F00C48D4C /* alec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alec.png; sourceTree = "<group>"; };
 		C0095E751C361A9400C48D4C /* game.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = game.scnassets; sourceTree = "<group>"; };
+		C03D04391C48B536009C33F2 /* LiftableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LiftableObject.swift; path = Classes/LiftableObject.swift; sourceTree = "<group>"; };
 		C04215841C2FA68B0006413C /* Clean iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Clean iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C04215871C2FA68B0006413C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C04215891C2FA68B0006413C /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -38,14 +53,27 @@
 		C04215A91C2FA68B0006413C /* cleanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cleanUITests.swift; sourceTree = "<group>"; };
 		C04215AB1C2FA68B0006413C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C04215B71C2FA6A70006413C /* RoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoomViewController.swift; path = Classes/RoomViewController.swift; sourceTree = "<group>"; };
+		C06653131C5556AE0028D091 /* Dropzone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dropzone.swift; path = Classes/Dropzone.swift; sourceTree = "<group>"; };
 		C074B0E11C39B6CE00EF4E76 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Character.swift; path = Classes/Character.swift; sourceTree = "<group>"; };
 		C074B0E31C39B92000EF4E76 /* SceneKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneKitExtensions.swift; path = Classes/SceneKitExtensions.swift; sourceTree = "<group>"; };
 		C074B0E51C39C3BF00EF4E76 /* RoomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoomView.swift; path = Classes/RoomView.swift; sourceTree = "<group>"; };
 		C074B0EB1C39E8AC00EF4E76 /* Controls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Controls.swift; path = Classes/Controls.swift; sourceTree = "<group>"; };
+		C09C12511C49B18B00D1DB6A /* Clean OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Clean OSX.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C09C12531C49B18B00D1DB6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C09C12571C49B18B00D1DB6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C09C125A1C49B18B00D1DB6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C09C125C1C49B18B00D1DB6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C04215811C2FA68B0006413C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C09C124E1C49B18B00D1DB6A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -61,6 +89,7 @@
 				C04215861C2FA68B0006413C /* clean */,
 				C042159D1C2FA68B0006413C /* cleanTests */,
 				C04215A81C2FA68B0006413C /* cleanUITests */,
+				C09C12521C49B18B00D1DB6A /* Clean OSX */,
 				C04215851C2FA68B0006413C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				C04215841C2FA68B0006413C /* Clean iOS.app */,
+				C09C12511C49B18B00D1DB6A /* Clean OSX.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,12 +142,25 @@
 			isa = PBXGroup;
 			children = (
 				C04215B71C2FA6A70006413C /* RoomViewController.swift */,
+				C03D04391C48B536009C33F2 /* LiftableObject.swift */,
 				C074B0EB1C39E8AC00EF4E76 /* Controls.swift */,
 				C074B0E51C39C3BF00EF4E76 /* RoomView.swift */,
 				C074B0E11C39B6CE00EF4E76 /* Character.swift */,
+				C06653131C5556AE0028D091 /* Dropzone.swift */,
 				C074B0E31C39B92000EF4E76 /* SceneKitExtensions.swift */,
 			);
 			name = Shared;
+			sourceTree = "<group>";
+		};
+		C09C12521C49B18B00D1DB6A /* Clean OSX */ = {
+			isa = PBXGroup;
+			children = (
+				C09C12531C49B18B00D1DB6A /* AppDelegate.swift */,
+				C09C12571C49B18B00D1DB6A /* Assets.xcassets */,
+				C09C12591C49B18B00D1DB6A /* Main.storyboard */,
+				C09C125C1C49B18B00D1DB6A /* Info.plist */,
+			);
+			path = "Clean OSX";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +183,23 @@
 			productReference = C04215841C2FA68B0006413C /* Clean iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C09C12501C49B18B00D1DB6A /* Clean OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C09C125F1C49B18B00D1DB6A /* Build configuration list for PBXNativeTarget "Clean OSX" */;
+			buildPhases = (
+				C09C124D1C49B18B00D1DB6A /* Sources */,
+				C09C124E1C49B18B00D1DB6A /* Frameworks */,
+				C09C124F1C49B18B00D1DB6A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Clean OSX";
+			productName = "Clean OSX";
+			productReference = C09C12511C49B18B00D1DB6A /* Clean OSX.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -151,6 +211,9 @@
 				ORGANIZATIONNAME = Gabrieloc;
 				TargetAttributes = {
 					C04215831C2FA68B0006413C = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					C09C12501C49B18B00D1DB6A = {
 						CreatedOnToolsVersion = 7.2;
 					};
 				};
@@ -169,6 +232,7 @@
 			projectRoot = "";
 			targets = (
 				C04215831C2FA68B0006413C /* Clean iOS */,
+				C09C12501C49B18B00D1DB6A /* Clean OSX */,
 			);
 		};
 /* End PBXProject section */
@@ -187,6 +251,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C09C124F1C49B18B00D1DB6A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C09C12581C49B18B00D1DB6A /* Assets.xcassets in Resources */,
+				C09C12671C49B32F00D1DB6A /* art.scnassets in Resources */,
+				C09C125B1C49B18B00D1DB6A /* Main.storyboard in Resources */,
+				C09C12621C49B1F800D1DB6A /* game.scnassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -195,12 +270,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				C074B0E61C39C3BF00EF4E76 /* RoomView.swift in Sources */,
+				C03D043A1C48B536009C33F2 /* LiftableObject.swift in Sources */,
 				C04215B81C2FA6A70006413C /* RoomViewController.swift in Sources */,
 				C042158C1C2FA68B0006413C /* GameViewController.swift in Sources */,
 				C074B0E21C39B6CE00EF4E76 /* Character.swift in Sources */,
+				C06653141C5556AE0028D091 /* Dropzone.swift in Sources */,
 				C074B0E41C39B92000EF4E76 /* SceneKitExtensions.swift in Sources */,
 				C074B0EC1C39E8AC00EF4E76 /* Controls.swift in Sources */,
 				C04215881C2FA68B0006413C /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C09C124D1C49B18B00D1DB6A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C09C12601C49B1EA00D1DB6A /* RoomViewController.swift in Sources */,
+				C09C12631C49B20700D1DB6A /* LiftableObject.swift in Sources */,
+				C06653151C5556B50028D091 /* Dropzone.swift in Sources */,
+				C09C12641C49B20700D1DB6A /* Controls.swift in Sources */,
+				C09C12611C49B1EE00D1DB6A /* RoomView.swift in Sources */,
+				C09C12651C49B20700D1DB6A /* Character.swift in Sources */,
+				C09C12661C49B20700D1DB6A /* SceneKitExtensions.swift in Sources */,
+				C09C12541C49B18B00D1DB6A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +313,14 @@
 				C04215931C2FA68B0006413C /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		C09C12591C49B18B00D1DB6A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C09C125A1C49B18B00D1DB6A /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -331,6 +431,37 @@
 			};
 			name = Release;
 		};
+		C09C125D1C49B18B00D1DB6A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = "Clean OSX/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gabrieloc.Clean-OSX";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C09C125E1C49B18B00D1DB6A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Clean OSX/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gabrieloc.Clean-OSX";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -348,6 +479,15 @@
 			buildConfigurations = (
 				C04215AF1C2FA68B0006413C /* Debug */,
 				C04215B01C2FA68B0006413C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C09C125F1C49B18B00D1DB6A /* Build configuration list for PBXNativeTarget "Clean OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C09C125D1C49B18B00D1DB6A /* Debug */,
+				C09C125E1C49B18B00D1DB6A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

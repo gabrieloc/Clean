@@ -8,46 +8,92 @@
 
 import SceneKit
 
-enum GroundType: Int {
+enum GroundType : Int {
 	case InTheAir
 	case Surface
+}
+
+enum Action : Int {
+	case Idle
+	case Walking
+	case Lifting
+//	case Dropping
 }
 
 class Character {
 	
 	init() {
-		let characterScene = SCNScene(named: "game.scnassets/baby/idle.scn")!
+		let initialSceneName = sceneNameForAction(.Idle)
+		let characterScene = SCNScene(named: initialSceneName)!
 		let characterTopLevelNode = characterScene.rootNode.childNodes[0]
 		node.addChildNode(characterTopLevelNode)
 		
 		let (min, max) = node.boundingBox
 		let collisionCapsuleRadius = CGFloat(max.x - min.x) * 0.4
-		let collisionCapsuleHeight = CGFloat(max.y - min.y)
+		let collisionCapsuleHeight = self.height()
 		
+		let collidorGeometry = SCNCapsule(capRadius: collisionCapsuleRadius, height: collisionCapsuleHeight)
 		let characterCollisionNode = SCNNode()
-		characterCollisionNode.name = "collider"
+		characterCollisionNode.name = "collision"
 		characterCollisionNode.position = SCNVector3(0.0, collisionCapsuleHeight * 0.51, 0.0)
-		characterCollisionNode.physicsBody = SCNPhysicsBody(type: .Dynamic, shape:SCNPhysicsShape(geometry: SCNCapsule(capRadius: collisionCapsuleRadius, height: collisionCapsuleHeight), options:nil))
-		characterCollisionNode.physicsBody!.contactTestBitMask = BitmaskCollision
+		characterCollisionNode.physicsBody = SCNPhysicsBody(type: .Kinematic, shape:SCNPhysicsShape(geometry: collidorGeometry, options:nil))
+		characterCollisionNode.physicsBody!.contactTestBitMask = BitmaskCollision | BitmaskLiftable
 		node.addChildNode(characterCollisionNode)
-		
-		walkAnimation = CAAnimation.animationWithSceneNamed("game.scnassets/baby/run.scn")
-		walkAnimation.usesSceneTimeBase = false
-		walkAnimation.fadeInDuration = 0.3
-		walkAnimation.fadeOutDuration = 0.3
-		walkAnimation.repeatCount = Float.infinity
-		walkAnimation.speed = Character.speedFactor
-		walkAnimation.animationEvents = [
-			SCNAnimationEvent(keyTime: 0.1) { (_, _, _) in self.playFootStep() },
-			SCNAnimationEvent(keyTime: 0.6) { (_, _, _) in self.playFootStep() }
-		]
+	}
+
+	let node = SCNNode()
+	
+	// MARK: Lifting
+	
+	var liftingOriginalPosition: SCNVector3?
+	var lifting: SCNNode! {
+		willSet {
+			if isLifting {
+				let offset = node.convertPosition(SCNVector3Make(0, 0, 2), toNode: lifting)
+				let liftedFinalPosition = SCNVector3Make(lifting.position.x + offset.x, 1, lifting.position.z + offset.z)
+				print(liftedFinalPosition)
+				lifting.position = liftedFinalPosition
+			}
+		}
+		didSet {
+			dropZoneVisible = isLifting
+			if isLifting {
+				liftingOriginalPosition = lifting.position
+			}
+		}
+	}
+
+	var isLifting : Bool {
+		get {
+			return lifting != nil
+		}
 	}
 	
-	let node = SCNNode()
+	var dropzone : Dropzone!
+	var dropZoneVisible: Bool = false {
+		didSet {
+			if dropZoneVisible {
+				dropzone = Dropzone()
+				node.addChildNode(dropzone)
+			} else {
+				dropzone.removeFromParentNode()
+			}
+		}
+	}
+	
+	func dropObject() {
+		lifting = nil
+		transitionToAction(.Idle)
+	}
+	
+	func liftObject(object: SCNNode) {
+		lifting = object
+		transitionToAction(.Lifting)
+	}
 	
 	// MARK: Movement
 	
-	static let speedFactor = Float(1.5)
+	static let speedFactor = Float(3.0)
 	private var groundType = GroundType.InTheAir
 	private var previousUpdateTime = NSTimeInterval(0.0)
 	private var accelerationY = SCNFloat(0.0) // gravity simulation
@@ -60,81 +106,106 @@ class Character {
 		}
 	}
 	
+	func height() -> CGFloat {
+//		let (min, max) = node.boundingBox
+//		return max.y - min.y
+		return CGFloat(1.0)
+	}
+	
 	func walkInDirection(direction: float3, time: NSTimeInterval, scene: SCNScene) -> SCNNode? {
 		if previousUpdateTime == 0.0 {
 			previousUpdateTime = time
 		}
 		
 		let deltaTime = Float(min(time - previousUpdateTime, 1.0 / 60.0))
-		let characterSpeed = deltaTime * Character.speedFactor * 2.0
+		let characterSpeed = deltaTime * Character.speedFactor
 		previousUpdateTime = time
 		
 		// move
-		if direction.x != 0.0 && direction.z != 0.0 && groundType != .InTheAir {
+		if direction.x != 0.0 || direction.z != 0.0 {// && groundType != .InTheAir {
 			let position = float3(node.position)
 			node.position = SCNVector3(position + direction * characterSpeed)
 			directionAngle = SCNFloat(atan2(direction.x, direction.z))
+			
+			if lifting != nil {
+				let (min, max) = (lifting?.boundingBox)!
+				let liftingObjectHeight = max.y - min.y
+				let objectY = self.height() + liftingObjectHeight
+				let liftingObjectPosition = SCNVector3Make(CGFloat(position.x), objectY, CGFloat(position.z))
+				lifting?.position = liftingObjectPosition
+			}
+			
 			isWalking = true
 		}
 		else {
 			isWalking = false
 		}
-		
-		// altitude
-		
-		var position = node.position
-		var p0 = position
-		var p1 = position
-		
-		let maxRise = SCNFloat(0.08)
-		let maxJump = SCNFloat(10.0)
-		p0.y -= maxJump
-		p1.y += maxRise
-		
-		// Do a vertical ray intersection
-		var groundNode: SCNNode?
-		let results = scene.physicsWorld.rayTestWithSegmentFromPoint(p1, toPoint: p0, options:[SCNPhysicsTestCollisionBitMaskKey: BitmaskCollision, SCNPhysicsTestSearchModeKey: SCNPhysicsTestSearchModeClosest])
-		
-		if let result = results.first {
-			let groundAltitude = result.worldCoordinates.y
-			groundNode = result.node
-			
-			let threshold = SCNFloat(1e-5)
-			let gravityAcceleration = SCNFloat(0.18)
-			if groundAltitude < position.y - threshold {
-				accelerationY += SCNFloat(deltaTime) * gravityAcceleration
-				if groundAltitude < position.y - 0.2 {
-					groundType = .InTheAir
-				}
-			}
-			else {
-				accelerationY = 0
-			}
-			
-			position.y -= accelerationY
-			
-			if groundAltitude > position.y {
-				accelerationY = 0
-				position.y = groundAltitude
-				groundType = .Surface
-			}
-			
-			node.position = position
-		}
 
-		return groundNode
+		return nil
 	}
 	
 	// MARK: Animations
 	
-	private var walkAnimation: CAAnimation!
+	private func transitionToAction(action: Action) {
+		let key = identifierForAction(action)
+		if node.animationForKey(key) == nil  {
+			node.addAnimation(characterAnimationForAction(action), forKey: key)
+			
+			for oldKey in node.animationKeys {
+				if oldKey != key {
+					node.removeAnimationForKey(oldKey, fadeOutDuration: transitionDurationForAction(action))
+				}
+			}
+		}
+	}
+	
+	private func identifierForAction(action: Action) -> String {
+		switch(action) {
+		case .Idle:
+			return isLifting ? "idle-lifting" : "idle"
+		case .Walking:
+			return isLifting ? "walk-lifting" : "walk"
+		case .Lifting:
+			return "lift"
+		}
+	}
+	
+	private func sceneNameForAction(action : Action) -> String {
+		let identifier = identifierForAction(action)
+		return "game.scnassets/baby/\(identifier).scn"
+	}
+	
+	private func transitionDurationForAction(action: Action) -> CGFloat {
+		if action == .Idle && isLifting {
+			return 0.2
+		} else {
+			return 0.5
+		}
+	}
+	
+	func characterAnimationForAction(action: Action) -> CAAnimation {
+		let name = sceneNameForAction(action)
+		let animation = CAAnimation.animationWithSceneNamed(name)!
+		animation.fadeInDuration = transitionDurationForAction(action)
+		
+		if action != .Lifting {
+			animation.repeatCount = Float.infinity
+		}
+		
+		if action == .Walking {
+			animation.speed = Character.speedFactor
+		}
+		
+		return animation
+	}
+
 	private var isWalking: Bool = false {
 		didSet {
 			if oldValue != isWalking {
 				if isWalking {
-					node.addAnimation(walkAnimation, forKey: "walk")
+					transitionToAction(.Walking)
 				} else {
-					node.removeAnimationForKey("walk", fadeOutDuration: 0.2)
+					transitionToAction(.Idle)
 				}
 			}
 		}

@@ -9,5 +9,23 @@
 import SceneKit
 
 class RoomView: SCNView {
+	var eventsDelegate: KeyboardAndMouseEventsDelegate?
+	
+	#if os(OSX)
+	
+	override func keyDown(theEvent: NSEvent) {
+		guard let eventsDelegate = eventsDelegate where eventsDelegate.keyDown(self, theEvent: theEvent) else {
+			super.keyDown(theEvent)
+			return
+		}
+	}
+	
+	override func keyUp(theEvent: NSEvent) {
+		guard let eventsDelegate = eventsDelegate where eventsDelegate.keyUp(self, theEvent: theEvent) else {
+			super.keyUp(theEvent)
+			return
+		}
+	}
 
+	#endif
 }
