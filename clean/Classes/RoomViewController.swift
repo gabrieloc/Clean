@@ -138,7 +138,7 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 			self.characterNode(other, hitWall: matching, withContact: contact)
 		}
 		contact.match(category: BitmaskLiftable) { (matching, _) in
-			self.character.liftObject(matching)
+			self.character.lifting = matching
 		}
 	}
 	

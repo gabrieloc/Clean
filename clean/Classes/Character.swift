@@ -46,19 +46,38 @@ class Character {
 	// MARK: Lifting
 	
 	var liftingOriginalPosition: SCNVector3?
-	var lifting: SCNNode! {
-		willSet {
-			if newValue == nil { // Drop
-				let offset = node.convertPosition(SCNVector3Make(0, 0, 2), toNode: lifting)
-				let liftedFinalPosition = SCNVector3Make(lifting.position.x + offset.x, 1, lifting.position.z + offset.z)
-				lifting.position = liftedFinalPosition
-			}
-		}
+	var lifting: SCNNode? {
 		didSet {
-			dropZoneVisible = isLifting
-			if isLifting {
-				liftingOriginalPosition = lifting.position
+			if lifting == oldValue {
+				return
 			}
+			
+//			dropZoneVisible = isLifting
+			
+			let desiredLiftingPosition = isLifting ? positionForLiftedObject(lifting!) : positionForDroppedObject(oldValue!)
+			let liftingObject = isLifting ? lifting! : oldValue!
+			
+			SCNTransaction.begin()
+			SCNTransaction.setAnimationDuration(0.3)
+			SCNTransaction.setCompletionBlock({
+				self.transitionToAction(.Idle)
+
+				liftingObject.removeAnimationForKey("lift")
+				liftingObject.position = desiredLiftingPosition
+			})
+			
+			var liftingObjectAnimation: CAAnimation
+			if isLifting {
+				liftingOriginalPosition = lifting!.position
+				transitionToAction(.Lift)
+				liftingObjectAnimation = animationForLiftedObject(liftingObject, position:desiredLiftingPosition, duration:0.2, delay:0.1)
+			} else {
+				transitionToAction(.Drop)
+				liftingObjectAnimation = animationForLiftedObject(liftingObject, position:desiredLiftingPosition, duration:0.4, delay:0)
+			}
+			liftingObject.addAnimation(liftingObjectAnimation, forKey: "lift")
+			
+			SCNTransaction.commit()
 		}
 	}
 
@@ -68,32 +87,34 @@ class Character {
 		}
 	}
 	
+	func animationForLiftedObject(object: SCNNode, position: SCNVector3, duration: Double, delay: NSTimeInterval) -> CAAnimation {
+		let animation = CAKeyframeAnimation(keyPath: "position")
+		animation.duration = duration
+		animation.beginTime = CACurrentMediaTime() + delay
+//		animation.keyTimes = [0, 0.5, 1]
+		animation.values = [
+			NSValue(SCNVector3: object.position),
+//			NSValue(SCNVector3: SCNVector3Make(position.x, position.y + 1, position.z)),
+			NSValue(SCNVector3: position)]
+		animation.fillMode = kCAFillModeForwards
+		animation.removedOnCompletion = false
+		animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+		
+		return animation
+//		lifting?.addAnimation(animation, forKey: "lift")
+	}
+	
 	var dropzone : Dropzone!
 	var dropZoneVisible: Bool = false {
 		didSet {
-			if dropZoneVisible {
+			if dropZoneVisible && dropzone == nil {
 				dropzone = Dropzone()
 				node.addChildNode(dropzone)
-			} else {
+			} else if dropzone != nil {
 				dropzone.removeFromParentNode()
+				dropzone = nil
 			}
 		}
-	}
-	
-	func dropObject() {
-		lifting = nil
-		transitionToAction(.Idle)
-	}
-	
-	func liftObject(object: SCNNode) {
-		lifting = object
-
-		SCNTransaction.begin()
-		SCNTransaction.setCompletionBlock({
-			self.transitionToAction(.Idle)
-		})
-		transitionToAction(.Lift)
-		SCNTransaction.commit()
 	}
 	
 	// MARK: Movement
@@ -116,9 +137,29 @@ class Character {
 		return max.y - min.y
 	}
 	
+	func positionForLiftedObject(object:SCNNode) -> SCNVector3! {
+		let (min, max) = lifting!.boundingBox
+		let liftingObjectHeight = max.y - min.y
+		let objectY = self.height() + liftingObjectHeight
+		
+		let characterPosition = node.position
+		let liftingPosition = SCNVector3Make(CGFloat(characterPosition.x), objectY, CGFloat(characterPosition.z))
+
+		return liftingPosition
+	}
+	
+	func positionForDroppedObject(object:SCNNode) -> SCNVector3 {
+		//TODO calculate based off lifted object dimensions
+		let offset = node.convertPosition(SCNVector3Make(0, 0, 1.65), toNode: object)
+		let droppedPosition = SCNVector3Make(object.position.x + offset.x, 1, object.position.z + offset.z)
+		
+		return droppedPosition
+		
+	}
+	
 	func walkInDirection(direction: float3, time: NSTimeInterval, scene: SCNScene) -> SCNNode? {
 		
-		if currentAction == .Lift {
+		if currentAction == .Lift || currentAction == .Drop {
 			return nil
 		}
 		
@@ -136,12 +177,8 @@ class Character {
 			node.position = SCNVector3(position + direction * characterSpeed)
 			directionAngle = SCNFloat(atan2(direction.x, direction.z))
 			
-			if lifting != nil {
-				let (min, max) = (lifting?.boundingBox)!
-				let liftingObjectHeight = max.y - min.y
-				let objectY = self.height() + liftingObjectHeight
-				let liftingObjectPosition = SCNVector3Make(CGFloat(position.x), objectY, CGFloat(position.z))
-				lifting?.position = liftingObjectPosition
+			if isLifting {
+				lifting!.runAction(SCNAction.moveTo(positionForLiftedObject(lifting!), duration: 0))
 			}
 			
 			transitionToAction(.Walk)
@@ -157,13 +194,10 @@ class Character {
 	
 	var currentAction: Action = .Idle
 	private func transitionToAction(action: Action) {
-		if currentAction == action {
-			return
-		}
-		currentAction = action
 		let key = identifierForAction(action)
-		print(key)
 		if node.animationForKey(key) == nil  {
+			currentAction = action
+			print(key)
 			node.addAnimation(characterAnimationForAction(action), forKey: key)
 			for oldKey in node.animationKeys {
 				if oldKey != key {
@@ -194,8 +228,10 @@ class Character {
 	private func transitionDurationForAction(action: Action) -> CGFloat {
 		if action == .Idle && isLifting {
 			return 0.1
+		} else if action == .Lift || action == .Drop {
+			return 0.01
 		} else {
-			return 0.3
+			return 0.2
 		}
 	}
 	
@@ -204,12 +240,12 @@ class Character {
 		let animation = CAAnimation.animationWithSceneNamed(name)!
 		animation.fadeInDuration = transitionDurationForAction(action)
 		
-		if action == .Lift {
-			animation.removedOnCompletion = true
+		if action == .Lift || action == .Drop {
+//			animation.speed = 0.2
 		} else {
 			animation.repeatCount = Float.infinity
 		}
-		
+	
 		if action == .Walk {
 			animation.speed = Character.speedFactor
 		}
