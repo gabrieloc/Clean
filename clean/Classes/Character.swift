@@ -48,7 +48,7 @@ class Character {
 	var liftingOriginalPosition: SCNVector3?
 	var lifting: SCNNode! {
 		willSet {
-			if isLifting {
+			if newValue == nil { // Drop
 				let offset = node.convertPosition(SCNVector3Make(0, 0, 2), toNode: lifting)
 				let liftedFinalPosition = SCNVector3Make(lifting.position.x + offset.x, 1, lifting.position.z + offset.z)
 				lifting.position = liftedFinalPosition
@@ -87,7 +87,13 @@ class Character {
 	
 	func liftObject(object: SCNNode) {
 		lifting = object
+
+		SCNTransaction.begin()
+		SCNTransaction.setCompletionBlock({
+			self.transitionToAction(.Idle)
+		})
 		transitionToAction(.Lift)
+		SCNTransaction.commit()
 	}
 	
 	// MARK: Movement
@@ -111,6 +117,11 @@ class Character {
 	}
 	
 	func walkInDirection(direction: float3, time: NSTimeInterval, scene: SCNScene) -> SCNNode? {
+		
+		if currentAction == .Lift {
+			return nil
+		}
+		
 		if previousUpdateTime == 0.0 {
 			previousUpdateTime = time
 		}
@@ -120,7 +131,7 @@ class Character {
 		previousUpdateTime = time
 		
 		// move
-		if (direction.x != 0.0 || direction.z != 0.0) && currentAction != .Lift {
+		if (direction.x != 0.0 || direction.z != 0.0) {
 			let position = float3(node.position)
 			node.position = SCNVector3(position + direction * characterSpeed)
 			directionAngle = SCNFloat(atan2(direction.x, direction.z))
@@ -133,10 +144,10 @@ class Character {
 				lifting?.position = liftingObjectPosition
 			}
 			
-			isWalking = true
+			transitionToAction(.Walk)
 		}
 		else {
-			isWalking = false
+			transitionToAction(.Idle)
 		}
 
 		return nil
@@ -146,10 +157,14 @@ class Character {
 	
 	var currentAction: Action = .Idle
 	private func transitionToAction(action: Action) {
+		if currentAction == action {
+			return
+		}
+		currentAction = action
 		let key = identifierForAction(action)
+		print(key)
 		if node.animationForKey(key) == nil  {
 			node.addAnimation(characterAnimationForAction(action), forKey: key)
-			
 			for oldKey in node.animationKeys {
 				if oldKey != key {
 					node.removeAnimationForKey(oldKey, fadeOutDuration: transitionDurationForAction(action))
@@ -178,9 +193,9 @@ class Character {
 	
 	private func transitionDurationForAction(action: Action) -> CGFloat {
 		if action == .Idle && isLifting {
-			return 0.2
+			return 0.1
 		} else {
-			return 0.5
+			return 0.3
 		}
 	}
 	
@@ -189,7 +204,9 @@ class Character {
 		let animation = CAAnimation.animationWithSceneNamed(name)!
 		animation.fadeInDuration = transitionDurationForAction(action)
 		
-		if action != .Lift {
+		if action == .Lift {
+			animation.removedOnCompletion = true
+		} else {
 			animation.repeatCount = Float.infinity
 		}
 		
@@ -198,18 +215,6 @@ class Character {
 		}
 		
 		return animation
-	}
-
-	private var isWalking: Bool = false {
-		didSet {
-			if oldValue != isWalking {
-				if isWalking {
-					transitionToAction(.Walk)
-				} else {
-					transitionToAction(.Idle)
-				}
-			}
-		}
 	}
 	
 	// MARK: Sound
