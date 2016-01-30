@@ -63,32 +63,18 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 		character.node.position = startPosition
 		
 		cameraNode = scene.rootNode.childNodeWithName("camera", recursively: true)!
-//		let lookAtConstraint = SCNLookAtConstraint(target: character.node)
-//		lookAtConstraint.gimbalLockEnabled = true;
-//		cameraNode.constraints = [lookAtConstraint]
-
-		// Collisions
-//		var collisionNodes = [SCNNode]()
-//		scene.rootNode.enumerateChildNodesUsingBlock { (node, _) in
-//			switch node.name {
-//			case let .Some(s) where s.rangeOfString("collision") != nil:
-//				collisionNodes.append(node)
-//			default:
-//				break;
-//			}
-//		}
 		
 		scene.physicsWorld.contactDelegate = self
 		roomView.delegate = self
-		
-		let box = LiftableObject()
-		box.node.position = SCNVector3Make(2, 1, 2)
-		scene.rootNode.addChildNode(box.node)
-		
-//		for node in collisionNodes {
-//			node.hidden = false
-//			setupCollisionNode(node)
-//		}
+
+		for index in 10...20 {
+			let object = LiftableObject.randomObjectWithHeight(CGFloat(arc4random_uniform(UInt32(index))) * 0.1)
+			object.position = SCNVector3Make(
+				CGFloat(arc4random_uniform(UInt32(index))),
+				(object.boundingBox.max.y - object.boundingBox.min.y) / 2.0,
+				CGFloat(arc4random_uniform(UInt32(index))))
+			scene.rootNode.addChildNode(object)
+		}
 		
 		setupGameControllers()
 	}
@@ -138,7 +124,8 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 			self.characterNode(other, hitWall: matching, withContact: contact)
 		}
 		contact.match(category: BitmaskLiftable) { (matching, _) in
-			self.character.lifting = matching
+			let lifting = matching as! LiftableObject
+			self.character.liftObject(lifting)
 		}
 	}
 	

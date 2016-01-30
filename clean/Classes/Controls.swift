@@ -116,7 +116,7 @@ extension RoomViewController {
 			}
 			return true
 		} else if (theEvent.keyCode == Space) {
-			self.character.lifting = nil
+			self.character.dropObject()
 			return true
 		}
 		

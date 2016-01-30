@@ -46,39 +46,52 @@ class Character {
 	// MARK: Lifting
 	
 	var liftingOriginalPosition: SCNVector3?
-	var lifting: SCNNode? {
-		didSet {
-			if lifting == oldValue {
-				return
-			}
-			
-//			dropZoneVisible = isLifting
-			
-			let desiredLiftingPosition = isLifting ? positionForLiftedObject(lifting!) : positionForDroppedObject(oldValue!)
-			let liftingObject = isLifting ? lifting! : oldValue!
-			
-			SCNTransaction.begin()
-			SCNTransaction.setAnimationDuration(0.3)
-			SCNTransaction.setCompletionBlock({
-				self.transitionToAction(.Idle)
-
-				liftingObject.removeAnimationForKey("lift")
-				liftingObject.position = desiredLiftingPosition
-			})
-			
-			var liftingObjectAnimation: CAAnimation
-			if isLifting {
-				liftingOriginalPosition = lifting!.position
-				transitionToAction(.Lift)
-				liftingObjectAnimation = animationForLiftedObject(liftingObject, position:desiredLiftingPosition, duration:0.2, delay:0.1)
-			} else {
-				transitionToAction(.Drop)
-				liftingObjectAnimation = animationForLiftedObject(liftingObject, position:desiredLiftingPosition, duration:0.4, delay:0)
-			}
-			liftingObject.addAnimation(liftingObjectAnimation, forKey: "lift")
-			
-			SCNTransaction.commit()
+	
+	func liftObject(object:LiftableObject) {
+		if lifting != nil {
+			return
 		}
+		 
+		let desiredLiftingPosition = positionForLiftedObject(object)
+		
+		SCNTransaction.begin()
+		SCNTransaction.setAnimationDuration(0.3)
+		SCNTransaction.setCompletionBlock({
+			self.lifting = object
+			self.transitionToAction(.Idle)
+		})
+		
+		transitionToAction(.Lift)
+		let liftingObjectAnimation = animationForLiftedObject(object, position:desiredLiftingPosition, duration:0.2, delay:0.1)
+		object.position = desiredLiftingPosition
+		object.addAnimation(liftingObjectAnimation, forKey: "lift")
+		
+		SCNTransaction.commit()
+	}
+	
+	func dropObject() {
+		if lifting == nil {
+			return
+		}
+		
+		let object = lifting!
+		
+		let desiredDroppedPosition = positionForDroppedObject(object)
+		
+		SCNTransaction.begin()
+		SCNTransaction.setAnimationDuration(0.3)
+		SCNTransaction.setCompletionBlock({
+			self.lifting = nil
+			self.transitionToAction(.Idle)
+		})
+		
+		transitionToAction(.Drop)
+		
+		let droppingObjectAnimation = animationForLiftedObject(object, position:desiredDroppedPosition, duration:0.4, delay:0)
+		object.position = desiredDroppedPosition
+		object.addAnimation(droppingObjectAnimation, forKey: "drop")
+		
+		SCNTransaction.commit()
 	}
 
 	var isLifting : Bool {
@@ -86,6 +99,7 @@ class Character {
 			return lifting != nil
 		}
 	}
+	private var lifting: LiftableObject?
 	
 	func animationForLiftedObject(object: SCNNode, position: SCNVector3, duration: Double, delay: NSTimeInterval) -> CAAnimation {
 		let animation = CAKeyframeAnimation(keyPath: "position")
@@ -97,11 +111,9 @@ class Character {
 //			NSValue(SCNVector3: SCNVector3Make(position.x, position.y + 1, position.z)),
 			NSValue(SCNVector3: position)]
 		animation.fillMode = kCAFillModeForwards
-		animation.removedOnCompletion = false
 		animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
 		
 		return animation
-//		lifting?.addAnimation(animation, forKey: "lift")
 	}
 	
 	var dropzone : Dropzone!
@@ -127,34 +139,44 @@ class Character {
 	private var directionAngle: SCNFloat = 0.0 {
 		didSet {
 			if directionAngle != oldValue {
-				node.runAction(SCNAction.rotateToX(0.0, y: CGFloat(directionAngle), z: 0.0, duration: 0.2, shortestUnitArc: true))
+				let rotation = SCNAction.rotateToX(0.0, y: CGFloat(directionAngle), z: 0.0, duration: 0.2, shortestUnitArc: true)
+				node.runAction(rotation)
+				lifting?.runAction(rotation)
 			}
 		}
 	}
 	
 	func height() -> CGFloat {
-		let (min, max) = node.boundingBox
-		return max.y - min.y
+//		let (min, max) = node.boundingBox
+//		return max.y - min.y
+		return 0.8
 	}
 	
-	func positionForLiftedObject(object:SCNNode) -> SCNVector3! {
-		let (min, max) = lifting!.boundingBox
+	func length() -> CGFloat {
+		let (min, max) = node.boundingBox
+		return max.z - min.z
+	}
+	
+	func positionForLiftedObject(object: LiftableObject) -> SCNVector3! {
+		let (min, max) = object.boundingBox
 		let liftingObjectHeight = max.y - min.y
-		let objectY = self.height() + liftingObjectHeight
-		
+		let objectY = CGFloat(height() + (liftingObjectHeight * 0.5))
 		let characterPosition = node.position
 		let liftingPosition = SCNVector3Make(CGFloat(characterPosition.x), objectY, CGFloat(characterPosition.z))
-
+//		print(objectY)
+		
 		return liftingPosition
 	}
 	
-	func positionForDroppedObject(object:SCNNode) -> SCNVector3 {
-		//TODO calculate based off lifted object dimensions
-		let offset = node.convertPosition(SCNVector3Make(0, 0, 1.65), toNode: object)
-		let droppedPosition = SCNVector3Make(object.position.x + offset.x, 1, object.position.z + offset.z)
+	func positionForDroppedObject(object: LiftableObject) -> SCNVector3 {
+		let (min, max) = object.boundingBox
+		let objectRadius = (max.y - min.y) / 2.0
+		let objectZ = self.length() + objectRadius + 1
+		let offset = node.convertPosition(SCNVector3Make(0, 0, objectZ), toNode: object)
+		let droppedPosition = SCNVector3Make(object.position.x + offset.x, objectRadius, object.position.z + offset.z)
+//		print(node.position, offset, droppedPosition)
 		
 		return droppedPosition
-		
 	}
 	
 	func walkInDirection(direction: float3, time: NSTimeInterval, scene: SCNScene) -> SCNNode? {
@@ -178,7 +200,7 @@ class Character {
 			directionAngle = SCNFloat(atan2(direction.x, direction.z))
 			
 			if isLifting {
-				lifting!.runAction(SCNAction.moveTo(positionForLiftedObject(lifting!), duration: 0))
+				lifting?.runAction(SCNAction.moveTo(positionForLiftedObject(lifting!), duration: 0))
 			}
 			
 			transitionToAction(.Walk)
@@ -197,7 +219,7 @@ class Character {
 		let key = identifierForAction(action)
 		if node.animationForKey(key) == nil  {
 			currentAction = action
-			print(key)
+//			print(key)
 			node.addAnimation(characterAnimationForAction(action), forKey: key)
 			for oldKey in node.animationKeys {
 				if oldKey != key {
