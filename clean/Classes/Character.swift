@@ -51,22 +51,18 @@ class Character {
 		if lifting != nil {
 			return
 		}
-		 
-		let desiredLiftingPosition = positionForLiftedObject(object)
+
+		let location = positionForLiftedObject(object)
+		let delay = SCNAction.waitForDuration(0.2)
+		let lift = SCNAction.moveTo(location, duration: 0.1)
 		
-		SCNTransaction.begin()
-		SCNTransaction.setAnimationDuration(0.3)
-		SCNTransaction.setCompletionBlock({
+		let liftAction = SCNAction.sequence([delay, lift])
+		liftAction.timingMode = .EaseOut
+		object.runAction(liftAction) { () -> Void in
 			self.lifting = object
 			self.transitionToAction(.Idle)
-		})
-		
+		}
 		transitionToAction(.Lift)
-		let liftingObjectAnimation = animationForLiftedObject(object, position:desiredLiftingPosition, duration:0.2, delay:0.1)
-		object.position = desiredLiftingPosition
-		object.addAnimation(liftingObjectAnimation, forKey: "lift")
-		
-		SCNTransaction.commit()
 	}
 	
 	func dropObject() {
@@ -75,23 +71,14 @@ class Character {
 		}
 		
 		let object = lifting!
-		
-		let desiredDroppedPosition = positionForDroppedObject(object)
-		
-		SCNTransaction.begin()
-		SCNTransaction.setAnimationDuration(0.3)
-		SCNTransaction.setCompletionBlock({
+		let location = positionForDroppedObject(object)
+		let dropAction = SCNAction.moveTo(location, duration: 0.3)
+		dropAction.timingMode = .EaseIn
+		object.runAction(dropAction) {
 			self.lifting = nil
 			self.transitionToAction(.Idle)
-		})
-		
+		}
 		transitionToAction(.Drop)
-		
-		let droppingObjectAnimation = animationForLiftedObject(object, position:desiredDroppedPosition, duration:0.4, delay:0)
-		object.position = desiredDroppedPosition
-		object.addAnimation(droppingObjectAnimation, forKey: "drop")
-		
-		SCNTransaction.commit()
 	}
 
 	var isLifting : Bool {
@@ -100,22 +87,7 @@ class Character {
 		}
 	}
 	private var lifting: LiftableObject?
-	
-	func animationForLiftedObject(object: SCNNode, position: SCNVector3, duration: Double, delay: NSTimeInterval) -> CAAnimation {
-		let animation = CAKeyframeAnimation(keyPath: "position")
-		animation.duration = duration
-		animation.beginTime = CACurrentMediaTime() + delay
-//		animation.keyTimes = [0, 0.5, 1]
-		animation.values = [
-			NSValue(SCNVector3: object.position),
-//			NSValue(SCNVector3: SCNVector3Make(position.x, position.y + 1, position.z)),
-			NSValue(SCNVector3: position)]
-		animation.fillMode = kCAFillModeForwards
-		animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-		
-		return animation
-	}
-	
+
 	var dropzone : Dropzone!
 	var dropZoneVisible: Bool = false {
 		didSet {
@@ -149,7 +121,7 @@ class Character {
 	func height() -> CGFloat {
 //		let (min, max) = node.boundingBox
 //		return max.y - min.y
-		return 0.8
+		return 1.0
 	}
 	
 	func length() -> CGFloat {
@@ -159,24 +131,20 @@ class Character {
 	
 	func positionForLiftedObject(object: LiftableObject) -> SCNVector3! {
 		let (min, max) = object.boundingBox
-		let liftingObjectHeight = max.y - min.y
-		let objectY = CGFloat(height() + (liftingObjectHeight * 0.5))
+		let objectRadius = (max.y - min.y) * 0.5
+		let objectY = CGFloat(height() + objectRadius)
 		let characterPosition = node.position
 		let liftingPosition = SCNVector3Make(CGFloat(characterPosition.x), objectY, CGFloat(characterPosition.z))
-//		print(objectY)
 		
 		return liftingPosition
 	}
 	
 	func positionForDroppedObject(object: LiftableObject) -> SCNVector3 {
 		let (min, max) = object.boundingBox
-		let objectRadius = (max.y - min.y) / 2.0
-		let objectZ = self.length() + objectRadius + 1
-		let offset = node.convertPosition(SCNVector3Make(0, 0, objectZ), toNode: object)
-		let droppedPosition = SCNVector3Make(object.position.x + offset.x, objectRadius, object.position.z + offset.z)
-//		print(node.position, offset, droppedPosition)
-		
-		return droppedPosition
+		let objectRadius = (max.y - min.y) * 0.5
+		let objectZ = self.length() + objectRadius
+		let position = node.convertPosition(SCNVector3Make(0, objectRadius, objectZ), toNode: nil)
+		return position
 	}
 	
 	func walkInDirection(direction: float3, time: NSTimeInterval, scene: SCNScene) -> SCNNode? {
