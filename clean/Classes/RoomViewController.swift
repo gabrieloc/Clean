@@ -49,7 +49,7 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 	override func viewDidLoad() {
 		super.viewDidLoad()
 	
-		let scene = SCNScene(named: "game.scnassets/room.scn")!
+		let scene = SCNScene(named: "game.scnassets/room/room.scn")!
 		
 		self.roomView.scene = scene
 		self.roomView.playing = true
@@ -62,19 +62,19 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 		let startPosition = scene.rootNode.childNodeWithName("startingPoint", recursively: true)!.position
 		character.node.position = startPosition
 		
-		cameraNode = scene.rootNode.childNodeWithName("camera", recursively: true)!
+		cameraNode = scene.rootNode.childNodeWithName("PlayerCamera", recursively: true)!
 		
 		scene.physicsWorld.contactDelegate = self
 		roomView.delegate = self
 
-		for index in 10...20 {
-			let object = LiftableObject.randomObjectWithHeight(CGFloat(arc4random_uniform(UInt32(index))) * 0.1)
-			object.position = SCNVector3Make(
-				CGFloat(arc4random_uniform(UInt32(index))),
-				(object.boundingBox.max.y - object.boundingBox.min.y) / 2.0,
-				CGFloat(arc4random_uniform(UInt32(index))))
-			scene.rootNode.addChildNode(object)
-		}
+//		for index in 10...20 {
+//			let object = LiftableObject.randomObjectWithHeight(CGFloat(arc4random_uniform(UInt32(index))) * 0.1)
+//			object.position = SCNVector3Make(
+//				CGFloat(arc4random_uniform(UInt32(index))),
+//				(object.boundingBox.max.y - object.boundingBox.min.y) / 2.0,
+//				CGFloat(arc4random_uniform(UInt32(index))))
+//			scene.rootNode.addChildNode(object)
+//		}
 		
 		setupGameControllers()
 	}

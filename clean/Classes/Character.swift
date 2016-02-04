@@ -42,52 +42,8 @@ class Character {
 	}
 
 	let node = SCNNode()
+	var lifting: LiftableObject?
 	
-	// MARK: Lifting
-	
-	var liftingOriginalPosition: SCNVector3?
-	
-	func liftObject(object:LiftableObject) {
-		if lifting != nil {
-			return
-		}
-
-		let location = positionForLiftedObject(object)
-		let delay = SCNAction.waitForDuration(0.2)
-		let lift = SCNAction.moveTo(location, duration: 0.1)
-		
-		let liftAction = SCNAction.sequence([delay, lift])
-		liftAction.timingMode = .EaseOut
-		object.runAction(liftAction) { () -> Void in
-			self.lifting = object
-			self.transitionToAction(.Idle)
-		}
-		transitionToAction(.Lift)
-	}
-	
-	func dropObject() {
-		if lifting == nil {
-			return
-		}
-		
-		let object = lifting!
-		let location = positionForDroppedObject(object)
-		let dropAction = SCNAction.moveTo(location, duration: 0.3)
-		dropAction.timingMode = .EaseIn
-		object.runAction(dropAction) {
-			self.lifting = nil
-			self.transitionToAction(.Idle)
-		}
-		transitionToAction(.Drop)
-	}
-
-	var isLifting : Bool {
-		get {
-			return lifting != nil
-		}
-	}
-	private var lifting: LiftableObject?
-
 	var dropzone : Dropzone!
 	var dropZoneVisible: Bool = false {
 		didSet {
@@ -129,24 +85,6 @@ class Character {
 		return max.z - min.z
 	}
 	
-	func positionForLiftedObject(object: LiftableObject) -> SCNVector3! {
-		let (min, max) = object.boundingBox
-		let objectRadius = (max.y - min.y) * 0.5
-		let objectY = CGFloat(height() + objectRadius)
-		let characterPosition = node.position
-		let liftingPosition = SCNVector3Make(CGFloat(characterPosition.x), objectY, CGFloat(characterPosition.z))
-		
-		return liftingPosition
-	}
-	
-	func positionForDroppedObject(object: LiftableObject) -> SCNVector3 {
-		let (min, max) = object.boundingBox
-		let objectRadius = (max.y - min.y) * 0.5
-		let objectZ = self.length() + objectRadius
-		let position = node.convertPosition(SCNVector3Make(0, objectRadius, objectZ), toNode: nil)
-		return position
-	}
-	
 	func walkInDirection(direction: float3, time: NSTimeInterval, scene: SCNScene) -> SCNNode? {
 		
 		if currentAction == .Lift || currentAction == .Drop {
@@ -183,7 +121,7 @@ class Character {
 	// MARK: Animations
 	
 	var currentAction: Action = .Idle
-	private func transitionToAction(action: Action) {
+	func transitionToAction(action: Action) {
 		let key = identifierForAction(action)
 		if node.animationForKey(key) == nil  {
 			currentAction = action
@@ -215,7 +153,7 @@ class Character {
 		return "game.scnassets/baby/\(identifier).scn"
 	}
 	
-	private func transitionDurationForAction(action: Action) -> CGFloat {
+	func transitionDurationForAction(action: Action) -> CGFloat {
 		if action == .Idle && isLifting {
 			return 0.1
 		} else if action == .Lift || action == .Drop {
@@ -230,9 +168,7 @@ class Character {
 		let animation = CAAnimation.animationWithSceneNamed(name)!
 		animation.fadeInDuration = transitionDurationForAction(action)
 		
-		if action == .Lift || action == .Drop {
-//			animation.speed = 0.2
-		} else {
+		if action != .Lift && action != .Drop {
 			animation.repeatCount = Float.infinity
 		}
 	
