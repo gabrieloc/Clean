@@ -31,7 +31,7 @@ class LiftableObject : SCNNode {
 		geometry.firstMaterial = SCNMaterial()
 		geometry.firstMaterial?.diffuse.contents = NSColor.blueColor()
 		object.geometry = geometry
-		object.physicsBody = SCNPhysicsBody(type: .Kinematic, shape: SCNPhysicsShape(geometry: geometry, options: nil))
+		object.physicsBody = SCNPhysicsBody(type: .Dynamic, shape: SCNPhysicsShape(geometry: geometry, options: nil))
 		object.physicsBody!.categoryBitMask = BitmaskLiftable
 		
 		return object

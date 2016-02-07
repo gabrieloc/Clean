@@ -101,12 +101,56 @@ class Character {
 		
 		// move
 		if (direction.x != 0.0 || direction.z != 0.0) {
-			let position = float3(node.position)
-			node.position = SCNVector3(position + direction * characterSpeed)
+			var position = node.position
+			node.position = SCNVector3(float3(position) + direction * characterSpeed)
 			directionAngle = SCNFloat(atan2(direction.x, direction.z))
 			
 			if isLifting {
 				lifting?.runAction(SCNAction.moveTo(positionForLiftedObject(lifting!), duration: 0))
+			}
+			
+			var p0 = position
+			var p1 = position
+			
+			let maxRise = SCNFloat(0.08)
+			let maxJump = SCNFloat(10.0)
+			p0.y -= maxJump
+			p1.y += maxRise
+			
+			// Do a vertical ray intersection
+			var groundNode: SCNNode?
+			let results = scene.physicsWorld.rayTestWithSegmentFromPoint(p1, toPoint: p0, options:[SCNPhysicsTestCollisionBitMaskKey: BitmaskCollision, SCNPhysicsTestSearchModeKey: SCNPhysicsTestSearchModeClosest])
+			
+			if let result = results.first {
+				var groundAltitude = result.worldCoordinates.y
+				groundNode = result.node
+				
+				let groundMaterial = result.node.childNodes[0].geometry!.firstMaterial!
+//				groundType = groundTypeFromMaterial(groundMaterial)
+				
+				let threshold = SCNFloat(1e-5)
+				let gravityAcceleration = SCNFloat(0.18)
+				
+				if groundAltitude < position.y - threshold {
+					accelerationY += SCNFloat(deltaTime) * gravityAcceleration // approximation of acceleration for a delta time.
+//					if groundAltitude < position.y - 0.2 {
+//						groundType = .InTheAir
+//					}
+				}
+				else {
+					accelerationY = 0
+				}
+				
+				position.y -= accelerationY
+				
+				// reset acceleration if we touch the ground
+				if groundAltitude > position.y {
+					accelerationY = 0
+					position.y = groundAltitude
+				}
+				
+				// Finally, update the position of the character.
+				node.position = position
 			}
 			
 			transitionToAction(.Walk)

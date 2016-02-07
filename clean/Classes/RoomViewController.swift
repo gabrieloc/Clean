@@ -22,15 +22,17 @@ let BitmaskLiftable  = 1 << 3
 #endif
 
 class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsContactDelegate {
-	
+
 	var roomView: RoomView {
 		return view as! RoomView
 	}
 	
-	let character = Character()
-	private var cameraNode: SCNNode!
-	
-	// Camera
+	var character : Character {
+		return roomView.character
+	}
+	var scene : SCNScene {
+		return roomView.scene!
+	}
 	
 	// Controls
 	internal var controllerDPad: GCControllerDirectionPad?
@@ -48,33 +50,18 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-	
-		let scene = SCNScene(named: "game.scnassets/room/room.scn")!
-		
-		self.roomView.scene = scene
-		self.roomView.playing = true
-		self.roomView.loops = true
-		self.roomView.showsStatistics = true
-//		self.roomView.allowsCameraControl = true
 
-		scene.rootNode.addChildNode(character.node)
-		
-		let startPosition = scene.rootNode.childNodeWithName("startingPoint", recursively: true)!.position
-		character.node.position = startPosition
-		
-		cameraNode = scene.rootNode.childNodeWithName("PlayerCamera", recursively: true)!
-		
 		scene.physicsWorld.contactDelegate = self
 		roomView.delegate = self
 
-//		for index in 10...20 {
-//			let object = LiftableObject.randomObjectWithHeight(CGFloat(arc4random_uniform(UInt32(index))) * 0.1)
-//			object.position = SCNVector3Make(
-//				CGFloat(arc4random_uniform(UInt32(index))),
-//				(object.boundingBox.max.y - object.boundingBox.min.y) / 2.0,
-//				CGFloat(arc4random_uniform(UInt32(index))))
-//			scene.rootNode.addChildNode(object)
-//		}
+		for index in 0...200 {
+			let object = LiftableObject.randomObjectWithHeight(CGFloat(arc4random_uniform(UInt32(index))) * 0.1)
+			object.position = SCNVector3Make(
+				CGFloat(arc4random_uniform(UInt32(index))),
+				100,
+				CGFloat(arc4random_uniform(UInt32(index))))
+			scene.rootNode.addChildNode(object)
+		}
 		
 		setupGameControllers()
 	}
@@ -113,7 +100,8 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 		character.walkInDirection(direction, time: time, scene: scene)
 		
 		let characterPosition = character.node.position
-		cameraNode.position = SCNVector3Make(characterPosition.x - 2, cameraNode.position.y, characterPosition.z + 4)
+//		characterPosition.y = 20
+		roomView.cameraNode.position = SCNVector3Make(characterPosition.x, 25.0, characterPosition.z)
 //		cameraNode.rotation = SCNVector4Make(33, 45, 0, 0)
 	}
 
