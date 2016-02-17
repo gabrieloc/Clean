@@ -30,9 +30,6 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 	var character : Character {
 		return roomView.character
 	}
-	var scene : SCNScene {
-		return roomView.scene!
-	}
 	
 	// Controls
 	internal var controllerDPad: GCControllerDirectionPad?
@@ -51,29 +48,12 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		let scene = roomView.scene!
 		scene.physicsWorld.contactDelegate = self
 		roomView.delegate = self
-
-		for index in 0...200 {
-			let object = LiftableObject.randomObjectWithHeight(CGFloat(arc4random_uniform(UInt32(index))) * 0.1)
-			object.position = SCNVector3Make(
-				CGFloat(arc4random_uniform(UInt32(index))),
-				100,
-				CGFloat(arc4random_uniform(UInt32(index))))
-			scene.rootNode.addChildNode(object)
-		}
-		
 		setupGameControllers()
 	}
 	
-	private func setupCollisionNode(node: SCNNode) {
-		if node.geometry != nil {
-			node.physicsBody = SCNPhysicsBody.staticBody()
-			node.physicsBody!.categoryBitMask = BitmaskCollision
-			node.physicsBody!.physicsShape = SCNPhysicsShape(node: node, options: [SCNPhysicsShapeTypeKey: SCNPhysicsShapeTypeBoundingBox])
-		}
-	}
-
 	// MARK: Character Movement
 	
 	private func characterDirection() -> float3 {
@@ -95,14 +75,24 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 	// MARK: SCNSceneRendererDelegate
 	
 	func renderer(renderer: SCNSceneRenderer, updateAtTime time: NSTimeInterval) {
+		replacementPosition = nil
+		desiredPosition = nil
+		maxPenetrationDistance = 0
+		
 		let scene = roomView.scene!
 		let direction = characterDirection()
 		character.walkInDirection(direction, time: time, scene: scene)
-		
-		let characterPosition = character.node.position
-//		characterPosition.y = 20
-		roomView.cameraNode.position = SCNVector3Make(characterPosition.x, 25.0, characterPosition.z)
-//		cameraNode.rotation = SCNVector4Make(33, 45, 0, 0)
+
+		roomView.cameraNode.position = character.node.position
+	}
+	
+	func renderer(renderer: SCNSceneRenderer, didSimulatePhysicsAtTime time: NSTimeInterval) {
+		if let position = desiredPosition {
+			// TODO: have character jump to this point 
+			character.node.position = position
+		} else if let position = replacementPosition {
+			character.node.position = position
+		}
 	}
 
 	// MARK: SCNPhysicsContactDelegate
@@ -123,9 +113,11 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 		}
 	}
 	
-	
 	private var maxPenetrationDistance = CGFloat(0.0)
 	private var replacementPosition: SCNVector3?
+	private var desiredPosition: SCNVector3?
+	private let minimumJumpableHeight: CGFloat = 0.1
+	private let maximumJumpableHeight: CGFloat = 0.5
 	
 	private func characterNode(characterNode: SCNNode, hitWall wall: SCNNode, withContact contact:SCNPhysicsContact) {
 		if characterNode.parentNode != character.node {
@@ -138,11 +130,16 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 		
 		maxPenetrationDistance = contact.penetrationDistance
 		
-		var characterPosition = float3(character.node.position)
-		var positionOffset = float3(contact.contactNormal) * Float(contact.penetrationDistance)
-		positionOffset.y = 0
-		characterPosition += positionOffset
-		
-		replacementPosition = SCNVector3(characterPosition)
+		let elevation = contact.contactPoint.y - CGFloat(character.node.position.y)
+		let isFacingWall = character.isFacingWall(roomView.scene!)
+		if isFacingWall && elevation > minimumJumpableHeight && elevation < maximumJumpableHeight {
+			desiredPosition = contact.contactPoint
+		} else {
+			var positionOffset = float3(contact.contactNormal) * Float(contact.penetrationDistance)
+			positionOffset.y = 0
+			var characterPosition = float3(character.node.position)
+			characterPosition += positionOffset
+			replacementPosition = SCNVector3(characterPosition)
+		}
 	}
 }

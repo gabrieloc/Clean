@@ -18,6 +18,7 @@ enum Action : Int {
 	case Walk
 	case Lift
 	case Drop
+	case Fall
 }
 
 class Character {
@@ -40,7 +41,7 @@ class Character {
 		characterCollisionNode.physicsBody!.contactTestBitMask = BitmaskCollision | BitmaskLiftable
 		node.addChildNode(characterCollisionNode)
 	}
-
+	
 	let node = SCNNode()
 	var lifting: LiftableObject?
 	
@@ -63,7 +64,7 @@ class Character {
 	private var groundType = GroundType.InTheAir
 	private var previousUpdateTime = NSTimeInterval(0.0)
 	private var accelerationY = SCNFloat(0.0) // gravity simulation
-
+	
 	private var directionAngle: SCNFloat = 0.0 {
 		didSet {
 			if directionAngle != oldValue {
@@ -75,8 +76,8 @@ class Character {
 	}
 	
 	func height() -> CGFloat {
-//		let (min, max) = node.boundingBox
-//		return max.y - min.y
+		//		let (min, max) = node.boundingBox
+		//		return max.y - min.y
 		return 1.0
 	}
 	
@@ -85,8 +86,19 @@ class Character {
 		return max.z - min.z
 	}
 	
+	func climbToPosition(desiredPosition: SCNVector3, time: NSTimeInterval) {
+		node.position = desiredPosition
+	}
+	
+	func isFacingWall(scene: SCNScene) -> Bool {
+		let p0 = node.position
+		let p1 = node.convertPosition(SCNVector3Make(0, 0, 1), toNode: nil)
+		let results = scene.physicsWorld.rayTestWithSegmentFromPoint(p0, toPoint: p1, options: [SCNPhysicsTestCollisionBitMaskKey: BitmaskCollision, SCNPhysicsTestSearchModeKey: SCNPhysicsTestSearchModeClosest])
+		return results.count > 0
+	}
+	
 	func walkInDirection(direction: float3, time: NSTimeInterval, scene: SCNScene) -> SCNNode? {
-		
+
 		if currentAction == .Lift || currentAction == .Drop {
 			return nil
 		}
@@ -94,71 +106,79 @@ class Character {
 		if previousUpdateTime == 0.0 {
 			previousUpdateTime = time
 		}
-	
+		
 		let deltaTime = Float(min(time - previousUpdateTime, 1.0 / 60.0))
 		let characterSpeed = deltaTime * Character.speedFactor
 		previousUpdateTime = time
 		
-		// move
-		if (direction.x != 0.0 || direction.z != 0.0) {
-			var position = node.position
-			node.position = SCNVector3(float3(position) + direction * characterSpeed)
+		let isWalking = direction.x != 0.0 || direction.z != 0.0
+		var isFalling = false //TODO
+
+		if (isWalking) {
+			node.position = SCNVector3(float3(node.position) + direction * characterSpeed)
 			directionAngle = SCNFloat(atan2(direction.x, direction.z))
 			
 			if isLifting {
 				lifting?.runAction(SCNAction.moveTo(positionForLiftedObject(lifting!), duration: 0))
 			}
-			
-			var p0 = position
-			var p1 = position
-			
-			let maxRise = SCNFloat(0.08)
-			let maxJump = SCNFloat(10.0)
-			p0.y -= maxJump
-			p1.y += maxRise
-			
-			// Do a vertical ray intersection
-			var groundNode: SCNNode?
-			let results = scene.physicsWorld.rayTestWithSegmentFromPoint(p1, toPoint: p0, options:[SCNPhysicsTestCollisionBitMaskKey: BitmaskCollision, SCNPhysicsTestSearchModeKey: SCNPhysicsTestSearchModeClosest])
-			
-			if let result = results.first {
-				var groundAltitude = result.worldCoordinates.y
-				groundNode = result.node
-				
-				let groundMaterial = result.node.childNodes[0].geometry!.firstMaterial!
-//				groundType = groundTypeFromMaterial(groundMaterial)
-				
-				let threshold = SCNFloat(1e-5)
-				let gravityAcceleration = SCNFloat(0.18)
-				
-				if groundAltitude < position.y - threshold {
-					accelerationY += SCNFloat(deltaTime) * gravityAcceleration // approximation of acceleration for a delta time.
-//					if groundAltitude < position.y - 0.2 {
-//						groundType = .InTheAir
-//					}
-				}
-				else {
-					accelerationY = 0
-				}
-				
-				position.y -= accelerationY
-				
-				// reset acceleration if we touch the ground
-				if groundAltitude > position.y {
-					accelerationY = 0
-					position.y = groundAltitude
-				}
-				
-				// Finally, update the position of the character.
-				node.position = position
-			}
-			
-			transitionToAction(.Walk)
-		}
-		else {
-			transitionToAction(.Idle)
 		}
 
+		var position = node.position
+
+		var p0 = position
+		var p1 = position
+		
+		let maxRise = SCNFloat(10.0)
+		let maxJump = SCNFloat(10.0)
+		p0.y -= maxJump
+		p1.y += maxRise
+		
+		// Do a vertical ray intersection
+		let results = scene.physicsWorld.rayTestWithSegmentFromPoint(p1, toPoint: p0, options:[SCNPhysicsTestCollisionBitMaskKey: BitmaskCollision, SCNPhysicsTestSearchModeKey: SCNPhysicsTestSearchModeClosest])
+
+		if let result = results.first {
+			let groundAltitude = result.worldCoordinates.y
+			let threshold = SCNFloat(1e-5)
+			let gravityAcceleration = SCNFloat(0.18)
+			
+//			print(groundAltitude)
+			
+			if groundAltitude < position.y - threshold {
+//				print(groundAltitude, position.y)
+				accelerationY += SCNFloat(deltaTime) * gravityAcceleration // approximation of acceleration for a delta time.
+				if groundAltitude < position.y - 0.2 { // transition to falling if ground is more than 0.2 away
+					groundType = .InTheAir
+					isFalling = true
+				}
+			}
+			else {
+				accelerationY = 0
+			}
+			
+			position.y -= accelerationY
+//			print(accelerationY)
+			
+			// reset acceleration if we touch the ground
+			if groundAltitude > position.y {
+				accelerationY = 0
+				position.y = groundAltitude
+			}
+			
+//			print(accelerationY)
+			// Finally, update the position of the character.
+			node.position = position
+		}
+		
+		node.position = position
+		
+		if isFalling {
+			transitionToAction(.Fall)
+		} else if isWalking {
+			transitionToAction(.Walk)
+		} else {
+			transitionToAction(.Idle)
+		}
+		
 		return nil
 	}
 	
@@ -169,7 +189,7 @@ class Character {
 		let key = identifierForAction(action)
 		if node.animationForKey(key) == nil  {
 			currentAction = action
-//			print(key)
+			//			print(key)
 			node.addAnimation(characterAnimationForAction(action), forKey: key)
 			for oldKey in node.animationKeys {
 				if oldKey != key {
@@ -189,6 +209,8 @@ class Character {
 			return "lift"
 		case .Drop:
 			return "drop"
+		case .Fall:
+			return "idle" //"fall"
 		}
 	}
 	
@@ -215,7 +237,7 @@ class Character {
 		if action != .Lift && action != .Drop {
 			animation.repeatCount = Float.infinity
 		}
-	
+		
 		if action == .Walk {
 			animation.speed = Character.speedFactor
 		}

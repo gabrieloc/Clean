@@ -17,20 +17,20 @@ class RoomView : SCNView {
 	
 	override init(frame: CGRect) {
 		super.init(frame:frame)
+		commonInit()
+	}
 
-		scene = SCNScene(named: "game.scnassets/room/room.scn")!
-		
-		let startingPosition = scene!.rootNode.childNodeWithName("startingPoint", recursively: true)!.position
-		character.node.position = startingPosition
-		scene!.rootNode.addChildNode(character.node)
+	required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+		commonInit()
+	}
+	
+	func commonInit() {
+		self.scene = Playground.init(character: character)
 		
 		playing = true
 		loops = true
 		showsStatistics = true
-	}
-	
-	required init(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
 	}
 
 	var eventsDelegate: KeyboardAndMouseEventsDelegate?
