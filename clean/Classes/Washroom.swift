@@ -53,9 +53,9 @@ class Washroom : SCNScene {
 	func seedPropGeometry(count: NSInteger) {
 		for index in 0...count {
 			let object = LiftableObject.randomObjectWithHeight(CGFloat(arc4random_uniform(UInt32(index))) * 0.1)
-			object.position = SCNVector3Make(
+			object.position = SCNVector3(
 				CGFloat(arc4random_uniform(UInt32(index))),
-				60,
+				60.0,
 				CGFloat(arc4random_uniform(UInt32(index))))
 			self.rootNode.addChildNode(object)
 		}

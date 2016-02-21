@@ -33,9 +33,9 @@ class RoomView : SCNView {
 		showsStatistics = true
 	}
 
-	var eventsDelegate: KeyboardAndMouseEventsDelegate?
 	
 	#if os(OSX)
+	var eventsDelegate: KeyboardAndMouseEventsDelegate?
 	
 	override func keyDown(theEvent: NSEvent) {
 		guard let eventsDelegate = eventsDelegate where eventsDelegate.keyDown(self, theEvent: theEvent) else {

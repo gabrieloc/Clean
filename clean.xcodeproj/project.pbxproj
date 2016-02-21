@@ -42,6 +42,8 @@
 		C09DCA9B1C713F3500F4DD30 /* Washroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09DCA991C713F3500F4DD30 /* Washroom.swift */; };
 		C0B17D321C630E61005259F6 /* CleanKit.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C0B17D311C630E61005259F6 /* CleanKit.scnassets */; };
 		C0B17D331C630E61005259F6 /* CleanKit.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C0B17D311C630E61005259F6 /* CleanKit.scnassets */; };
+		C0BE88101C7A3C0500B43860 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FAB7481C758B74004102A8 /* Colors.swift */; };
+		C0FAB7491C758B74004102A8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FAB7481C758B74004102A8 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +77,7 @@
 		C09C125C1C49B18B00D1DB6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C09DCA991C713F3500F4DD30 /* Washroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Washroom.swift; path = Classes/Washroom.swift; sourceTree = "<group>"; };
 		C0B17D311C630E61005259F6 /* CleanKit.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = CleanKit.scnassets; sourceTree = "<group>"; };
+		C0FAB7481C758B74004102A8 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = Classes/Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +183,7 @@
 			children = (
 				C075D7411C6F9B330016E091 /* Playground.swift */,
 				C09DCA991C713F3500F4DD30 /* Washroom.swift */,
+				C0FAB7481C758B74004102A8 /* Colors.swift */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -311,6 +315,7 @@
 				C09DCA9A1C713F3500F4DD30 /* Washroom.swift in Sources */,
 				C074B0E21C39B6CE00EF4E76 /* Character.swift in Sources */,
 				C06653141C5556AE0028D091 /* Dropzone.swift in Sources */,
+				C0FAB7491C758B74004102A8 /* Colors.swift in Sources */,
 				C074B0E41C39B92000EF4E76 /* SceneKitExtensions.swift in Sources */,
 				C074B0EC1C39E8AC00EF4E76 /* Controls.swift in Sources */,
 				C04215881C2FA68B0006413C /* AppDelegate.swift in Sources */,
@@ -323,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C09C12601C49B1EA00D1DB6A /* RoomViewController.swift in Sources */,
+				C0BE88101C7A3C0500B43860 /* Colors.swift in Sources */,
 				C09DCA9B1C713F3500F4DD30 /* Washroom.swift in Sources */,
 				C09C12631C49B20700D1DB6A /* LiftableObject.swift in Sources */,
 				C06653151C5556B50028D091 /* Dropzone.swift in Sources */,

@@ -83,13 +83,12 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 		let direction = characterDirection()
 		character.walkInDirection(direction, time: time, scene: scene)
 
-		roomView.cameraNode.position = character.node.position
+		roomView.cameraNode.runAction(SCNAction.moveTo(character.node.position, duration: 0.5))
 	}
 	
 	func renderer(renderer: SCNSceneRenderer, didSimulatePhysicsAtTime time: NSTimeInterval) {
 		if let position = desiredPosition {
-			// TODO: have character jump to this point 
-			character.node.position = position
+			character.jumpToPosition(position)
 		} else if let position = replacementPosition {
 			character.node.position = position
 		}
@@ -130,7 +129,7 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 		
 		maxPenetrationDistance = contact.penetrationDistance
 		
-		let elevation = contact.contactPoint.y - CGFloat(character.node.position.y)
+		let elevation = CGFloat(contact.contactPoint.y) - CGFloat(character.node.position.y)
 		let isFacingWall = character.isFacingWall(roomView.scene!)
 		if isFacingWall && elevation > minimumJumpableHeight && elevation < maximumJumpableHeight {
 			desiredPosition = contact.contactPoint

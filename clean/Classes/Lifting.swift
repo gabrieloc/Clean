@@ -40,10 +40,10 @@ extension Character {
 	
 	func positionForLiftedObject(object: LiftableObject) -> SCNVector3! {
 		let (min, max) = object.boundingBox
-		let objectRadius = (max.y - min.y) * 0.5
-		let objectY = CGFloat(height() + objectRadius)
-		let characterPosition = node.position
-		let liftingPosition = SCNVector3Make(CGFloat(characterPosition.x), objectY, CGFloat(characterPosition.z))
+		let objectRadius =  Float(max.y - min.y) * 0.5
+		let objectY = height() + objectRadius
+		let characterPosition = SCNVector3ToFloat3(node.position)
+		let liftingPosition = SCNVector3(characterPosition.x, objectY, characterPosition.z)
 		
 		return liftingPosition
 	}
@@ -52,14 +52,14 @@ extension Character {
 	// MARK: Dropping
 	
 	func relativeXRotate(rotation: SCNVector4, xAngle: CGFloat) -> SCNVector4 {
-		return SCNVector4Make(xAngle, 0, 0, CGFloat(M_PI) * 2)
+		return SCNVector4(xAngle, 0.0, 0.0, CGFloat(M_PI) * 2.0)
 	}
 	
-	func finalPositionForObject(object: LiftableObject, offset: CGFloat) -> SCNVector3 {
+	func finalPositionForObject(object: LiftableObject, offset: Float) -> SCNVector3 {
 		let (min, max) = object.boundingBox
-		let objectRadius = (max.y - min.y) * 0.5
+		let objectRadius = Float(max.y - min.y) * 0.5
 		let objectZ = self.length() + objectRadius - offset
-		return node.convertPosition(SCNVector3Make(0, objectRadius, objectZ), toNode: nil)
+		return node.convertPosition(SCNVector3(0.0, objectRadius, objectZ), toNode: nil)
 	}
 	
 	func dropObject() {

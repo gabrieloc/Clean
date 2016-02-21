@@ -18,6 +18,7 @@ enum Action : Int {
 	case Walk
 	case Lift
 	case Drop
+	case Jump
 	case Fall
 }
 
@@ -31,7 +32,7 @@ class Character {
 		
 		let (min, max) = node.boundingBox
 		let collisionCapsuleRadius = CGFloat(max.x - min.x) * 0.4
-		let collisionCapsuleHeight = self.height()
+		let collisionCapsuleHeight = CGFloat(self.height())
 		
 		let collidorGeometry = SCNCapsule(capRadius: collisionCapsuleRadius, height: collisionCapsuleHeight)
 		let characterCollisionNode = SCNNode()
@@ -75,19 +76,35 @@ class Character {
 		}
 	}
 	
-	func height() -> CGFloat {
+	func height() -> Float {
 		//		let (min, max) = node.boundingBox
 		//		return max.y - min.y
 		return 1.0
 	}
 	
-	func length() -> CGFloat {
+	func length() -> Float {
 		let (min, max) = node.boundingBox
-		return max.z - min.z
+		return Float(max.z - min.z)
 	}
 	
-	func climbToPosition(desiredPosition: SCNVector3, time: NSTimeInterval) {
-		node.position = desiredPosition
+	func jumpToPosition(desiredPosition: SCNVector3) {
+		let elevation = desiredPosition.y - node.position.y
+		if currentAction != .Jump && elevation > 0.25 {
+			print(elevation)
+			var peakPosition = desiredPosition
+			peakPosition.y += elevation * 0.2
+			
+			let prep = SCNAction.waitForDuration(NSTimeInterval(elevation * 0.1))
+			let jumping = SCNAction.moveTo(peakPosition, duration: NSTimeInterval(elevation * 0.2))
+			jumping.timingMode = SCNActionTimingMode.EaseOut
+			let landing = SCNAction.moveTo(desiredPosition, duration: NSTimeInterval(elevation * 0.1))
+			landing.timingMode = SCNActionTimingMode.EaseOut
+			let action = SCNAction.sequence([prep, jumping, landing])
+			node.runAction(action, completionHandler: { () -> Void in
+				self.transitionToAction(.Walk)
+			})
+			transitionToAction(.Jump)
+		}
 	}
 	
 	func isFacingWall(scene: SCNScene) -> Bool {
@@ -99,7 +116,7 @@ class Character {
 	
 	func walkInDirection(direction: float3, time: NSTimeInterval, scene: SCNScene) -> SCNNode? {
 
-		if currentAction == .Lift || currentAction == .Drop {
+		if currentAction == .Lift || currentAction == .Drop || currentAction == .Jump {
 			return nil
 		}
 		
@@ -188,14 +205,14 @@ class Character {
 	func transitionToAction(action: Action) {
 		let key = identifierForAction(action)
 		if node.animationForKey(key) == nil  {
-			currentAction = action
-			//			print(key)
+			print(key)
 			node.addAnimation(characterAnimationForAction(action), forKey: key)
 			for oldKey in node.animationKeys {
 				if oldKey != key {
 					node.removeAnimationForKey(oldKey, fadeOutDuration: transitionDurationForAction(action))
 				}
 			}
+			currentAction = action
 		}
 	}
 	
@@ -209,20 +226,22 @@ class Character {
 			return "lift"
 		case .Drop:
 			return "drop"
+		case .Jump:
+			return "hop" //TODO select animation based off elevation
 		case .Fall:
-			return "idle" //"fall"
+			return "fall"
 		}
 	}
 	
 	private func sceneNameForAction(action : Action) -> String {
 		let identifier = identifierForAction(action)
-		return "game.scnassets/baby/\(identifier).scn"
+		return "game.scnassets/character/\(identifier).scn"
 	}
 	
 	func transitionDurationForAction(action: Action) -> CGFloat {
-		if action == .Idle && isLifting {
+		if action == .Idle && (isLifting || currentAction == .Jump) {
 			return 0.1
-		} else if action == .Lift || action == .Drop {
+		} else if action == .Lift || action == .Drop || action == .Jump {
 			return 0.01
 		} else {
 			return 0.2
@@ -234,7 +253,7 @@ class Character {
 		let animation = CAAnimation.animationWithSceneNamed(name)!
 		animation.fadeInDuration = transitionDurationForAction(action)
 		
-		if action != .Lift && action != .Drop {
+		if action != .Lift && action != .Drop && action != .Jump && action != .Fall {
 			animation.repeatCount = Float.infinity
 		}
 		
