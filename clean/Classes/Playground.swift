@@ -28,6 +28,20 @@ class Playground : SCNScene {
 				self.setupCollisionNode(node)
 			}
 		}
+		
+//		seedPropGeometry(10)
+		
+		let comb = LiftableObject(propName: .CKComb)
+		comb.position = SCNVector3Make(0, 0, 5)
+		rootNode.addChildNode(comb)
+		
+		let cream = LiftableObject(propName: .CKCream)
+		cream.position = SCNVector3Make(5, 0, 5)
+		rootNode.addChildNode(cream)
+		
+		let foam = LiftableObject(propName: .CKFoam)
+		foam.position = SCNVector3Make(5, 0, 10)
+		rootNode.addChildNode(foam)
 	}
 	
 	func setupCollisionNode(node : SCNNode) {
@@ -42,5 +56,16 @@ class Playground : SCNScene {
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
+	}
+	
+	func seedPropGeometry(count: NSInteger) {
+		for index in 0...count {
+			let object = LiftableObject.randomObjectWithHeight(CGFloat(arc4random_uniform(UInt32(index))) * 0.1)
+			object.position = SCNVector3(
+				CGFloat(arc4random_uniform(UInt32(index))),
+				10.0,
+				CGFloat(arc4random_uniform(UInt32(index))))
+			self.rootNode.addChildNode(object)
+		}
 	}
 }

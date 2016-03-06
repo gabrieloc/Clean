@@ -29,8 +29,6 @@ class Washroom : SCNScene {
 		geometry.enumerateChildNodesUsingBlock { (node, _) in
 			self.setupCollisionNode(node)
 		}
-		
-		seedPropGeometry(200)
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
@@ -47,17 +45,6 @@ class Washroom : SCNScene {
 		
 		for childNode in node.childNodes {
 			setupCollisionNode(childNode)
-		}
-	}
-	
-	func seedPropGeometry(count: NSInteger) {
-		for index in 0...count {
-			let object = LiftableObject.randomObjectWithHeight(CGFloat(arc4random_uniform(UInt32(index))) * 0.1)
-			object.position = SCNVector3(
-				CGFloat(arc4random_uniform(UInt32(index))),
-				60.0,
-				CGFloat(arc4random_uniform(UInt32(index))))
-			self.rootNode.addChildNode(object)
 		}
 	}
 }

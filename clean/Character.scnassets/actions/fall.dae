@@ -1,0 +1,2248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.71.3 commit date:2014-08-08, commit time:17:35, hash:ee8dafe</authoring_tool>
+    </contributor>
+    <created>2016-03-02T23:34:42</created>
+    <modified>2016-03-02T23:34:42</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="Character-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.5 0.5 0.5 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="Character-material" name="Character">
+      <instance_effect url="#Character-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Cube-mesh" name="Cube">
+      <mesh>
+        <source id="Cube-mesh-positions">
+          <float_array id="Cube-mesh-positions-array" count="117">-0.5739668 0.004555046 0.8787099 -0.5640375 0.09689158 0.717723 -0.2797787 0.09649306 0 -0.4500221 -0.072052 0.547744 -0.4144372 0.1414372 0.480529 -0.1488704 -0.14455 0.199903 -0.2797787 -0.09551203 -0.003827929 -0.214183 -0.1023123 0.6152737 -0.21144 -0.1685786 0.4190665 -0.2685585 -0.1794501 0.3434051 -0.2961267 -0.08668589 0.7528647 -0.2869834 -0.02253216 0.8281478 -0.2343996 0.1540787 0.5629032 -0.219198 0.1071486 0.7497991 -0.2185332 0.1420036 0.6885819 -0.2893942 -0.1497715 0.2981111 0.5739668 0.004555046 0.8787099 0.5640375 0.09689158 0.717723 0 -0.1521815 0.2213549 0.2797787 0.09649306 0 0 0.1705372 0.6701501 0 -0.04491943 0.7679039 0.4500221 -0.072052 0.547744 0.4144372 0.1414372 0.480529 0 0.1669086 0.1486436 0.1488704 -0.14455 0.199903 0.2797787 -0.09551203 -0.003827929 0 -0.1842476 0.3209072 0 -0.09906643 0.6870333 0.214183 -0.1023123 0.6152737 0.21144 -0.1685786 0.4190665 0 0.1687229 0.4093968 0.2685585 -0.1794501 0.3434051 0.2961267 -0.08668589 0.7528647 0.2869834 -0.02253216 0.8281478 0.2343996 0.1540787 0.5629032 0.219198 0.1071486 0.7497991 0.2185332 0.1420036 0.6885819 0.2893942 -0.1497715 0.2981111</float_array>
+          <technique_common>
+            <accessor source="#Cube-mesh-positions-array" count="39" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube-mesh-normals">
+          <float_array id="Cube-mesh-normals-array" count="222">-0.9526925 0.06534326 -0.2968288 -0.1195661 0.986725 0.1098982 -0.1714718 0.9752953 -0.1392714 -0.6473533 -0.7390315 -0.1864567 0.5067977 -0.3703554 -0.7784555 0.1280438 -0.2203466 -0.9669809 -0.8430455 -0.0285744 -0.5370825 -0.6181856 -0.7699775 -0.1580541 -0.9627615 0.005388855 -0.2702983 -0.9009515 -0.3500888 -0.2563675 -0.07164269 0.8671152 0.4929285 -0.005421161 -0.9892355 0.1462317 0.8424195 0.01074028 -0.5387153 -0.0668804 0.9977369 -0.006942033 -0.0920602 -0.9437906 0.3174656 -0.2162032 -0.9301231 0.2968623 -0.1360523 -0.990203 0.03143143 0.07510226 -0.7634603 0.6414732 -0.01898509 -0.9946385 0.1016558 -0.06688034 0.9977369 -0.006942033 -0.07164263 0.8671152 0.4929286 -0.1195661 0.9867251 0.1098982 -0.2579196 -0.9580253 0.1251601 -0.08862411 -0.9798663 -0.1789076 -0.2730098 -0.8574195 -0.436231 0.04164522 -0.7629564 0.6451072 0.1958628 0.4300685 0.8812938 0.2177342 0.4188111 0.8815833 0.9526925 0.06534326 -0.2968288 0.1195661 0.986725 0.1098981 0.1714717 0.9752953 -0.1392714 0.6473533 -0.7390314 -0.1864568 -0.5067977 -0.3703554 -0.7784556 -0.1280438 -0.2203466 -0.9669809 0.8430456 -0.0285744 -0.5370826 0.6181856 -0.7699775 -0.1580541 0.9627615 0.005388855 -0.2702983 0.9009515 -0.3500888 -0.2563675 0.07164269 0.8671152 0.4929285 0.005421161 -0.9892355 0.1462317 -0.8424195 0.01074028 -0.5387153 0.0668804 0.9977369 -0.006942033 0.0920602 -0.9437906 0.3174656 0.2162032 -0.9301231 0.2968623 0.1360523 -0.990203 0.03143143 -0.08859306 -0.8276751 0.5541707 0.01898509 -0.9946385 0.1016558 0.06688034 0.9977369 -0.006942033 0.07164263 0.8671152 0.4929286 0.1195661 0.9867251 0.1098982 0.2579196 -0.9580253 0.1251602 0.08862411 -0.9798663 -0.1789076 0.2730098 -0.8574195 -0.436231 -0.04164528 -0.7629564 0.6451072 -0.1958629 0.4300686 0.8812938 -0.2068465 0.4042333 0.8909602 -0.04264855 -0.9509752 -0.3063123 -0.0668804 0.9977369 -0.006942033 0.03300255 -0.9734566 0.2264798 -0.2078932 -0.9276019 0.3103787 0.08859306 -0.8276751 0.5541707 -0.07164263 0.8671152 0.4929286 -0.119566 0.986725 0.1098982 -0.01402604 -0.9688321 -0.247321 0.2068465 0.4042333 0.8909602 0.04264855 -0.9509752 -0.3063123 0.0668804 0.9977369 -0.006942033 -0.03300255 -0.9734566 0.2264798 0.2078932 -0.9276019 0.3103787 -0.07510226 -0.7634603 0.6414732 0.07164269 0.8671153 0.4929286 0.119566 0.986725 0.1098981 0.01402604 -0.9688321 -0.247321 -0.2177342 0.418811 0.8815833</float_array>
+          <technique_common>
+            <accessor source="#Cube-mesh-normals-array" count="74" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube-mesh-map">
+          <float_array id="Cube-mesh-map-array" count="444">0.09874939 0.8399122 0.1208772 0.8831467 0.09318792 0.8796256 0.04207348 0.9545812 0.07254523 0.9012693 0.08080828 0.9201304 0.09318792 0.8796256 0.01363593 0.7962812 0.08924669 0.8384947 0.1270898 0.8500378 0.1208772 0.8831467 0.1193625 0.8495898 0.08924669 0.8384947 0.01363593 0.7962812 0.1132427 0.8255649 0.1250299 0.789581 0.1132427 0.8255649 0.01363593 0.7962812 0.09318792 0.8796256 0.1208772 0.8831467 0.1069841 0.8964099 0.1193625 0.8495898 0.1208772 0.8831467 0.09874939 0.8399122 0.08924669 0.8384947 0.09874939 0.8399122 0.09318792 0.8796256 0.1208772 0.8831467 0.1103413 0.8998767 0.1069841 0.8964099 0.08920907 0.9262046 0.04207348 0.9545812 0.08080828 0.9201304 0.1470047 0.7996234 0.1448149 0.851099 0.1270898 0.8500378 0.09874939 0.8399122 0.08924669 0.8384947 0.1132427 0.8255649 0.07254523 0.9012693 0.04207348 0.9545812 0.01363593 0.8738101 0.5190255 0.9747436 -0.04850763 0.7907726 -0.03967642 0.243872 0.1208772 0.8831467 0.1270898 0.8500378 0.1448149 0.851099 0.1208772 0.8831467 0.1661025 0.9081341 0.1275125 0.9144514 0.1239086 0.9880334 0.1137143 0.9177395 0.1275125 0.9144514 0.1661025 0.9081341 0.1552858 0.9845648 0.1275125 0.9144514 0.09318792 0.8796256 0.07254523 0.9012693 0.01363593 0.7962812 0.08920907 0.9262046 0.08080828 0.9201304 0.1069841 0.8964099 0.09318792 0.8796256 0.1069841 0.8964099 0.08080828 0.9201304 0.1275125 0.9144514 0.1103413 0.8998767 0.1208772 0.8831467 0.1132427 0.8255649 0.1193625 0.8495898 0.09874939 0.8399122 0.1270898 0.8500378 0.1193625 0.8495898 0.1132427 0.8255649 0.1137143 0.9177395 0.1103413 0.8998767 0.1275125 0.9144514 0.08920907 0.9262046 0.1103413 0.8998767 0.1137143 0.9177395 0.08920907 0.9262046 0.1137143 0.9177395 0.1239086 0.9880334 0.9012506 0.8399122 0.9068121 0.8796256 0.8791228 0.8831467 0.9579265 0.9545812 0.9191917 0.9201304 0.9274547 0.9012693 0.9068121 0.8796256 0.9107533 0.8384947 0.9863641 0.7962812 0.8729102 0.8500378 0.8806375 0.8495898 0.8791228 0.8831467 0.9107533 0.8384947 0.8867573 0.8255649 0.9863641 0.7962812 0.8749701 0.789581 0.9863641 0.7962812 0.8867573 0.8255649 0.9068121 0.8796256 0.8930159 0.8964099 0.8791228 0.8831467 0.8806375 0.8495898 0.9012506 0.8399122 0.8791228 0.8831467 0.9107533 0.8384947 0.9068121 0.8796256 0.9012506 0.8399122 0.8791228 0.8831467 0.8930159 0.8964099 0.8896588 0.8998767 0.9107909 0.9262046 0.9191917 0.9201304 0.9579265 0.9545812 0.8729102 0.8500378 0.8551851 0.851099 0.8529953 0.7996234 0.9012506 0.8399122 0.8867573 0.8255649 0.9107533 0.8384947 0.9274547 0.9012693 0.9863641 0.7962812 0.9863641 0.8738101 1.039676 0.243872 1.048508 0.7907726 0.4809745 0.9747436 0.8551851 0.851099 0.8729102 0.8500378 0.8791228 0.8831467 0.8791228 0.8831467 0.8724876 0.9144514 0.8338975 0.9081341 0.8760914 0.9880334 0.8447142 0.9845648 0.8724876 0.9144514 0.8338975 0.9081341 0.8724876 0.9144514 0.8447142 0.9845648 0.9068121 0.8796256 0.9863641 0.7962812 0.9274547 0.9012693 0.8930159 0.8964099 0.9191917 0.9201304 0.9107909 0.9262046 0.9191917 0.9201304 0.8930159 0.8964099 0.9068121 0.8796256 0.8724876 0.9144514 0.8791228 0.8831467 0.8896588 0.8998767 0.8867573 0.8255649 0.9012506 0.8399122 0.8806375 0.8495898 0.8867573 0.8255649 0.8806375 0.8495898 0.8729102 0.8500378 0.8862857 0.9177395 0.8724876 0.9144514 0.8896588 0.8998767 0.9107909 0.9262046 0.8862857 0.9177395 0.8896588 0.8998767 0.9107909 0.9262046 0.9579265 0.9545812 0.8760914 0.9880334 0.1250299 0.789581 0.1470047 0.7996234 0.1270898 0.8500378 0.01363593 0.7962812 0.07254523 0.9012693 0.01363593 0.8738101 0.5190255 -0.01799207 0.5190255 0.9747436 -0.03967642 0.243872 0.1661025 0.9081341 0.1208772 0.8831467 0.1448149 0.851099 0.1552858 0.9845648 0.1239086 0.9880334 0.1275125 0.9144514 0.1103413 0.8998767 0.08920907 0.9262046 0.1069841 0.8964099 0.07254523 0.9012693 0.09318792 0.8796256 0.08080828 0.9201304 0.1250299 0.789581 0.1270898 0.8500378 0.1132427 0.8255649 0.04207348 0.9545812 0.08920907 0.9262046 0.1239086 0.9880334 0.8749701 0.789581 0.8729102 0.8500378 0.8529953 0.7996234 0.9579265 0.9545812 0.9274547 0.9012693 0.9863641 0.8738101 0.4809745 -0.01799207 1.039676 0.243872 0.4809745 0.9747436 0.8338975 0.9081341 0.8551851 0.851099 0.8791228 0.8831467 0.8862857 0.9177395 0.8760914 0.9880334 0.8724876 0.9144514 0.8896588 0.8998767 0.8930159 0.8964099 0.9107909 0.9262046 0.9274547 0.9012693 0.9191917 0.9201304 0.9068121 0.8796256 0.8749701 0.789581 0.8867573 0.8255649 0.8729102 0.8500378 0.8862857 0.9177395 0.9107909 0.9262046 0.8760914 0.9880334</float_array>
+          <technique_common>
+            <accessor source="#Cube-mesh-map-array" count="222" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube-mesh-vertices">
+          <input semantic="POSITION" source="#Cube-mesh-positions"/>
+        </vertices>
+        <polylist material="Character-material" count="74">
+          <input semantic="VERTEX" source="#Cube-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Cube-mesh-map" offset="2" set="0"/>
+          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>6 0 0 3 0 1 4 0 2 20 1 3 12 1 4 14 1 5 4 2 6 24 2 7 2 2 8 9 3 9 3 3 10 15 3 11 2 4 12 24 4 13 5 4 14 18 5 15 5 5 16 24 5 17 4 6 18 3 6 19 1 6 20 15 7 21 3 7 22 6 7 23 2 8 24 6 8 25 4 8 26 3 9 27 0 9 28 1 9 29 13 10 30 20 10 31 14 10 32 27 11 33 8 11 34 9 11 35 6 12 36 2 12 37 5 12 38 12 13 39 20 13 40 31 13 41 28 14 42 7 14 43 8 14 44 3 15 45 9 15 46 8 15 47 3 16 48 7 16 49 10 16 50 21 17 51 11 17 52 10 17 53 7 18 54 28 18 55 10 18 56 4 19 57 12 19 58 24 19 59 13 20 60 14 20 61 1 20 62 4 21 63 1 21 64 14 21 65 10 22 66 0 22 67 3 22 68 5 23 69 15 23 70 6 23 71 9 24 72 15 24 73 5 24 74 11 25 75 0 25 76 10 25 77 13 26 78 0 26 79 11 26 80 13 27 81 11 27 82 21 27 83 26 28 84 23 28 85 22 28 86 20 29 87 37 29 88 35 29 89 23 30 90 19 30 91 24 30 92 32 31 93 38 31 94 22 31 95 19 32 96 25 32 97 24 32 98 18 33 99 24 33 100 25 33 101 23 34 102 17 34 103 22 34 104 38 35 105 26 35 106 22 35 107 19 36 108 23 36 109 26 36 110 22 37 111 17 37 112 16 37 113 36 38 114 37 38 115 20 38 116 32 39 117 30 39 118 27 39 119 26 40 120 25 40 121 19 40 122 35 41 123 24 41 124 31 41 125 30 42 126 29 42 127 28 42 128 30 43 129 32 43 130 22 43 131 22 44 132 33 44 133 29 44 134 21 45 135 28 45 136 33 45 137 29 46 138 33 46 139 28 46 140 23 47 141 24 47 142 35 47 143 17 48 144 37 48 145 36 48 146 37 49 147 17 49 148 23 49 149 33 50 150 22 50 151 16 50 152 25 51 153 26 51 154 38 51 155 25 52 156 38 52 157 32 52 158 34 53 159 33 53 160 16 53 161 36 54 162 34 54 163 16 54 164 36 55 165 20 55 166 21 55 167 18 56 168 27 56 169 9 56 170 24 57 171 12 57 172 31 57 173 27 58 174 28 58 175 8 58 176 7 59 177 3 59 178 8 59 179 28 60 180 21 60 181 10 60 182 0 61 183 13 61 184 1 61 185 12 62 186 4 62 187 14 62 188 18 63 189 9 63 190 5 63 191 20 64 192 13 64 193 21 64 194 18 65 195 32 65 196 27 65 197 20 66 198 35 66 199 31 66 200 27 67 201 30 67 202 28 67 203 29 68 204 30 68 205 22 68 206 34 69 207 21 69 208 33 69 209 16 70 210 17 70 211 36 70 212 35 71 213 37 71 214 23 71 215 18 72 216 25 72 217 32 72 218 34 73 219 36 73 220 21 73 221</p>
+        </polylist>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_animations>
+    <animation id="Cube_pose_bones__Hip___location_X">
+      <source id="Cube_pose_bones__Hip___location_X-input">
+        <float_array id="Cube_pose_bones__Hip___location_X-input-array" count="5">0 0.08333331 0.2916666 0.3333333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___location_X-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___location_X-output">
+        <float_array id="Cube_pose_bones__Hip___location_X-output-array" count="5">-8.12705e-4 4.22764e-4 -0.00791043 -0.008342504 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___location_X-output-array" count="5" stride="1">
+            <param name="X" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___location_X-interpolation">
+        <Name_array id="Cube_pose_bones__Hip___location_X-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___location_X-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___location_X-intangent">
+        <float_array id="Cube_pose_bones__Hip___location_X-intangent-array" count="10">-0.03253424 -8.12705e-4 0.05079901 4.22764e-4 0.2103309 -0.005862057 0.3170662 -0.008342504 0.51113 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___location_X-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___location_X-outtangent">
+        <float_array id="Cube_pose_bones__Hip___location_X-outtangent-array" count="10">0.03253424 -8.12705e-4 0.164669 4.22764e-4 0.3079338 -0.008320152 0.414669 -0.008342504 0.73887 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___location_X-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Hip___location_X-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Hip___location_X-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Hip___location_X-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Hip___location_X-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Hip___location_X-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Hip___location_X-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Hip___location_X-sampler" target="Cube/location.X"/>
+    </animation>
+    <animation id="Cube_pose_bones__Hip___location_Y">
+      <source id="Cube_pose_bones__Hip___location_Y-input">
+        <float_array id="Cube_pose_bones__Hip___location_Y-input-array" count="5">0 0.08333331 0.2916666 0.3333333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___location_Y-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___location_Y-output">
+        <float_array id="Cube_pose_bones__Hip___location_Y-output-array" count="5">-2.89437e-4 -0.03197509 0.06544977 0.1039515 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___location_Y-output-array" count="5" stride="1">
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___location_Y-interpolation">
+        <Name_array id="Cube_pose_bones__Hip___location_Y-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___location_Y-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___location_Y-intangent">
+        <float_array id="Cube_pose_bones__Hip___location_Y-intangent-array" count="10">-0.03253424 -2.89437e-4 0.05079901 -0.03197509 0.2103309 0.008853077 0.3170662 0.1039515 0.51113 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___location_Y-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___location_Y-outtangent">
+        <float_array id="Cube_pose_bones__Hip___location_Y-outtangent-array" count="10">0.03253424 -2.89437e-4 0.164669 -0.03197509 0.3079338 0.07676911 0.414669 0.1039515 0.73887 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___location_Y-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Hip___location_Y-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Hip___location_Y-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Hip___location_Y-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Hip___location_Y-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Hip___location_Y-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Hip___location_Y-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Hip___location_Y-sampler" target="Cube/location.Y"/>
+    </animation>
+    <animation id="Cube_pose_bones__Hip___location_Z">
+      <source id="Cube_pose_bones__Hip___location_Z-input">
+        <float_array id="Cube_pose_bones__Hip___location_Z-input-array" count="5">0 0.08333331 0.2916666 0.3333333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___location_Z-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___location_Z-output">
+        <float_array id="Cube_pose_bones__Hip___location_Z-output-array" count="5">0.0248363 0.003635525 0.2065654 0.1998492 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___location_Z-output-array" count="5" stride="1">
+            <param name="Z" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___location_Z-interpolation">
+        <Name_array id="Cube_pose_bones__Hip___location_Z-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___location_Z-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___location_Z-intangent">
+        <float_array id="Cube_pose_bones__Hip___location_Z-intangent-array" count="10">-0.03253424 0.0248363 0.05079901 0.003635525 0.2103309 0.2065654 0.3170662 0.2065654 0.51113 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___location_Z-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___location_Z-outtangent">
+        <float_array id="Cube_pose_bones__Hip___location_Z-outtangent-array" count="10">0.03253424 0.0248363 0.164669 0.003635525 0.3079338 0.2065654 0.414669 0.1662682 0.73887 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___location_Z-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Hip___location_Z-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Hip___location_Z-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Hip___location_Z-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Hip___location_Z-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Hip___location_Z-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Hip___location_Z-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Hip___location_Z-sampler" target="Cube/location.Z"/>
+    </animation>
+    <animation id="Cube_pose_bones__Hip___scale_X">
+      <source id="Cube_pose_bones__Hip___scale_X-input">
+        <float_array id="Cube_pose_bones__Hip___scale_X-input-array" count="5">0 0.08333331 0.2916666 0.3333333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___scale_X-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___scale_X-output">
+        <float_array id="Cube_pose_bones__Hip___scale_X-output-array" count="5">1 1 1 1 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___scale_X-output-array" count="5" stride="1">
+            <param name="X" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___scale_X-interpolation">
+        <Name_array id="Cube_pose_bones__Hip___scale_X-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___scale_X-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___scale_X-intangent">
+        <float_array id="Cube_pose_bones__Hip___scale_X-intangent-array" count="10">-0.03253424 1 0.05079901 1 0.2103309 1 0.3170662 1 0.51113 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___scale_X-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___scale_X-outtangent">
+        <float_array id="Cube_pose_bones__Hip___scale_X-outtangent-array" count="10">0.03253424 1 0.164669 1 0.3079338 1 0.414669 1 0.73887 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___scale_X-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Hip___scale_X-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Hip___scale_X-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Hip___scale_X-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Hip___scale_X-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Hip___scale_X-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Hip___scale_X-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Hip___scale_X-sampler" target="Cube/scale.X"/>
+    </animation>
+    <animation id="Cube_pose_bones__Hip___scale_Y">
+      <source id="Cube_pose_bones__Hip___scale_Y-input">
+        <float_array id="Cube_pose_bones__Hip___scale_Y-input-array" count="5">0 0.08333331 0.2916666 0.3333333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___scale_Y-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___scale_Y-output">
+        <float_array id="Cube_pose_bones__Hip___scale_Y-output-array" count="5">1 1 1 1 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___scale_Y-output-array" count="5" stride="1">
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___scale_Y-interpolation">
+        <Name_array id="Cube_pose_bones__Hip___scale_Y-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___scale_Y-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___scale_Y-intangent">
+        <float_array id="Cube_pose_bones__Hip___scale_Y-intangent-array" count="10">-0.03253424 1 0.05079901 1 0.2103309 1 0.3170662 1 0.51113 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___scale_Y-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___scale_Y-outtangent">
+        <float_array id="Cube_pose_bones__Hip___scale_Y-outtangent-array" count="10">0.03253424 1 0.164669 1 0.3079338 1 0.414669 1 0.73887 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___scale_Y-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Hip___scale_Y-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Hip___scale_Y-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Hip___scale_Y-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Hip___scale_Y-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Hip___scale_Y-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Hip___scale_Y-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Hip___scale_Y-sampler" target="Cube/scale.Y"/>
+    </animation>
+    <animation id="Cube_pose_bones__Hip___scale_Z">
+      <source id="Cube_pose_bones__Hip___scale_Z-input">
+        <float_array id="Cube_pose_bones__Hip___scale_Z-input-array" count="5">0 0.08333331 0.2916666 0.3333333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___scale_Z-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___scale_Z-output">
+        <float_array id="Cube_pose_bones__Hip___scale_Z-output-array" count="5">1 1 1 1 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___scale_Z-output-array" count="5" stride="1">
+            <param name="Z" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___scale_Z-interpolation">
+        <Name_array id="Cube_pose_bones__Hip___scale_Z-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___scale_Z-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___scale_Z-intangent">
+        <float_array id="Cube_pose_bones__Hip___scale_Z-intangent-array" count="10">-0.03253424 1 0.05079901 1 0.2103309 1 0.3170662 1 0.51113 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___scale_Z-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Hip___scale_Z-outtangent">
+        <float_array id="Cube_pose_bones__Hip___scale_Z-outtangent-array" count="10">0.03253424 1 0.164669 1 0.3079338 1 0.414669 1 0.73887 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Hip___scale_Z-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Hip___scale_Z-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Hip___scale_Z-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Hip___scale_Z-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Hip___scale_Z-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Hip___scale_Z-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Hip___scale_Z-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Hip___scale_Z-sampler" target="Cube/scale.Z"/>
+    </animation>
+    <animation id="Cube_pose_bones__Spine___location_X">
+      <source id="Cube_pose_bones__Spine___location_X-input">
+        <float_array id="Cube_pose_bones__Spine___location_X-input-array" count="7">0 0.08333331 0.25 0.3333333 0.4583333 0.5 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___location_X-input-array" count="7" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___location_X-output">
+        <float_array id="Cube_pose_bones__Spine___location_X-output-array" count="7">0 0 -6.89898e-6 -2.85609e-5 -2.03257e-5 -6.89898e-6 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___location_X-output-array" count="7" stride="1">
+            <param name="X" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___location_X-interpolation">
+        <Name_array id="Cube_pose_bones__Spine___location_X-interpolation-array" count="7">BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___location_X-interpolation-array" count="7" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___location_X-intangent">
+        <float_array id="Cube_pose_bones__Spine___location_X-intangent-array" count="14">-0.03253424 0 0.05079901 0 0.1849314 0 0.300799 -2.85609e-5 0.4095319 -2.85609e-5 0.4837328 -9.19864e-6 0.5761986 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___location_X-intangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___location_X-outtangent">
+        <float_array id="Cube_pose_bones__Spine___location_X-outtangent-array" count="14">0.03253424 0 0.1484019 0 0.2825343 -1.03485e-5 0.3821347 -2.85609e-5 0.4746004 -1.75806e-5 0.5488014 0 0.6738014 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___location_X-outtangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Spine___location_X-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Spine___location_X-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Spine___location_X-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Spine___location_X-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Spine___location_X-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Spine___location_X-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Spine___location_X-sampler" target="Cube/location.X"/>
+    </animation>
+    <animation id="Cube_pose_bones__Spine___location_Y">
+      <source id="Cube_pose_bones__Spine___location_Y-input">
+        <float_array id="Cube_pose_bones__Spine___location_Y-input-array" count="7">0 0.08333331 0.25 0.3333333 0.4583333 0.5 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___location_Y-input-array" count="7" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___location_Y-output">
+        <float_array id="Cube_pose_bones__Spine___location_Y-output-array" count="7">0 0 0.004925787 0.02039223 0.01451236 0.004925787 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___location_Y-output-array" count="7" stride="1">
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___location_Y-interpolation">
+        <Name_array id="Cube_pose_bones__Spine___location_Y-interpolation-array" count="7">BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___location_Y-interpolation-array" count="7" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___location_Y-intangent">
+        <float_array id="Cube_pose_bones__Spine___location_Y-intangent-array" count="14">-0.03253424 0 0.05079901 0 0.1849314 0 0.300799 0.02039223 0.4095319 0.02039223 0.4837328 0.006567716 0.5761986 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___location_Y-intangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___location_Y-outtangent">
+        <float_array id="Cube_pose_bones__Spine___location_Y-outtangent-array" count="14">0.03253424 0 0.1484019 0 0.2825343 0.00738871 0.3821347 0.02039223 0.4746004 0.01255238 0.5488014 0 0.6738014 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___location_Y-outtangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Spine___location_Y-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Spine___location_Y-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Spine___location_Y-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Spine___location_Y-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Spine___location_Y-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Spine___location_Y-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Spine___location_Y-sampler" target="Cube/location.Y"/>
+    </animation>
+    <animation id="Cube_pose_bones__Spine___location_Z">
+      <source id="Cube_pose_bones__Spine___location_Z-input">
+        <float_array id="Cube_pose_bones__Spine___location_Z-input-array" count="7">0 0.08333331 0.25 0.3333333 0.4583333 0.5 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___location_Z-input-array" count="7" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___location_Z-output">
+        <float_array id="Cube_pose_bones__Spine___location_Z-output-array" count="7">0 0 -0.02446478 -0.1012812 -0.07207787 -0.02446478 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___location_Z-output-array" count="7" stride="1">
+            <param name="Z" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___location_Z-interpolation">
+        <Name_array id="Cube_pose_bones__Spine___location_Z-interpolation-array" count="7">BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___location_Z-interpolation-array" count="7" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___location_Z-intangent">
+        <float_array id="Cube_pose_bones__Spine___location_Z-intangent-array" count="14">-0.03253424 0 0.05079901 0 0.1849314 0 0.300799 -0.1012812 0.4095319 -0.1012812 0.4837328 -0.03261971 0.5761986 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___location_Z-intangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___location_Z-outtangent">
+        <float_array id="Cube_pose_bones__Spine___location_Z-outtangent-array" count="14">0.03253424 0 0.1484019 0 0.2825343 -0.03669714 0.3821347 -0.1012812 0.4746004 -0.06234341 0.5488014 0 0.6738014 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___location_Z-outtangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Spine___location_Z-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Spine___location_Z-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Spine___location_Z-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Spine___location_Z-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Spine___location_Z-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Spine___location_Z-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Spine___location_Z-sampler" target="Cube/location.Z"/>
+    </animation>
+    <animation id="Cube_pose_bones__Spine___scale_X">
+      <source id="Cube_pose_bones__Spine___scale_X-input">
+        <float_array id="Cube_pose_bones__Spine___scale_X-input-array" count="7">0 0.08333331 0.25 0.3333333 0.4583333 0.5 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___scale_X-input-array" count="7" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___scale_X-output">
+        <float_array id="Cube_pose_bones__Spine___scale_X-output-array" count="7">1 1 1 1 1 1 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___scale_X-output-array" count="7" stride="1">
+            <param name="X" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___scale_X-interpolation">
+        <Name_array id="Cube_pose_bones__Spine___scale_X-interpolation-array" count="7">BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___scale_X-interpolation-array" count="7" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___scale_X-intangent">
+        <float_array id="Cube_pose_bones__Spine___scale_X-intangent-array" count="14">-0.03253424 1 0.05079901 1 0.1849314 1 0.300799 1 0.4095319 1 0.4837328 1 0.5761986 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___scale_X-intangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___scale_X-outtangent">
+        <float_array id="Cube_pose_bones__Spine___scale_X-outtangent-array" count="14">0.03253424 1 0.1484019 1 0.2825343 1 0.3821347 1 0.4746004 1 0.5488014 1 0.6738014 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___scale_X-outtangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Spine___scale_X-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Spine___scale_X-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Spine___scale_X-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Spine___scale_X-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Spine___scale_X-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Spine___scale_X-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Spine___scale_X-sampler" target="Cube/scale.X"/>
+    </animation>
+    <animation id="Cube_pose_bones__Spine___scale_Y">
+      <source id="Cube_pose_bones__Spine___scale_Y-input">
+        <float_array id="Cube_pose_bones__Spine___scale_Y-input-array" count="7">0 0.08333331 0.25 0.3333333 0.4583333 0.5 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___scale_Y-input-array" count="7" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___scale_Y-output">
+        <float_array id="Cube_pose_bones__Spine___scale_Y-output-array" count="7">1 1 1 1 1 1 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___scale_Y-output-array" count="7" stride="1">
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___scale_Y-interpolation">
+        <Name_array id="Cube_pose_bones__Spine___scale_Y-interpolation-array" count="7">BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___scale_Y-interpolation-array" count="7" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___scale_Y-intangent">
+        <float_array id="Cube_pose_bones__Spine___scale_Y-intangent-array" count="14">-0.03253424 1 0.05079901 1 0.1849314 1 0.300799 1 0.4095319 1 0.4837328 1 0.5761986 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___scale_Y-intangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___scale_Y-outtangent">
+        <float_array id="Cube_pose_bones__Spine___scale_Y-outtangent-array" count="14">0.03253424 1 0.1484019 1 0.2825343 1 0.3821347 1 0.4746004 1 0.5488014 1 0.6738014 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___scale_Y-outtangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Spine___scale_Y-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Spine___scale_Y-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Spine___scale_Y-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Spine___scale_Y-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Spine___scale_Y-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Spine___scale_Y-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Spine___scale_Y-sampler" target="Cube/scale.Y"/>
+    </animation>
+    <animation id="Cube_pose_bones__Spine___scale_Z">
+      <source id="Cube_pose_bones__Spine___scale_Z-input">
+        <float_array id="Cube_pose_bones__Spine___scale_Z-input-array" count="7">0 0.08333331 0.25 0.3333333 0.4583333 0.5 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___scale_Z-input-array" count="7" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___scale_Z-output">
+        <float_array id="Cube_pose_bones__Spine___scale_Z-output-array" count="7">1 1 1 1 1 1 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___scale_Z-output-array" count="7" stride="1">
+            <param name="Z" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___scale_Z-interpolation">
+        <Name_array id="Cube_pose_bones__Spine___scale_Z-interpolation-array" count="7">BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___scale_Z-interpolation-array" count="7" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___scale_Z-intangent">
+        <float_array id="Cube_pose_bones__Spine___scale_Z-intangent-array" count="14">-0.03253424 1 0.05079901 1 0.1849314 1 0.300799 1 0.4095319 1 0.4837328 1 0.5761986 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___scale_Z-intangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Spine___scale_Z-outtangent">
+        <float_array id="Cube_pose_bones__Spine___scale_Z-outtangent-array" count="14">0.03253424 1 0.1484019 1 0.2825343 1 0.3821347 1 0.4746004 1 0.5488014 1 0.6738014 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Spine___scale_Z-outtangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Spine___scale_Z-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Spine___scale_Z-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Spine___scale_Z-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Spine___scale_Z-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Spine___scale_Z-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Spine___scale_Z-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Spine___scale_Z-sampler" target="Cube/scale.Z"/>
+    </animation>
+    <animation id="Cube_pose_bones__Left_Arm___location_X">
+      <source id="Cube_pose_bones__Left_Arm___location_X-input">
+        <float_array id="Cube_pose_bones__Left_Arm___location_X-input-array" count="5">0 0.08333331 0.3333333 0.4583333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___location_X-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___location_X-output">
+        <float_array id="Cube_pose_bones__Left_Arm___location_X-output-array" count="5">0.06333452 0.09597975 0.1132682 -0.03253608 -0.07231611</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___location_X-output-array" count="5" stride="1">
+            <param name="X" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___location_X-interpolation">
+        <Name_array id="Cube_pose_bones__Left_Arm___location_X-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___location_X-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___location_X-intangent">
+        <float_array id="Cube_pose_bones__Left_Arm___location_X-intangent-array" count="10">-0.03253424 0.06333452 0.05079901 0.09021693 0.2357304 0.1132682 0.4095319 -0.002701103 0.5599315 -0.07231611</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___location_X-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___location_X-outtangent">
+        <float_array id="Cube_pose_bones__Left_Arm___location_X-outtangent-array" count="10">0.03253424 0.06333452 0.1809362 0.1132682 0.3821347 0.1132682 0.5234019 -0.07231611 0.6900686 -0.07231611</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___location_X-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Left_Arm___location_X-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Left_Arm___location_X-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Left_Arm___location_X-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Left_Arm___location_X-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Left_Arm___location_X-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Left_Arm___location_X-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Left_Arm___location_X-sampler" target="Cube/location.X"/>
+    </animation>
+    <animation id="Cube_pose_bones__Left_Arm___location_Y">
+      <source id="Cube_pose_bones__Left_Arm___location_Y-input">
+        <float_array id="Cube_pose_bones__Left_Arm___location_Y-input-array" count="5">0 0.08333331 0.3333333 0.4583333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___location_Y-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___location_Y-output">
+        <float_array id="Cube_pose_bones__Left_Arm___location_Y-output-array" count="5">0.1483975 0.1949933 0.16468 -0.2099379 -0.1813189</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___location_Y-output-array" count="5" stride="1">
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___location_Y-interpolation">
+        <Name_array id="Cube_pose_bones__Left_Arm___location_Y-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___location_Y-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___location_Y-intangent">
+        <float_array id="Cube_pose_bones__Left_Arm___location_Y-intangent-array" count="10">-0.03253424 0.1483975 0.05079901 0.1949933 0.2357304 0.1949933 0.4095319 -0.2099379 0.5599315 -0.1813189</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___location_Y-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___location_Y-outtangent">
+        <float_array id="Cube_pose_bones__Left_Arm___location_Y-outtangent-array" count="10">0.03253424 0.1483975 0.1809362 0.1949933 0.3821347 0.1495233 0.5234019 -0.2099379 0.6900686 -0.1813189</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___location_Y-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Left_Arm___location_Y-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Left_Arm___location_Y-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Left_Arm___location_Y-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Left_Arm___location_Y-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Left_Arm___location_Y-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Left_Arm___location_Y-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Left_Arm___location_Y-sampler" target="Cube/location.Y"/>
+    </animation>
+    <animation id="Cube_pose_bones__Left_Arm___location_Z">
+      <source id="Cube_pose_bones__Left_Arm___location_Z-input">
+        <float_array id="Cube_pose_bones__Left_Arm___location_Z-input-array" count="5">0 0.08333331 0.3333333 0.4583333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___location_Z-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___location_Z-output">
+        <float_array id="Cube_pose_bones__Left_Arm___location_Z-output-array" count="5">-0.01602292 -0.06632852 0.2059469 0.1926032 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___location_Z-output-array" count="5" stride="1">
+            <param name="Z" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___location_Z-interpolation">
+        <Name_array id="Cube_pose_bones__Left_Arm___location_Z-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___location_Z-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___location_Z-intangent">
+        <float_array id="Cube_pose_bones__Left_Arm___location_Z-intangent-array" count="10">-0.03253424 -0.01602292 0.05079901 -0.06632852 0.2357304 0.2059469 0.4095319 0.2059469 0.5599315 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___location_Z-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___location_Z-outtangent">
+        <float_array id="Cube_pose_bones__Left_Arm___location_Z-outtangent-array" count="10">0.03253424 -0.01602292 0.1809362 -0.06632852 0.3821347 0.2059469 0.5234019 0.1748117 0.6900686 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___location_Z-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Left_Arm___location_Z-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Left_Arm___location_Z-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Left_Arm___location_Z-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Left_Arm___location_Z-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Left_Arm___location_Z-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Left_Arm___location_Z-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Left_Arm___location_Z-sampler" target="Cube/location.Z"/>
+    </animation>
+    <animation id="Cube_pose_bones__Left_Arm___scale_X">
+      <source id="Cube_pose_bones__Left_Arm___scale_X-input">
+        <float_array id="Cube_pose_bones__Left_Arm___scale_X-input-array" count="5">0 0.08333331 0.3333333 0.4583333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___scale_X-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___scale_X-output">
+        <float_array id="Cube_pose_bones__Left_Arm___scale_X-output-array" count="5">1 1 1 1 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___scale_X-output-array" count="5" stride="1">
+            <param name="X" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___scale_X-interpolation">
+        <Name_array id="Cube_pose_bones__Left_Arm___scale_X-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___scale_X-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___scale_X-intangent">
+        <float_array id="Cube_pose_bones__Left_Arm___scale_X-intangent-array" count="10">-0.03253424 1 0.05079901 1 0.2357304 1 0.4095319 1 0.5599315 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___scale_X-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___scale_X-outtangent">
+        <float_array id="Cube_pose_bones__Left_Arm___scale_X-outtangent-array" count="10">0.03253424 1 0.1809362 1 0.3821347 1 0.5234019 1 0.6900686 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___scale_X-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Left_Arm___scale_X-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Left_Arm___scale_X-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Left_Arm___scale_X-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Left_Arm___scale_X-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Left_Arm___scale_X-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Left_Arm___scale_X-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Left_Arm___scale_X-sampler" target="Cube/scale.X"/>
+    </animation>
+    <animation id="Cube_pose_bones__Left_Arm___scale_Y">
+      <source id="Cube_pose_bones__Left_Arm___scale_Y-input">
+        <float_array id="Cube_pose_bones__Left_Arm___scale_Y-input-array" count="5">0 0.08333331 0.3333333 0.4583333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___scale_Y-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___scale_Y-output">
+        <float_array id="Cube_pose_bones__Left_Arm___scale_Y-output-array" count="5">1 1 1 1 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___scale_Y-output-array" count="5" stride="1">
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___scale_Y-interpolation">
+        <Name_array id="Cube_pose_bones__Left_Arm___scale_Y-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___scale_Y-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___scale_Y-intangent">
+        <float_array id="Cube_pose_bones__Left_Arm___scale_Y-intangent-array" count="10">-0.03253424 1 0.05079901 1 0.2357304 1 0.4095319 1 0.5599315 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___scale_Y-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___scale_Y-outtangent">
+        <float_array id="Cube_pose_bones__Left_Arm___scale_Y-outtangent-array" count="10">0.03253424 1 0.1809362 1 0.3821347 1 0.5234019 1 0.6900686 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___scale_Y-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Left_Arm___scale_Y-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Left_Arm___scale_Y-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Left_Arm___scale_Y-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Left_Arm___scale_Y-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Left_Arm___scale_Y-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Left_Arm___scale_Y-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Left_Arm___scale_Y-sampler" target="Cube/scale.Y"/>
+    </animation>
+    <animation id="Cube_pose_bones__Left_Arm___scale_Z">
+      <source id="Cube_pose_bones__Left_Arm___scale_Z-input">
+        <float_array id="Cube_pose_bones__Left_Arm___scale_Z-input-array" count="5">0 0.08333331 0.3333333 0.4583333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___scale_Z-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___scale_Z-output">
+        <float_array id="Cube_pose_bones__Left_Arm___scale_Z-output-array" count="5">1 1 1 1 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___scale_Z-output-array" count="5" stride="1">
+            <param name="Z" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___scale_Z-interpolation">
+        <Name_array id="Cube_pose_bones__Left_Arm___scale_Z-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___scale_Z-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___scale_Z-intangent">
+        <float_array id="Cube_pose_bones__Left_Arm___scale_Z-intangent-array" count="10">-0.03253424 1 0.05079901 1 0.2357304 1 0.4095319 1 0.5599315 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___scale_Z-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Arm___scale_Z-outtangent">
+        <float_array id="Cube_pose_bones__Left_Arm___scale_Z-outtangent-array" count="10">0.03253424 1 0.1809362 1 0.3821347 1 0.5234019 1 0.6900686 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Arm___scale_Z-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Left_Arm___scale_Z-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Left_Arm___scale_Z-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Left_Arm___scale_Z-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Left_Arm___scale_Z-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Left_Arm___scale_Z-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Left_Arm___scale_Z-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Left_Arm___scale_Z-sampler" target="Cube/scale.Z"/>
+    </animation>
+    <animation id="Cube_pose_bones__Right_Arm___location_X">
+      <source id="Cube_pose_bones__Right_Arm___location_X-input">
+        <float_array id="Cube_pose_bones__Right_Arm___location_X-input-array" count="5">0 0.08333331 0.3333333 0.4583333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___location_X-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___location_X-output">
+        <float_array id="Cube_pose_bones__Right_Arm___location_X-output-array" count="5">-0.07908028 -0.1183093 -0.1227897 0.009875833 0.04889559</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___location_X-output-array" count="5" stride="1">
+            <param name="X" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___location_X-interpolation">
+        <Name_array id="Cube_pose_bones__Right_Arm___location_X-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___location_X-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___location_X-intangent">
+        <float_array id="Cube_pose_bones__Right_Arm___location_X-intangent-array" count="10">-0.03253424 -0.07908028 0.05079901 -0.1168158 0.2357304 -0.1227897 0.4095319 -0.01938891 0.5599315 0.04889559</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___location_X-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___location_X-outtangent">
+        <float_array id="Cube_pose_bones__Right_Arm___location_X-outtangent-array" count="10">0.03253424 -0.07908028 0.1809362 -0.1227897 0.3821347 -0.1227897 0.5234019 0.04889559 0.6900686 0.04889559</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___location_X-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Right_Arm___location_X-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Right_Arm___location_X-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Right_Arm___location_X-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Right_Arm___location_X-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Right_Arm___location_X-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Right_Arm___location_X-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Right_Arm___location_X-sampler" target="Cube/location.X"/>
+    </animation>
+    <animation id="Cube_pose_bones__Right_Arm___location_Y">
+      <source id="Cube_pose_bones__Right_Arm___location_Y-input">
+        <float_array id="Cube_pose_bones__Right_Arm___location_Y-input-array" count="5">0 0.08333331 0.3333333 0.4583333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___location_Y-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___location_Y-output">
+        <float_array id="Cube_pose_bones__Right_Arm___location_Y-output-array" count="5">0.1296134 0.1952319 0.07246035 -0.2049199 -0.151197</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___location_Y-output-array" count="5" stride="1">
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___location_Y-interpolation">
+        <Name_array id="Cube_pose_bones__Right_Arm___location_Y-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___location_Y-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___location_Y-intangent">
+        <float_array id="Cube_pose_bones__Right_Arm___location_Y-intangent-array" count="10">-0.03253424 0.1296134 0.05079901 0.1952319 0.2357304 0.1952319 0.4095319 -0.2049199 0.5599315 -0.151197</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___location_Y-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___location_Y-outtangent">
+        <float_array id="Cube_pose_bones__Right_Arm___location_Y-outtangent-array" count="10">0.03253424 0.1296134 0.1809362 0.1952319 0.3821347 0.0110746 0.5234019 -0.2049199 0.6900686 -0.151197</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___location_Y-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Right_Arm___location_Y-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Right_Arm___location_Y-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Right_Arm___location_Y-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Right_Arm___location_Y-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Right_Arm___location_Y-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Right_Arm___location_Y-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Right_Arm___location_Y-sampler" target="Cube/location.Y"/>
+    </animation>
+    <animation id="Cube_pose_bones__Right_Arm___location_Z">
+      <source id="Cube_pose_bones__Right_Arm___location_Z-input">
+        <float_array id="Cube_pose_bones__Right_Arm___location_Z-input-array" count="5">0 0.08333331 0.3333333 0.4583333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___location_Z-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___location_Z-output">
+        <float_array id="Cube_pose_bones__Right_Arm___location_Z-output-array" count="5">-0.01892709 -0.06239867 0.166996 0.199096 -4.77217e-4</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___location_Z-output-array" count="5" stride="1">
+            <param name="Z" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___location_Z-interpolation">
+        <Name_array id="Cube_pose_bones__Right_Arm___location_Z-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___location_Z-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___location_Z-intangent">
+        <float_array id="Cube_pose_bones__Right_Arm___location_Z-intangent-array" count="10">-0.03253424 -0.01892709 0.05079901 -0.06239867 0.2357304 0.1096847 0.4095319 0.199096 0.5599315 -4.77217e-4</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___location_Z-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___location_Z-outtangent">
+        <float_array id="Cube_pose_bones__Right_Arm___location_Z-outtangent-array" count="10">0.03253424 -0.01892709 0.1809362 -0.06239867 0.3821347 0.1956517 0.5234019 0.199096 0.6900686 -4.77217e-4</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___location_Z-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Right_Arm___location_Z-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Right_Arm___location_Z-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Right_Arm___location_Z-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Right_Arm___location_Z-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Right_Arm___location_Z-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Right_Arm___location_Z-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Right_Arm___location_Z-sampler" target="Cube/location.Z"/>
+    </animation>
+    <animation id="Cube_pose_bones__Right_Arm___scale_X">
+      <source id="Cube_pose_bones__Right_Arm___scale_X-input">
+        <float_array id="Cube_pose_bones__Right_Arm___scale_X-input-array" count="5">0 0.08333331 0.3333333 0.4583333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___scale_X-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___scale_X-output">
+        <float_array id="Cube_pose_bones__Right_Arm___scale_X-output-array" count="5">1 1 1 1 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___scale_X-output-array" count="5" stride="1">
+            <param name="X" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___scale_X-interpolation">
+        <Name_array id="Cube_pose_bones__Right_Arm___scale_X-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___scale_X-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___scale_X-intangent">
+        <float_array id="Cube_pose_bones__Right_Arm___scale_X-intangent-array" count="10">-0.03253424 1 0.05079901 1 0.2357304 1 0.4095319 1 0.5599315 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___scale_X-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___scale_X-outtangent">
+        <float_array id="Cube_pose_bones__Right_Arm___scale_X-outtangent-array" count="10">0.03253424 1 0.1809362 1 0.3821347 1 0.5234019 1 0.6900686 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___scale_X-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Right_Arm___scale_X-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Right_Arm___scale_X-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Right_Arm___scale_X-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Right_Arm___scale_X-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Right_Arm___scale_X-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Right_Arm___scale_X-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Right_Arm___scale_X-sampler" target="Cube/scale.X"/>
+    </animation>
+    <animation id="Cube_pose_bones__Right_Arm___scale_Y">
+      <source id="Cube_pose_bones__Right_Arm___scale_Y-input">
+        <float_array id="Cube_pose_bones__Right_Arm___scale_Y-input-array" count="5">0 0.08333331 0.3333333 0.4583333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___scale_Y-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___scale_Y-output">
+        <float_array id="Cube_pose_bones__Right_Arm___scale_Y-output-array" count="5">1 1 1 1 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___scale_Y-output-array" count="5" stride="1">
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___scale_Y-interpolation">
+        <Name_array id="Cube_pose_bones__Right_Arm___scale_Y-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___scale_Y-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___scale_Y-intangent">
+        <float_array id="Cube_pose_bones__Right_Arm___scale_Y-intangent-array" count="10">-0.03253424 1 0.05079901 1 0.2357304 1 0.4095319 1 0.5599315 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___scale_Y-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___scale_Y-outtangent">
+        <float_array id="Cube_pose_bones__Right_Arm___scale_Y-outtangent-array" count="10">0.03253424 1 0.1809362 1 0.3821347 1 0.5234019 1 0.6900686 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___scale_Y-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Right_Arm___scale_Y-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Right_Arm___scale_Y-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Right_Arm___scale_Y-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Right_Arm___scale_Y-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Right_Arm___scale_Y-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Right_Arm___scale_Y-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Right_Arm___scale_Y-sampler" target="Cube/scale.Y"/>
+    </animation>
+    <animation id="Cube_pose_bones__Right_Arm___scale_Z">
+      <source id="Cube_pose_bones__Right_Arm___scale_Z-input">
+        <float_array id="Cube_pose_bones__Right_Arm___scale_Z-input-array" count="5">0 0.08333331 0.3333333 0.4583333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___scale_Z-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___scale_Z-output">
+        <float_array id="Cube_pose_bones__Right_Arm___scale_Z-output-array" count="5">1 1 1 1 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___scale_Z-output-array" count="5" stride="1">
+            <param name="Z" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___scale_Z-interpolation">
+        <Name_array id="Cube_pose_bones__Right_Arm___scale_Z-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___scale_Z-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___scale_Z-intangent">
+        <float_array id="Cube_pose_bones__Right_Arm___scale_Z-intangent-array" count="10">-0.03253424 1 0.05079901 1 0.2357304 1 0.4095319 1 0.5599315 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___scale_Z-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Arm___scale_Z-outtangent">
+        <float_array id="Cube_pose_bones__Right_Arm___scale_Z-outtangent-array" count="10">0.03253424 1 0.1809362 1 0.3821347 1 0.5234019 1 0.6900686 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Arm___scale_Z-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Right_Arm___scale_Z-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Right_Arm___scale_Z-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Right_Arm___scale_Z-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Right_Arm___scale_Z-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Right_Arm___scale_Z-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Right_Arm___scale_Z-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Right_Arm___scale_Z-sampler" target="Cube/scale.Z"/>
+    </animation>
+    <animation id="Cube_pose_bones__Left_Leg___location_X">
+      <source id="Cube_pose_bones__Left_Leg___location_X-input">
+        <float_array id="Cube_pose_bones__Left_Leg___location_X-input-array" count="7">0 0.08333331 0.25 0.3333333 0.4583333 0.5 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___location_X-input-array" count="7" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___location_X-output">
+        <float_array id="Cube_pose_bones__Left_Leg___location_X-output-array" count="7">0 -0.00401616 -0.005815088 -0.008182227 -0.005302846 -0.002651393 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___location_X-output-array" count="7" stride="1">
+            <param name="X" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___location_X-interpolation">
+        <Name_array id="Cube_pose_bones__Left_Leg___location_X-interpolation-array" count="7">BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___location_X-interpolation-array" count="7" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___location_X-intangent">
+        <float_array id="Cube_pose_bones__Left_Leg___location_X-intangent-array" count="14">-0.03253424 0 0.05079901 -0.003116726 0.1849314 -0.004539787 0.300799 -0.008182227 0.4095319 -0.007417619 0.4837328 -0.003341495 0.5761986 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___location_X-intangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___location_X-outtangent">
+        <float_array id="Cube_pose_bones__Left_Leg___location_X-outtangent-array" count="14">0.03253424 0 0.1484019 -0.005815088 0.2825343 -0.006452739 0.3821347 -0.008182227 0.4746004 -0.004597902 0.5488014 -5.81134e-4 0.6738014 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___location_X-outtangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Left_Leg___location_X-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Left_Leg___location_X-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Left_Leg___location_X-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Left_Leg___location_X-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Left_Leg___location_X-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Left_Leg___location_X-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Left_Leg___location_X-sampler" target="Cube/location.X"/>
+    </animation>
+    <animation id="Cube_pose_bones__Left_Leg___location_Y">
+      <source id="Cube_pose_bones__Left_Leg___location_Y-input">
+        <float_array id="Cube_pose_bones__Left_Leg___location_Y-input-array" count="7">0 0.08333331 0.25 0.3333333 0.4583333 0.5 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___location_Y-input-array" count="7" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___location_Y-output">
+        <float_array id="Cube_pose_bones__Left_Leg___location_Y-output-array" count="7">0 0.07643586 0.08630758 0.01280224 -0.01011645 -0.001473784 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___location_Y-output-array" count="7" stride="1">
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___location_Y-interpolation">
+        <Name_array id="Cube_pose_bones__Left_Leg___location_Y-interpolation-array" count="7">BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___location_Y-interpolation-array" count="7" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___location_Y-intangent">
+        <float_array id="Cube_pose_bones__Left_Leg___location_Y-intangent-array" count="14">-0.03253424 0 0.05079901 0.0715 0.1849314 0.08630758 0.300799 0.02808141 0.4095319 -0.01011645 0.4837328 -0.001965045 0.5761986 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___location_Y-intangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___location_Y-outtangent">
+        <float_array id="Cube_pose_bones__Left_Leg___location_Y-outtangent-array" count="14">0.03253424 0 0.1484019 0.08630758 0.2825343 0.08630758 0.3821347 -0.01011645 0.4746004 -0.01011645 0.5488014 0 0.6738014 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___location_Y-outtangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Left_Leg___location_Y-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Left_Leg___location_Y-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Left_Leg___location_Y-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Left_Leg___location_Y-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Left_Leg___location_Y-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Left_Leg___location_Y-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Left_Leg___location_Y-sampler" target="Cube/location.Y"/>
+    </animation>
+    <animation id="Cube_pose_bones__Left_Leg___location_Z">
+      <source id="Cube_pose_bones__Left_Leg___location_Z-input">
+        <float_array id="Cube_pose_bones__Left_Leg___location_Z-input-array" count="7">0 0.08333331 0.25 0.3333333 0.4583333 0.5 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___location_Z-input-array" count="7" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___location_Z-output">
+        <float_array id="Cube_pose_bones__Left_Leg___location_Z-output-array" count="7">0 0.08260941 0.13366 0.2419347 0.1836043 0.09180212 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___location_Z-output-array" count="7" stride="1">
+            <param name="Z" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___location_Z-interpolation">
+        <Name_array id="Cube_pose_bones__Left_Leg___location_Z-interpolation-array" count="7">BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___location_Z-interpolation-array" count="7" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___location_Z-intangent">
+        <float_array id="Cube_pose_bones__Left_Leg___location_Z-intangent-array" count="14">-0.03253424 0 0.05079901 0.06150084 0.1849314 0.08260941 0.300799 0.2419347 0.4095319 0.2419347 0.4837328 0.1156958 0.5761986 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___location_Z-intangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___location_Z-outtangent">
+        <float_array id="Cube_pose_bones__Left_Leg___location_Z-outtangent-array" count="14">0.03253424 0 0.1484019 0.1248264 0.2825343 0.1591853 0.3821347 0.2419347 0.4746004 0.1641607 0.5488014 0.02012091 0.6738014 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___location_Z-outtangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Left_Leg___location_Z-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Left_Leg___location_Z-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Left_Leg___location_Z-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Left_Leg___location_Z-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Left_Leg___location_Z-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Left_Leg___location_Z-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Left_Leg___location_Z-sampler" target="Cube/location.Z"/>
+    </animation>
+    <animation id="Cube_pose_bones__Left_Leg___scale_X">
+      <source id="Cube_pose_bones__Left_Leg___scale_X-input">
+        <float_array id="Cube_pose_bones__Left_Leg___scale_X-input-array" count="7">0 0.08333331 0.25 0.3333333 0.4583333 0.5 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___scale_X-input-array" count="7" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___scale_X-output">
+        <float_array id="Cube_pose_bones__Left_Leg___scale_X-output-array" count="7">1 1 1 1 1 1 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___scale_X-output-array" count="7" stride="1">
+            <param name="X" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___scale_X-interpolation">
+        <Name_array id="Cube_pose_bones__Left_Leg___scale_X-interpolation-array" count="7">BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___scale_X-interpolation-array" count="7" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___scale_X-intangent">
+        <float_array id="Cube_pose_bones__Left_Leg___scale_X-intangent-array" count="14">-0.03253424 1 0.05079901 1 0.1849314 1 0.300799 1 0.4095319 1 0.4837328 1 0.5761986 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___scale_X-intangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___scale_X-outtangent">
+        <float_array id="Cube_pose_bones__Left_Leg___scale_X-outtangent-array" count="14">0.03253424 1 0.1484019 1 0.2825343 1 0.3821347 1 0.4746004 1 0.5488014 1 0.6738014 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___scale_X-outtangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Left_Leg___scale_X-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Left_Leg___scale_X-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Left_Leg___scale_X-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Left_Leg___scale_X-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Left_Leg___scale_X-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Left_Leg___scale_X-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Left_Leg___scale_X-sampler" target="Cube/scale.X"/>
+    </animation>
+    <animation id="Cube_pose_bones__Left_Leg___scale_Y">
+      <source id="Cube_pose_bones__Left_Leg___scale_Y-input">
+        <float_array id="Cube_pose_bones__Left_Leg___scale_Y-input-array" count="7">0 0.08333331 0.25 0.3333333 0.4583333 0.5 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___scale_Y-input-array" count="7" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___scale_Y-output">
+        <float_array id="Cube_pose_bones__Left_Leg___scale_Y-output-array" count="7">1 1 1 1 1 1 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___scale_Y-output-array" count="7" stride="1">
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___scale_Y-interpolation">
+        <Name_array id="Cube_pose_bones__Left_Leg___scale_Y-interpolation-array" count="7">BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___scale_Y-interpolation-array" count="7" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___scale_Y-intangent">
+        <float_array id="Cube_pose_bones__Left_Leg___scale_Y-intangent-array" count="14">-0.03253424 1 0.05079901 1 0.1849314 1 0.300799 1 0.4095319 1 0.4837328 1 0.5761986 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___scale_Y-intangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___scale_Y-outtangent">
+        <float_array id="Cube_pose_bones__Left_Leg___scale_Y-outtangent-array" count="14">0.03253424 1 0.1484019 1 0.2825343 1 0.3821347 1 0.4746004 1 0.5488014 1 0.6738014 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___scale_Y-outtangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Left_Leg___scale_Y-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Left_Leg___scale_Y-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Left_Leg___scale_Y-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Left_Leg___scale_Y-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Left_Leg___scale_Y-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Left_Leg___scale_Y-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Left_Leg___scale_Y-sampler" target="Cube/scale.Y"/>
+    </animation>
+    <animation id="Cube_pose_bones__Left_Leg___scale_Z">
+      <source id="Cube_pose_bones__Left_Leg___scale_Z-input">
+        <float_array id="Cube_pose_bones__Left_Leg___scale_Z-input-array" count="7">0 0.08333331 0.25 0.3333333 0.4583333 0.5 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___scale_Z-input-array" count="7" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___scale_Z-output">
+        <float_array id="Cube_pose_bones__Left_Leg___scale_Z-output-array" count="7">1 1 1 1 1 1 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___scale_Z-output-array" count="7" stride="1">
+            <param name="Z" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___scale_Z-interpolation">
+        <Name_array id="Cube_pose_bones__Left_Leg___scale_Z-interpolation-array" count="7">BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___scale_Z-interpolation-array" count="7" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___scale_Z-intangent">
+        <float_array id="Cube_pose_bones__Left_Leg___scale_Z-intangent-array" count="14">-0.03253424 1 0.05079901 1 0.1849314 1 0.300799 1 0.4095319 1 0.4837328 1 0.5761986 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___scale_Z-intangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Left_Leg___scale_Z-outtangent">
+        <float_array id="Cube_pose_bones__Left_Leg___scale_Z-outtangent-array" count="14">0.03253424 1 0.1484019 1 0.2825343 1 0.3821347 1 0.4746004 1 0.5488014 1 0.6738014 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Left_Leg___scale_Z-outtangent-array" count="7" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Left_Leg___scale_Z-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Left_Leg___scale_Z-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Left_Leg___scale_Z-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Left_Leg___scale_Z-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Left_Leg___scale_Z-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Left_Leg___scale_Z-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Left_Leg___scale_Z-sampler" target="Cube/scale.Z"/>
+    </animation>
+    <animation id="Cube_pose_bones__Right_Leg___location_X">
+      <source id="Cube_pose_bones__Right_Leg___location_X-input">
+        <float_array id="Cube_pose_bones__Right_Leg___location_X-input-array" count="5">0 0.08333331 0.3333333 0.4583333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___location_X-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___location_X-output">
+        <float_array id="Cube_pose_bones__Right_Leg___location_X-output-array" count="5">0 -0.001267373 0.002617597 0.001958012 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___location_X-output-array" count="5" stride="1">
+            <param name="X" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___location_X-interpolation">
+        <Name_array id="Cube_pose_bones__Right_Leg___location_X-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___location_X-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___location_X-intangent">
+        <float_array id="Cube_pose_bones__Right_Leg___location_X-intangent-array" count="10">-0.03253424 0 0.05079901 -0.001267373 0.2357304 0.002617597 0.4095319 0.002373397 0.5599315 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___location_X-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___location_X-outtangent">
+        <float_array id="Cube_pose_bones__Right_Leg___location_X-outtangent-array" count="10">0.03253424 0 0.1809362 -0.001267373 0.3821347 0.002617597 0.5234019 0.001404106 0.6900686 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___location_X-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Right_Leg___location_X-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Right_Leg___location_X-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Right_Leg___location_X-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Right_Leg___location_X-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Right_Leg___location_X-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Right_Leg___location_X-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Right_Leg___location_X-sampler" target="Cube/location.X"/>
+    </animation>
+    <animation id="Cube_pose_bones__Right_Leg___location_Y">
+      <source id="Cube_pose_bones__Right_Leg___location_Y-input">
+        <float_array id="Cube_pose_bones__Right_Leg___location_Y-input-array" count="5">0 0.08333331 0.3333333 0.4583333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___location_Y-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___location_Y-output">
+        <float_array id="Cube_pose_bones__Right_Leg___location_Y-output-array" count="5">0 0.02765852 -0.1228034 -0.07250708 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___location_Y-output-array" count="5" stride="1">
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___location_Y-interpolation">
+        <Name_array id="Cube_pose_bones__Right_Leg___location_Y-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___location_Y-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___location_Y-intangent">
+        <float_array id="Cube_pose_bones__Right_Leg___location_Y-intangent-array" count="10">-0.03253424 0 0.05079901 0.02765852 0.2357304 -0.1228034 0.4095319 -0.09294056 0.5599315 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___location_Y-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___location_Y-outtangent">
+        <float_array id="Cube_pose_bones__Right_Leg___location_Y-outtangent-array" count="10">0.03253424 0 0.1809362 0.02765852 0.3821347 -0.1228034 0.5234019 -0.04526245 0.6900686 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___location_Y-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Right_Leg___location_Y-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Right_Leg___location_Y-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Right_Leg___location_Y-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Right_Leg___location_Y-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Right_Leg___location_Y-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Right_Leg___location_Y-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Right_Leg___location_Y-sampler" target="Cube/location.Y"/>
+    </animation>
+    <animation id="Cube_pose_bones__Right_Leg___location_Z">
+      <source id="Cube_pose_bones__Right_Leg___location_Z-input">
+        <float_array id="Cube_pose_bones__Right_Leg___location_Z-input-array" count="5">0 0.08333331 0.3333333 0.4583333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___location_Z-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___location_Z-output">
+        <float_array id="Cube_pose_bones__Right_Leg___location_Z-output-array" count="5">0 0.02424681 -0.0163815 -0.02219748 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___location_Z-output-array" count="5" stride="1">
+            <param name="Z" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___location_Z-interpolation">
+        <Name_array id="Cube_pose_bones__Right_Leg___location_Z-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___location_Z-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___location_Z-intangent">
+        <float_array id="Cube_pose_bones__Right_Leg___location_Z-intangent-array" count="10">-0.03253424 0 0.05079901 0.02424681 0.2357304 -0.006179988 0.4095319 -0.02219748 0.5599315 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___location_Z-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___location_Z-outtangent">
+        <float_array id="Cube_pose_bones__Right_Leg___location_Z-outtangent-array" count="10">0.03253424 0 0.1809362 0.02424681 0.3821347 -0.02148228 0.5234019 -0.02219748 0.6900686 0</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___location_Z-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Right_Leg___location_Z-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Right_Leg___location_Z-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Right_Leg___location_Z-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Right_Leg___location_Z-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Right_Leg___location_Z-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Right_Leg___location_Z-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Right_Leg___location_Z-sampler" target="Cube/location.Z"/>
+    </animation>
+    <animation id="Cube_pose_bones__Right_Leg___scale_X">
+      <source id="Cube_pose_bones__Right_Leg___scale_X-input">
+        <float_array id="Cube_pose_bones__Right_Leg___scale_X-input-array" count="5">0 0.08333331 0.3333333 0.4583333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___scale_X-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___scale_X-output">
+        <float_array id="Cube_pose_bones__Right_Leg___scale_X-output-array" count="5">1 1 1 1 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___scale_X-output-array" count="5" stride="1">
+            <param name="X" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___scale_X-interpolation">
+        <Name_array id="Cube_pose_bones__Right_Leg___scale_X-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___scale_X-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___scale_X-intangent">
+        <float_array id="Cube_pose_bones__Right_Leg___scale_X-intangent-array" count="10">-0.03253424 1 0.05079901 1 0.2357304 1 0.4095319 1 0.5599315 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___scale_X-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___scale_X-outtangent">
+        <float_array id="Cube_pose_bones__Right_Leg___scale_X-outtangent-array" count="10">0.03253424 1 0.1809362 1 0.3821347 1 0.5234019 1 0.6900686 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___scale_X-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Right_Leg___scale_X-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Right_Leg___scale_X-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Right_Leg___scale_X-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Right_Leg___scale_X-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Right_Leg___scale_X-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Right_Leg___scale_X-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Right_Leg___scale_X-sampler" target="Cube/scale.X"/>
+    </animation>
+    <animation id="Cube_pose_bones__Right_Leg___scale_Y">
+      <source id="Cube_pose_bones__Right_Leg___scale_Y-input">
+        <float_array id="Cube_pose_bones__Right_Leg___scale_Y-input-array" count="5">0 0.08333331 0.3333333 0.4583333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___scale_Y-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___scale_Y-output">
+        <float_array id="Cube_pose_bones__Right_Leg___scale_Y-output-array" count="5">1 1 1 1 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___scale_Y-output-array" count="5" stride="1">
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___scale_Y-interpolation">
+        <Name_array id="Cube_pose_bones__Right_Leg___scale_Y-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___scale_Y-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___scale_Y-intangent">
+        <float_array id="Cube_pose_bones__Right_Leg___scale_Y-intangent-array" count="10">-0.03253424 1 0.05079901 1 0.2357304 1 0.4095319 1 0.5599315 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___scale_Y-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___scale_Y-outtangent">
+        <float_array id="Cube_pose_bones__Right_Leg___scale_Y-outtangent-array" count="10">0.03253424 1 0.1809362 1 0.3821347 1 0.5234019 1 0.6900686 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___scale_Y-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Right_Leg___scale_Y-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Right_Leg___scale_Y-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Right_Leg___scale_Y-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Right_Leg___scale_Y-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Right_Leg___scale_Y-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Right_Leg___scale_Y-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Right_Leg___scale_Y-sampler" target="Cube/scale.Y"/>
+    </animation>
+    <animation id="Cube_pose_bones__Right_Leg___scale_Z">
+      <source id="Cube_pose_bones__Right_Leg___scale_Z-input">
+        <float_array id="Cube_pose_bones__Right_Leg___scale_Z-input-array" count="5">0 0.08333331 0.3333333 0.4583333 0.625</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___scale_Z-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___scale_Z-output">
+        <float_array id="Cube_pose_bones__Right_Leg___scale_Z-output-array" count="5">1 1 1 1 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___scale_Z-output-array" count="5" stride="1">
+            <param name="Z" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___scale_Z-interpolation">
+        <Name_array id="Cube_pose_bones__Right_Leg___scale_Z-interpolation-array" count="5">BEZIER BEZIER BEZIER BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___scale_Z-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___scale_Z-intangent">
+        <float_array id="Cube_pose_bones__Right_Leg___scale_Z-intangent-array" count="10">-0.03253424 1 0.05079901 1 0.2357304 1 0.4095319 1 0.5599315 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___scale_Z-intangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Cube_pose_bones__Right_Leg___scale_Z-outtangent">
+        <float_array id="Cube_pose_bones__Right_Leg___scale_Z-outtangent-array" count="10">0.03253424 1 0.1809362 1 0.3821347 1 0.5234019 1 0.6900686 1</float_array>
+        <technique_common>
+          <accessor source="#Cube_pose_bones__Right_Leg___scale_Z-outtangent-array" count="5" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Cube_pose_bones__Right_Leg___scale_Z-sampler">
+        <input semantic="INPUT" source="#Cube_pose_bones__Right_Leg___scale_Z-input"/>
+        <input semantic="OUTPUT" source="#Cube_pose_bones__Right_Leg___scale_Z-output"/>
+        <input semantic="INTERPOLATION" source="#Cube_pose_bones__Right_Leg___scale_Z-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Cube_pose_bones__Right_Leg___scale_Z-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Cube_pose_bones__Right_Leg___scale_Z-outtangent"/>
+      </sampler>
+      <channel source="#Cube_pose_bones__Right_Leg___scale_Z-sampler" target="Cube/scale.Z"/>
+    </animation>
+    <animation id="baby_Hip_pose_matrix">
+      <source id="baby_Hip_pose_matrix-input">
+        <float_array id="baby_Hip_pose_matrix-input-array" count="4">0 0.08333331 0.2083333 0.7083333</float_array>
+        <technique_common>
+          <accessor source="#baby_Hip_pose_matrix-input-array" count="4" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="baby_Hip_pose_matrix-output">
+        <float_array id="baby_Hip_pose_matrix-output-array" count="64">0.9999999 0 1.13505e-9 -6.18456e-11 -7.45058e-9 1 0 0.00190533 -6.40284e-10 -9.31323e-10 0.9999999 0.2133612 0 0 0 1 0.9999999 0 4.86034e-9 -3.18323e-11 -3.72529e-9 0.9111265 -0.4121272 0.00190533 -2.79397e-9 0.4121272 0.9111262 0.3541319 0 0 0 1 0.9999999 0 2.99769e-9 -1.45519e-11 -9.31323e-9 0.9170012 -0.3988848 0.00190533 -2.79397e-9 0.3988849 0.917001 0.4104402 0 0 0 1 0.9999999 0 2.99769e-9 -5.54163e-11 -3.72529e-9 0.9777406 -0.2098179 0.00190533 -2.32831e-9 0.209818 0.9777404 0.3134648 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#baby_Hip_pose_matrix-output-array" count="4" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="baby_Hip_pose_matrix-interpolation">
+        <Name_array id="baby_Hip_pose_matrix-interpolation-array" count="4">LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#baby_Hip_pose_matrix-interpolation-array" count="4" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="baby_Hip_pose_matrix-sampler">
+        <input semantic="INPUT" source="#baby_Hip_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#baby_Hip_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#baby_Hip_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#baby_Hip_pose_matrix-sampler" target="Hip/transform"/>
+    </animation>
+    <animation id="baby_Spine_pose_matrix">
+      <source id="baby_Spine_pose_matrix-input">
+        <float_array id="baby_Spine_pose_matrix-input-array" count="4">0 0.08333331 0.2083333 0.7083333</float_array>
+        <technique_common>
+          <accessor source="#baby_Spine_pose_matrix-input-array" count="4" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="baby_Spine_pose_matrix-output">
+        <float_array id="baby_Spine_pose_matrix-output-array" count="64">0.998181 -0.05990566 -0.006797185 0.001543628 0.04385251 0.7987766 -0.6000274 0.001060475 0.04137448 0.5986379 0.7999505 0.09103397 0 0 0 1 0.9981795 -0.05993129 -0.006798076 0.001543628 0.06027427 0.9869657 0.1492156 0.001060475 -0.002233212 -0.1493537 0.9887813 0.09103397 0 0 0 1 0.9981801 -0.05992126 -0.006793665 0.001543628 0.06029286 0.9893478 0.1324974 0.001060475 -0.00121811 -0.1326658 0.9911601 0.09103397 0 0 0 1 0.9981801 -0.05992126 -0.006793665 0.001543628 0.06029286 0.9893478 0.1324974 0.001060475 -0.00121811 -0.1326658 0.9911601 0.09103397 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#baby_Spine_pose_matrix-output-array" count="4" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="baby_Spine_pose_matrix-interpolation">
+        <Name_array id="baby_Spine_pose_matrix-interpolation-array" count="4">LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#baby_Spine_pose_matrix-interpolation-array" count="4" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="baby_Spine_pose_matrix-sampler">
+        <input semantic="INPUT" source="#baby_Spine_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#baby_Spine_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#baby_Spine_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#baby_Spine_pose_matrix-sampler" target="Spine/transform"/>
+    </animation>
+    <animation id="baby_Left_Arm_pose_matrix">
+      <source id="baby_Left_Arm_pose_matrix-input">
+        <float_array id="baby_Left_Arm_pose_matrix-input-array" count="4">0 0.08333331 0.2083333 0.7083333</float_array>
+        <technique_common>
+          <accessor source="#baby_Left_Arm_pose_matrix-input-array" count="4" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="baby_Left_Arm_pose_matrix-output">
+        <float_array id="baby_Left_Arm_pose_matrix-output-array" count="64">0.8545875 0.1713487 -0.4902242 -0.4101994 -0.2707472 0.9525573 -0.1390338 0.1141432 0.4431434 0.2515434 0.8604357 0.2510717 0 0 0 1 0.9134213 0.1787873 0.365645 -0.3356354 -0.1100329 0.9733769 -0.2010723 0.06403635 -0.3918596 0.1434308 0.9087758 0.4824321 0 0 0 1 0.8318942 0.162707 0.5305453 -0.2963572 -0.3327782 0.9113432 0.2423057 0.1289833 -0.4440843 -0.3781266 0.8122866 0.5271873 0 0 0 1 0.7220637 0.1844429 0.6667866 -0.2976467 -0.06460085 0.9775709 -0.2004542 0.05040855 -0.6888038 0.1016657 0.7177836 0.5700974 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#baby_Left_Arm_pose_matrix-output-array" count="4" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="baby_Left_Arm_pose_matrix-interpolation">
+        <Name_array id="baby_Left_Arm_pose_matrix-interpolation-array" count="4">LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#baby_Left_Arm_pose_matrix-interpolation-array" count="4" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="baby_Left_Arm_pose_matrix-sampler">
+        <input semantic="INPUT" source="#baby_Left_Arm_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#baby_Left_Arm_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#baby_Left_Arm_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#baby_Left_Arm_pose_matrix-sampler" target="Left_Arm/transform"/>
+    </animation>
+    <animation id="baby_Right_Arm_pose_matrix">
+      <source id="baby_Right_Arm_pose_matrix-input">
+        <float_array id="baby_Right_Arm_pose_matrix-input-array" count="4">0 0.08333331 0.2083333 0.7083333</float_array>
+        <technique_common>
+          <accessor source="#baby_Right_Arm_pose_matrix-input-array" count="4" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="baby_Right_Arm_pose_matrix-output">
+        <float_array id="baby_Right_Arm_pose_matrix-output-array" count="64">0.9375838 -0.03439051 0.3460544 0.3987916 0.09910622 0.980257 -0.171097 0.06678306 -0.3333382 0.1947139 0.9224815 0.2440106 0 0 0 1 0.8795875 -0.003582518 -0.4757234 0.2900183 -0.05590826 0.9922639 -0.110844 0.03275155 0.4724403 0.1240939 0.8725829 0.4508595 0 0 0 1 0.7895615 0.003310523 -0.6136622 0.3108937 0.2384588 0.9197475 0.3117719 0.08351791 0.5654467 -0.3924963 0.7254082 0.4934458 0 0 0 1 0.7227081 0.006363836 -0.6911238 0.3010652 -0.080178 0.9939784 -0.07468971 0.0225766 0.686487 0.1093918 0.7188667 0.5077199 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#baby_Right_Arm_pose_matrix-output-array" count="4" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="baby_Right_Arm_pose_matrix-interpolation">
+        <Name_array id="baby_Right_Arm_pose_matrix-interpolation-array" count="4">LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#baby_Right_Arm_pose_matrix-interpolation-array" count="4" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="baby_Right_Arm_pose_matrix-sampler">
+        <input semantic="INPUT" source="#baby_Right_Arm_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#baby_Right_Arm_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#baby_Right_Arm_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#baby_Right_Arm_pose_matrix-sampler" target="Right_Arm/transform"/>
+    </animation>
+    <animation id="baby_Left_Leg_pose_matrix">
+      <source id="baby_Left_Leg_pose_matrix-input">
+        <float_array id="baby_Left_Leg_pose_matrix-input-array" count="4">0 0.08333331 0.2083333 0.7083333</float_array>
+        <technique_common>
+          <accessor source="#baby_Left_Leg_pose_matrix-input-array" count="4" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="baby_Left_Leg_pose_matrix-output">
+        <float_array id="baby_Left_Leg_pose_matrix-output-array" count="64">0.9367537 0.2771606 -0.213717 -0.2814682 -0.3043371 0.9466097 -0.106342 0.06246395 0.1728322 0.1646582 0.9710906 -0.02897724 0 0 0 1 0.9812263 0.1122667 -0.1568164 -0.2345431 -0.1330446 0.9826828 -0.1289717 -0.04936614 0.139621 0.147414 0.9791707 -0.09259935 0 0 0 1 0.9884949 0.1185956 -0.09387764 -0.2282854 -0.1346603 0.9726705 -0.1891521 -0.1300846 0.0688791 0.1996175 0.9774501 0.0218502 0 0 0 1 0.9812263 0.1122667 -0.1568163 -0.2470559 -0.1184733 0.99248 -0.03078178 -0.1391316 0.1521807 0.04878244 0.9871482 -0.05691718 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#baby_Left_Leg_pose_matrix-output-array" count="4" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="baby_Left_Leg_pose_matrix-interpolation">
+        <Name_array id="baby_Left_Leg_pose_matrix-interpolation-array" count="4">LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#baby_Left_Leg_pose_matrix-interpolation-array" count="4" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="baby_Left_Leg_pose_matrix-sampler">
+        <input semantic="INPUT" source="#baby_Left_Leg_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#baby_Left_Leg_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#baby_Left_Leg_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#baby_Left_Leg_pose_matrix-sampler" target="Left_Leg/transform"/>
+    </animation>
+    <animation id="baby_Right_Leg_pose_matrix">
+      <source id="baby_Right_Leg_pose_matrix-input">
+        <float_array id="baby_Right_Leg_pose_matrix-input-array" count="4">0 0.08333331 0.2083333 0.7083333</float_array>
+        <technique_common>
+          <accessor source="#baby_Right_Leg_pose_matrix-input-array" count="4" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="baby_Right_Leg_pose_matrix-output">
+        <float_array id="baby_Right_Leg_pose_matrix-output-array" count="64">0.8718461 -0.3798888 0.3081631 0.2760939 0.4391961 0.8865482 -0.1470375 -0.06036143 -0.2177846 0.2634851 0.9398248 -0.02223985 0 0 0 1 0.9702092 -0.1165208 0.211994 0.2010169 0.1525564 0.9752031 -0.1605691 -0.06286612 -0.1884042 0.1881013 0.9639609 -0.1038973 0 0 0 1 0.9657243 -0.1133564 0.2330879 0.2197875 0.1393732 0.9855259 -0.0968444 -0.01717456 -0.2191839 0.1259842 0.967584 -0.06612024 0 0 0 1 0.9702084 -0.1165268 0.2119942 0.2448098 0.1330931 0.9890606 -0.06406853 0.04555586 -0.2026243 0.09034867 0.9751395 -0.1159877 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#baby_Right_Leg_pose_matrix-output-array" count="4" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="baby_Right_Leg_pose_matrix-interpolation">
+        <Name_array id="baby_Right_Leg_pose_matrix-interpolation-array" count="4">LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#baby_Right_Leg_pose_matrix-interpolation-array" count="4" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="baby_Right_Leg_pose_matrix-sampler">
+        <input semantic="INPUT" source="#baby_Right_Leg_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#baby_Right_Leg_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#baby_Right_Leg_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#baby_Right_Leg_pose_matrix-sampler" target="Right_Leg/transform"/>
+    </animation>
+  </library_animations>
+  <library_controllers>
+    <controller id="baby_Cube-skin" name="baby">
+      <skin source="#Cube-mesh">
+        <bind_shape_matrix>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</bind_shape_matrix>
+        <source id="baby_Cube-skin-joints">
+          <Name_array id="baby_Cube-skin-joints-array" count="6">Hip Spine Left_Arm Right_Arm Left_Leg Right_Leg</Name_array>
+          <technique_common>
+            <accessor source="#baby_Cube-skin-joints-array" count="6" stride="1">
+              <param name="JOINT" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="baby_Cube-skin-bind_poses">
+          <float_array id="baby_Cube-skin-bind_poses-array" count="96">1 0 0 0 0 1 0 -0.001905322 0 0 1 -0.3134648 0 0 0 1 1 0 0 -0.001543581 0 1 0 -0.002965807 0 0 1 -0.4044988 0 0 0 1 1 0 0 0.4147806 0 1 0 -0.006743848 0 0 1 -0.7288168 0 0 0 1 1 0 0 -0.3970419 0 1 0 -0.006651699 0 0 1 -0.7209073 0 0 0 1 1 0 0 0.2814658 0 1 0 -3.98899e-4 0 0 1 -0.1841534 0 0 0 1 1 0 0 -0.2760846 0 1 0 -4.62366e-4 0 0 1 -0.1895973 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#baby_Cube-skin-bind_poses-array" count="6" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="baby_Cube-skin-weights">
+          <float_array id="baby_Cube-skin-weights-array" count="113">0.004045963 0.995954 1 0.0286768 0.01111549 0.9602076 0.9329975 0.06700247 0.0662871 0.077735 0.7743234 0.08165448 0.2340855 0.07005888 0.6958555 1 0.7916309 0.2083691 0.271776 0.3505178 0.2972025 0.0805037 0.3681513 0.03457129 0.4308782 0.1663992 0.6635329 0.3141847 0.0222823 0.4929389 0.5070611 0.03788596 0.454127 0.461318 0.04666906 0.5931344 0.4068656 0.5860612 0.4139388 0.1833935 0.2569311 0.5596754 0.004045963 0.995954 1 0.7107155 0.02778667 0.1307488 0.1307488 0.0286768 0.01111549 0.9602076 0.9562185 0.02189075 0.02189075 0.9896559 0.005172073 0.005172073 0.9329975 0.06700247 0.0662871 0.077735 0.7743234 0.08165448 0.8263902 0.02864015 0.02658212 0.02658212 0.04590266 0.04590266 0.2340855 0.07005888 0.6958555 1 0.5482098 0.3294739 0.06115812 0.06115812 0.928075 0.03596252 0.03596252 0.7916309 0.2083691 0.271776 0.3505178 0.2972025 0.0805037 0.4159522 0.4893345 0.02425205 0.02425205 0.02310448 0.02310448 0.3681513 0.03457129 0.4308782 0.1663992 0.6635329 0.3141847 0.0222823 0.4929389 0.5070611 0.03788596 0.454127 0.461318 0.04666906 0.5931344 0.4068656 0.5860612 0.4139388 0.1833935 0.2569311 0.5596754</float_array>
+          <technique_common>
+            <accessor source="#baby_Cube-skin-weights-array" count="113" stride="1">
+              <param name="WEIGHT" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <joints>
+          <input semantic="JOINT" source="#baby_Cube-skin-joints"/>
+          <input semantic="INV_BIND_MATRIX" source="#baby_Cube-skin-bind_poses"/>
+        </joints>
+        <vertex_weights count="39">
+          <input semantic="JOINT" source="#baby_Cube-skin-joints" offset="0"/>
+          <input semantic="WEIGHT" source="#baby_Cube-skin-weights" offset="1"/>
+          <vcount>2 1 3 2 4 3 1 2 4 4 3 2 4 2 2 3 2 1 4 3 3 3 2 4 6 3 1 4 3 2 4 6 4 3 2 4 2 2 3 </vcount>
+          <v>1 0 2 1 2 2 0 3 2 4 4 5 2 6 4 7 0 8 1 9 2 10 4 11 0 12 2 13 4 14 4 15 1 16 2 17 0 18 1 19 2 20 4 21 0 22 1 23 2 24 4 25 1 26 2 27 4 28 1 29 2 30 0 31 1 32 2 33 4 34 1 35 2 36 1 37 2 38 0 39 2 40 4 41 1 42 3 43 3 44 0 45 1 46 4 47 5 48 0 49 3 50 5 51 1 52 2 53 3 54 1 55 2 56 3 57 3 58 5 59 0 60 1 61 3 62 5 63 0 64 1 65 2 66 3 67 4 68 5 69 0 70 3 71 5 72 5 73 0 74 1 75 4 76 5 77 1 78 2 79 3 80 1 81 3 82 0 83 1 84 3 85 5 86 0 87 1 88 2 89 3 90 4 91 5 92 0 93 1 94 3 95 5 96 1 97 3 98 5 99 1 100 3 101 0 102 1 103 3 104 5 105 1 106 3 107 1 108 3 109 0 110 3 111 5 112</v>
+        </vertex_weights>
+      </skin>
+    </controller>
+  </library_controllers>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="baby" name="baby" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <node id="Hip" name="Hip" sid="Hip" type="JOINT">
+          <matrix sid="transform">0.9999999 0 1.13505e-9 0 -7.45058e-9 1 0 0.00190533 -6.40284e-10 -9.31323e-10 0.9999999 0.3134648 0 0 0 1</matrix>
+          <node id="Spine" name="Spine" sid="Spine" type="JOINT">
+            <matrix sid="transform">0.9999999 0 -7.27596e-10 0.001543627 -7.45058e-9 1 -1.86265e-9 0.001060482 1.22236e-9 -2.79397e-9 0.9999998 0.09103394 0 0 0 1</matrix>
+            <node id="Left_Arm" name="Left Arm" sid="Left_Arm" type="JOINT">
+              <matrix sid="transform">1 6.98492e-10 -1.36715e-8 -0.4163242 -6.98492e-10 1 0 0.003778043 1.23327e-9 -9.31323e-10 0.9999999 0.324318 0 0 0 1</matrix>
+            </node>
+            <node id="Right_Arm" name="Right Arm" sid="Right_Arm" type="JOINT">
+              <matrix sid="transform">1 3.25963e-9 1.29876e-9 0.3954983 5.3551e-9 1 -1.95578e-8 0.003685937 1.16052e-9 -1.58325e-8 0.9999999 0.3164086 0 0 0 1</matrix>
+            </node>
+          </node>
+          <node id="Left_Leg" name="Left Leg" sid="Left_Leg" type="JOINT">
+            <matrix sid="transform">0.9999999 0 1.16415e-9 -0.2814657 -3.72529e-9 1 9.31323e-10 -0.00150643 -2.53203e-9 0 1 -0.1293114 0 0 0 1</matrix>
+          </node>
+          <node id="Right_Leg" name="Right Leg" sid="Right_Leg" type="JOINT">
+            <matrix sid="transform">0.9999998 -3.72529e-9 6.69388e-9 0.2760846 -1.11759e-8 1 1.86265e-9 -0.001442965 1.22236e-9 -9.31323e-10 0.9999999 -0.1238675 0 0 0 1</matrix>
+          </node>
+        </node>
+      </node>
+      <node id="Cube" name="Cube" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <instance_controller url="#baby_Cube-skin">
+          <skeleton>#Hip</skeleton>
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Character-material" target="#Character-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_controller>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
