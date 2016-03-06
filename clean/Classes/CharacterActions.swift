@@ -33,12 +33,6 @@ enum Action: String {
 		return "Character.scnassets/actions/\(name).dae"
 	}
 	
-	enum ActionDuration: NSTimeInterval {
-		case VeryFast = 0.01
-		case Fast = 0.1
-		case Slow = 0.2
-	}
-	
 	func transitionDurationFromAction(fromAction: Action, isLifting: Bool) -> CGFloat {
 		
 		if self == .Idle && (isLifting || fromAction == .Jump) {

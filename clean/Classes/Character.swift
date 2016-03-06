@@ -19,10 +19,6 @@ class Character {
 		let characterScene = SCNScene(named: currentAction.identifier())!
 		node = characterScene.rootNode
 		
-//		node.geometry = SCNBox(width: 1, height: 1, length: 1, chamferRadius: 0)
-//		node.geometry!.firstMaterial = SCNMaterial()
-//		node.geometry!.firstMaterial!.diffuse.contents = blueColor()
-		
 		let (min, max) = node.boundingBox
 		let collisionCapsuleRadius = CGFloat(max.x - min.x) * 0.4
 		let collisionCapsuleHeight = CGFloat(self.height())
@@ -197,13 +193,12 @@ class Character {
 		let key = action.identifier(isLifting)
 		if node.animationForKey(key) == nil  {
 			print(key)
-			node.removeAllAnimations()
 			node.addAnimation(characterAnimationForAction(action), forKey: key)
-//			for oldKey in node.animationKeys {
-//				if oldKey != key {
-//					node.removeAnimationForKey(oldKey, fadeOutDuration: transitionDurationForAction(action))
-//				}
-//			}
+			for oldKey in node.animationKeys {
+				if oldKey != key {
+					node.removeAnimationForKey(oldKey, fadeOutDuration: action.transitionDurationFromAction(currentAction, isLifting: isLifting))
+				}
+			}
 			currentAction = action
 		}
 	}
