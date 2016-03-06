@@ -17,8 +17,8 @@
 		C04215911C2FA68B0006413C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C04215901C2FA68B0006413C /* Assets.xcassets */; };
 		C04215941C2FA68B0006413C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C04215921C2FA68B0006413C /* LaunchScreen.storyboard */; };
 		C04215B81C2FA6A70006413C /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04215B71C2FA6A70006413C /* RoomViewController.swift */; };
-		C044A0D91C5F176E00E37938 /* Lifting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C044A0D81C5F176E00E37938 /* Lifting.swift */; };
-		C044A0DA1C5F177100E37938 /* Lifting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C044A0D81C5F176E00E37938 /* Lifting.swift */; };
+		C044A0D91C5F176E00E37938 /* CharacterLifting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C044A0D81C5F176E00E37938 /* CharacterLifting.swift */; };
+		C044A0DA1C5F177100E37938 /* CharacterLifting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C044A0D81C5F176E00E37938 /* CharacterLifting.swift */; };
 		C06653141C5556AE0028D091 /* Dropzone.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06653131C5556AE0028D091 /* Dropzone.swift */; };
 		C06653151C5556B50028D091 /* Dropzone.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06653131C5556AE0028D091 /* Dropzone.swift */; };
 		C06A1CC71C8CD7A800A4B2F9 /* CharacterActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06A1CC61C8CD7A800A4B2F9 /* CharacterActions.swift */; };
@@ -69,7 +69,7 @@
 		C04215A91C2FA68B0006413C /* cleanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cleanUITests.swift; sourceTree = "<group>"; };
 		C04215AB1C2FA68B0006413C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C04215B71C2FA6A70006413C /* RoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoomViewController.swift; path = Classes/RoomViewController.swift; sourceTree = "<group>"; };
-		C044A0D81C5F176E00E37938 /* Lifting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Lifting.swift; path = Classes/Lifting.swift; sourceTree = "<group>"; };
+		C044A0D81C5F176E00E37938 /* CharacterLifting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CharacterLifting.swift; path = Classes/CharacterLifting.swift; sourceTree = "<group>"; };
 		C06653131C5556AE0028D091 /* Dropzone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dropzone.swift; path = Classes/Dropzone.swift; sourceTree = "<group>"; };
 		C06A1CC61C8CD7A800A4B2F9 /* CharacterActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CharacterActions.swift; path = Classes/CharacterActions.swift; sourceTree = "<group>"; };
 		C074B0E11C39B6CE00EF4E76 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Character.swift; path = Classes/Character.swift; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 				C06653131C5556AE0028D091 /* Dropzone.swift */,
 				C074B0E11C39B6CE00EF4E76 /* Character.swift */,
 				C06A1CC61C8CD7A800A4B2F9 /* CharacterActions.swift */,
-				C044A0D81C5F176E00E37938 /* Lifting.swift */,
+				C044A0D81C5F176E00E37938 /* CharacterLifting.swift */,
 			);
 			name = Character;
 			sourceTree = "<group>";
@@ -343,7 +343,7 @@
 				C074B0E41C39B92000EF4E76 /* SceneKitExtensions.swift in Sources */,
 				C074B0EC1C39E8AC00EF4E76 /* Controls.swift in Sources */,
 				C04215881C2FA68B0006413C /* AppDelegate.swift in Sources */,
-				C044A0D91C5F176E00E37938 /* Lifting.swift in Sources */,
+				C044A0D91C5F176E00E37938 /* CharacterLifting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,7 +358,7 @@
 				C09DCA9B1C713F3500F4DD30 /* Washroom.swift in Sources */,
 				C09C12631C49B20700D1DB6A /* LiftableObject.swift in Sources */,
 				C06653151C5556B50028D091 /* Dropzone.swift in Sources */,
-				C044A0DA1C5F177100E37938 /* Lifting.swift in Sources */,
+				C044A0DA1C5F177100E37938 /* CharacterLifting.swift in Sources */,
 				C09C12641C49B20700D1DB6A /* Controls.swift in Sources */,
 				C09C12611C49B1EE00D1DB6A /* RoomView.swift in Sources */,
 				C075D7431C6F9B330016E091 /* Playground.swift in Sources */,

@@ -39,7 +39,7 @@ enum Action: String {
 			return 0.01
 		}
 		else if self == .Lift || self == .Drop || self == .Jump {
-			return 0.1
+			return 0.05
 		}
 		else {
 			return 0.2

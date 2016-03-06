@@ -24,10 +24,11 @@ extension Character {
 		if lifting != nil {
 			return
 		}
+		transitionToAction(.Lift)
 		
 		let location = positionForLiftedObject(object)
-		let delay = SCNAction.waitForDuration(ONE_FRAME)
-		let lift = SCNAction.moveTo(location, duration: ONE_FRAME * 2)
+		let delay = SCNAction.waitForDuration(ONE_FRAME * 5)
+		let lift = SCNAction.moveTo(location, duration: ONE_FRAME * 5)
 		
 		let liftAction = SCNAction.sequence([delay, lift])
 		liftAction.timingMode = .EaseOut
@@ -36,28 +37,21 @@ extension Character {
 			self.lifting = object
 			self.transitionToAction(.Idle)
 		}
-		transitionToAction(.Lift)
 	}
 	
 	func positionForLiftedObject(object: LiftableObject) -> SCNVector3! {
-		let (min, max) = object.boundingBox
-		let objectRadius =  Float(max.y - min.y) * 0.5
-		let objectY = height() + objectRadius
 		let characterPosition = SCNVector3ToFloat3(node.position)
-		let liftingPosition = SCNVector3(characterPosition.x, objectY, characterPosition.z)
-		
+		let liftingPosition = SCNVector3(characterPosition.x, height(), characterPosition.z)
 		return liftingPosition
 	}
 
-	
 	// MARK: Dropping
 	
 	func finalPositionForObject(object: LiftableObject, offset: Float) -> SCNVector3 {
 		let (min, max) = object.boundingBox
-		let objectY = Float(max.y - min.y) * 0.5
-		// TODO: Calculate how far to throw based off direction lifted (won't always be Z axis)
+		// TODO: Calculate how far to throw based off angle lifted from (won't always be Z axis)
 		let objectZ = self.length() + (Float(max.z - min.z) * 0.5) - offset
-		return node.convertPosition(SCNVector3(0.0, objectY, objectZ), toNode: nil)
+		return node.convertPosition(SCNVector3(0.0, 0.0, objectZ), toNode: nil)
 	}
 	
 	func dropObject() {
@@ -71,7 +65,7 @@ extension Character {
 		let k1p = SCNAction.moveByX(0, y: 0, z: -0.5, duration: k1r.duration)
 		let k1 = SCNAction.group([k1p, k1r])
 		
-		let k2r = SCNAction.rotateByX(0, y: 0, z: 0, duration: ONE_FRAME * 2)
+		let k2r = SCNAction.rotateByX(0, y: 0, z: 0, duration: ONE_FRAME * 3)
 		let k2p = SCNAction.moveByX(0, y: 0, z: 0.5, duration: k2r.duration)
 		let k2 = SCNAction.group([k2p, k2r])
 		
@@ -80,10 +74,10 @@ extension Character {
 		let k3 = SCNAction.group([k3p, k3r])
 		
 		let k4r = SCNAction.rotateByX(5.degreesToRadians, y: 0, z: 0, duration: ONE_FRAME * 2)
-		let k4p = SCNAction.moveTo(finalPositionForObject(object, offset: 0.3), duration: k4r.duration)
+		let k4p = SCNAction.moveTo(finalPositionForObject(object, offset: 0.2), duration: k4r.duration)
 		let k4 = SCNAction.group([k4p, k4r])
 		
-		let k5r = SCNAction.rotateByX(-20.degreesToRadians, y: 0, z: 0, duration: ONE_FRAME * 5)
+		let k5r = SCNAction.rotateByX(-20.degreesToRadians, y: 0, z: 0, duration: ONE_FRAME * 8)
 		let k5p = SCNAction.moveTo(finalPositionForObject(object, offset: 0), duration: k5r.duration)
 		let k5 = SCNAction.group([k5p, k5r])
 		k5.timingMode = .EaseOut

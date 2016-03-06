@@ -67,12 +67,14 @@ class Character {
 	
 	func height() -> Float {
 		let (min, max) = node.boundingBox
-		return Float(max.y - min.y)
+		var height = Float(max.y - min.y)
+		height += isLifting ? 0.1 : 0.0
+		return height
 	}
 	
 	func length() -> Float {
-		let (min, max) = node.boundingBox
-		return Float(max.z - min.z)
+		// TODO: properly calculate depth based off collider geometry
+		return height()
 	}
 	
 	func jumpToPosition(desiredPosition: SCNVector3) {
