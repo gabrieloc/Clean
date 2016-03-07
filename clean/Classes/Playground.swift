@@ -31,17 +31,14 @@ class Playground : SCNScene {
 		
 //		seedPropGeometry(10)
 		
-		let comb = LiftableObject(propName: .CKComb)
-		comb.position = SCNVector3Make(0, 0, 5)
-		rootNode.addChildNode(comb)
-		
-		let cream = LiftableObject(propName: .CKCream)
-		cream.position = SCNVector3Make(5, 0, 5)
-		rootNode.addChildNode(cream)
-		
-		let foam = LiftableObject(propName: .CKFoam)
-		foam.position = SCNVector3Make(5, 0, 10)
-		rootNode.addChildNode(foam)
+		let objects:[Prop] = [.CKComb, .CKCream, .CKFoam, .CKMouthwash, .CKRazor, .CKSoapDish, .CKSoap, .CKToothbrush, .CKToothpaste, .CKWax]
+		for (index, prop) in objects.enumerate() {
+			let object = LiftableObject(propName: prop)
+			let x = (sin(Float(index % 4) * Float(M_PI_2)) * Float(index))// * 5.0
+			let z = (cos(Float(index % 4) * Float(M_PI_2)) * Float(index))// * 5.0
+			object.position = SCNVector3(x, 0, z)
+			rootNode.addChildNode(object)
+		}
 	}
 	
 	func setupCollisionNode(node : SCNNode) {

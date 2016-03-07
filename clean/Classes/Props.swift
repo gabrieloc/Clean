@@ -32,7 +32,7 @@ extension LiftableObject {
 		let scene = SCNScene(named: propName)!
 		self.addChildNode(scene.rootNode.childNodes[0])
 		
-		self.physicsBody = SCNPhysicsBody(type: .Kinematic, shape: SCNPhysicsShape(node: self, options: nil))
+		self.physicsBody = SCNPhysicsBody(type: .Dynamic, shape: SCNPhysicsShape(node: self, options: nil))
 		self.physicsBody!.categoryBitMask = BitmaskLiftable
 	}
 }

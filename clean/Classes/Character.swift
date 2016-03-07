@@ -126,8 +126,7 @@ class Character {
 			directionAngle = SCNFloat(atan2(direction.x, direction.z))
 		}
 		
-		
-		lifting?.runAction(SCNAction.moveTo(positionForLiftedObject(lifting!), duration: 0))
+		lifting?.position = positionForLiftedObject(lifting!)
 
 		var position = node.position
 
@@ -150,7 +149,6 @@ class Character {
 //			print(groundAltitude)
 			
 			if groundAltitude < position.y - threshold {
-//				print(groundAltitude, position.y)
 				accelerationY += SCNFloat(deltaTime) * gravityAcceleration // approximation of acceleration for a delta time.
 				if groundAltitude < position.y - 0.2 { // transition to falling if ground is more than 0.2 away
 					groundType = .InTheAir

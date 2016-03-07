@@ -21,7 +21,7 @@ extension Character {
 	}
 
 	func liftObject(object:LiftableObject) {
-		if lifting != nil {
+		if lifting != nil || currentAction == .Fall {
 			return
 		}
 		transitionToAction(.Lift)
