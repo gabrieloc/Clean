@@ -20,7 +20,7 @@ class Character {
 		node = characterScene.rootNode
 		
 		let (min, max) = node.boundingBox
-		let collisionCapsuleRadius = CGFloat(max.x - min.x) * 0.4
+		let collisionCapsuleRadius = CGFloat(max.x - min.x) * 0.3
 		let collisionCapsuleHeight = CGFloat(self.height())
 		
 		let collidorGeometry = SCNCapsule(capRadius: collisionCapsuleRadius, height: collisionCapsuleHeight)
@@ -67,8 +67,7 @@ class Character {
 	
 	func height() -> Float {
 		let (min, max) = node.boundingBox
-		var height = Float(max.y - min.y)
-		height += isLifting ? 0.1 : 0.0
+		let height = Float(max.y - min.y)
 		return height
 	}
 	
@@ -98,9 +97,17 @@ class Character {
 	}
 	
 	func isFacingWall(scene: SCNScene) -> Bool {
+		return isFacingObjectWithCollisionBitMaskKey(BitmaskCollision, scene: scene)
+	}
+	
+	func isFacingLiftableObject(scene: SCNScene) -> Bool {
+		return isFacingObjectWithCollisionBitMaskKey(BitmaskLiftable, scene: scene)
+	}
+	
+	func isFacingObjectWithCollisionBitMaskKey(bitMaskKey: Int, scene: SCNScene) -> Bool {
 		let p0 = node.position
-		let p1 = node.convertPosition(SCNVector3Make(0, 0, 1), toNode: nil)
-		let results = scene.physicsWorld.rayTestWithSegmentFromPoint(p0, toPoint: p1, options: [SCNPhysicsTestCollisionBitMaskKey: BitmaskCollision, SCNPhysicsTestSearchModeKey: SCNPhysicsTestSearchModeClosest])
+		let p1 = node.convertPosition(SCNVector3(0, 0, self.length()), toNode: nil)
+		let results = scene.physicsWorld.rayTestWithSegmentFromPoint(p0, toPoint: p1, options: [SCNPhysicsTestCollisionBitMaskKey: bitMaskKey, SCNPhysicsTestSearchModeKey: SCNPhysicsTestSearchModeClosest])
 		return results.count > 0
 	}
 	
@@ -137,17 +144,14 @@ class Character {
 		let maxJump = SCNFloat(10.0)
 		p0.y -= maxJump
 		p1.y += maxRise
-		
-		// Do a vertical ray intersection
+
 		let results = scene.physicsWorld.rayTestWithSegmentFromPoint(p1, toPoint: p0, options:[SCNPhysicsTestCollisionBitMaskKey: BitmaskCollision, SCNPhysicsTestSearchModeKey: SCNPhysicsTestSearchModeClosest])
 
 		if let result = results.first {
 			let groundAltitude = result.worldCoordinates.y
 			let threshold = SCNFloat(1e-5)
 			let gravityAcceleration = SCNFloat(0.18)
-			
-//			print(groundAltitude)
-			
+
 			if groundAltitude < position.y - threshold {
 				accelerationY += SCNFloat(deltaTime) * gravityAcceleration // approximation of acceleration for a delta time.
 				if groundAltitude < position.y - 0.2 { // transition to falling if ground is more than 0.2 away
@@ -158,18 +162,11 @@ class Character {
 			else {
 				accelerationY = 0
 			}
-			
 			position.y -= accelerationY
-//			print(accelerationY)
-			
-			// reset acceleration if we touch the ground
 			if groundAltitude > position.y {
 				accelerationY = 0
 				position.y = groundAltitude
 			}
-			
-//			print(accelerationY)
-			// Finally, update the position of the character.
 			node.position = position
 		}
 		
@@ -192,7 +189,7 @@ class Character {
 	func transitionToAction(action: Action) {
 		let key = action.identifier(isLifting)
 		if node.animationForKey(key) == nil  {
-			print(key)
+//			print(key)
 			node.addAnimation(characterAnimationForAction(action), forKey: key)
 			for oldKey in node.animationKeys {
 				if oldKey != key {

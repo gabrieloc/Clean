@@ -6,7 +6,7 @@
 //  Copyright © 2016 Gabrieloc. All rights reserved.
 //
 
-import Foundation
+import SceneKit
 
 enum Action: String {
 	case Idle = "idle"
@@ -39,7 +39,7 @@ enum Action: String {
 			return 0.01
 		}
 		else if self == .Lift || self == .Drop || self == .Jump {
-			return 0.05
+			return 0.1
 		}
 		else {
 			return 0.2

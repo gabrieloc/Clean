@@ -36,8 +36,4 @@ class LiftableObject : SCNNode {
 		
 		return object
 	}
-	
-	func setupPhysicsBody() {
-		
-	}
 }

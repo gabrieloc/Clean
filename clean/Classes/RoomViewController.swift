@@ -72,6 +72,10 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 		return direction
 	}
 	
+	private func liftableObjectSelected(liftable: LiftableObject) {
+		self.character.liftObject(liftable)
+	}
+	
 	// MARK: SCNSceneRendererDelegate
 	
 	func renderer(renderer: SCNSceneRenderer, updateAtTime time: NSTimeInterval) {
@@ -84,6 +88,8 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 		character.walkInDirection(direction, time: time, scene: scene)
 
 		roomView.cameraNode.runAction(SCNAction.moveTo(character.node.position, duration: 0.5))
+		
+		roomView.update2DOverlay()
 	}
 	
 	func renderer(renderer: SCNSceneRenderer, didSimulatePhysicsAtTime time: NSTimeInterval) {
@@ -101,8 +107,12 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 			self.characterNode(other, hitWall: matching, withContact: contact)
 		}
 		contact.match(category: BitmaskLiftable) { (matching, _) in
-			let lifting = matching as! LiftableObject
-			self.character.liftObject(lifting)
+//			if self.character.isFacingLiftableObject(self.roomView.scene!) == true {
+				let liftableObject = matching as! LiftableObject
+				self.roomView.presentControlsForLiftableObject(liftableObject)
+//			}
+			// TODO: make triggered by button
+//			self.liftableObjectSelected(matching as! LiftableObject)
 		}
 	}
 	

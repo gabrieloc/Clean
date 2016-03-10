@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C0095E741C30714F00C48D4C /* alec.png in Resources */ = {isa = PBXBuildFile; fileRef = C0095E731C30714F00C48D4C /* alec.png */; };
 		C0095E761C361A9400C48D4C /* game.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C0095E751C361A9400C48D4C /* game.scnassets */; };
+		C02699E31C91288F004E392E /* LiftingControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02699E21C91288F004E392E /* LiftingControls.swift */; };
+		C02699E41C91288F004E392E /* LiftingControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02699E21C91288F004E392E /* LiftingControls.swift */; };
 		C03D043A1C48B536009C33F2 /* LiftableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03D04391C48B536009C33F2 /* LiftableObject.swift */; };
 		C04215881C2FA68B0006413C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04215871C2FA68B0006413C /* AppDelegate.swift */; };
 		C042158A1C2FA68B0006413C /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C04215891C2FA68B0006413C /* art.scnassets */; };
@@ -49,12 +51,15 @@
 		C0B17D321C630E61005259F6 /* CleanKit.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C0B17D311C630E61005259F6 /* CleanKit.scnassets */; };
 		C0B17D331C630E61005259F6 /* CleanKit.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C0B17D311C630E61005259F6 /* CleanKit.scnassets */; };
 		C0BE88101C7A3C0500B43860 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FAB7481C758B74004102A8 /* Colors.swift */; };
+		C0CB8C5E1C8E7BE600CB9656 /* pickup.png in Resources */ = {isa = PBXBuildFile; fileRef = C0CB8C5D1C8E7BE600CB9656 /* pickup.png */; };
+		C0CB8C5F1C8E7BE600CB9656 /* pickup.png in Resources */ = {isa = PBXBuildFile; fileRef = C0CB8C5D1C8E7BE600CB9656 /* pickup.png */; };
 		C0FAB7491C758B74004102A8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FAB7481C758B74004102A8 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C0095E731C30714F00C48D4C /* alec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alec.png; sourceTree = "<group>"; };
 		C0095E751C361A9400C48D4C /* game.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = game.scnassets; sourceTree = "<group>"; };
+		C02699E21C91288F004E392E /* LiftingControls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LiftingControls.swift; path = Classes/LiftingControls.swift; sourceTree = "<group>"; };
 		C03D04391C48B536009C33F2 /* LiftableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LiftableObject.swift; path = Classes/LiftableObject.swift; sourceTree = "<group>"; };
 		C04215841C2FA68B0006413C /* Clean iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Clean iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C04215871C2FA68B0006413C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +91,7 @@
 		C0A3AD5E1C87F5C00068075E /* Character.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Character.scnassets; sourceTree = "<group>"; };
 		C0A46BA41C7E97AB00B85414 /* Props.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Props.swift; path = Classes/Props.swift; sourceTree = "<group>"; };
 		C0B17D311C630E61005259F6 /* CleanKit.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = CleanKit.scnassets; sourceTree = "<group>"; };
+		C0CB8C5D1C8E7BE600CB9656 /* pickup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pickup.png; sourceTree = "<group>"; };
 		C0FAB7481C758B74004102A8 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = Classes/Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				C04215871C2FA68B0006413C /* AppDelegate.swift */,
+				C0CB8C5C1C8E7BDA00CB9656 /* assets */,
 				C0A3AD5E1C87F5C00068075E /* Character.scnassets */,
 				C0B17D311C630E61005259F6 /* CleanKit.scnassets */,
 				C0095E751C361A9400C48D4C /* game.scnassets */,
@@ -167,8 +174,8 @@
 		C04215B91C2FAA020006413C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				C04215B71C2FA6A70006413C /* RoomViewController.swift */,
 				C074B0EB1C39E8AC00EF4E76 /* Controls.swift */,
+				C04215B71C2FA6A70006413C /* RoomViewController.swift */,
 				C074B0E51C39C3BF00EF4E76 /* RoomView.swift */,
 				C0FAB7481C758B74004102A8 /* Colors.swift */,
 				C0A46BA31C7E966E00B85414 /* Props */,
@@ -214,9 +221,18 @@
 			isa = PBXGroup;
 			children = (
 				C03D04391C48B536009C33F2 /* LiftableObject.swift */,
+				C02699E21C91288F004E392E /* LiftingControls.swift */,
 				C0A46BA41C7E97AB00B85414 /* Props.swift */,
 			);
 			name = Props;
+			sourceTree = "<group>";
+		};
+		C0CB8C5C1C8E7BDA00CB9656 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				C0CB8C5D1C8E7BE600CB9656 /* pickup.png */,
+			);
+			name = assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,6 +320,7 @@
 				C0095E761C361A9400C48D4C /* game.scnassets in Resources */,
 				C0B17D321C630E61005259F6 /* CleanKit.scnassets in Resources */,
 				C0A3AD5F1C87F5C00068075E /* Character.scnassets in Resources */,
+				C0CB8C5E1C8E7BE600CB9656 /* pickup.png in Resources */,
 				C04215911C2FA68B0006413C /* Assets.xcassets in Resources */,
 				C042158F1C2FA68B0006413C /* Main.storyboard in Resources */,
 			);
@@ -318,6 +335,7 @@
 				C0B17D331C630E61005259F6 /* CleanKit.scnassets in Resources */,
 				C09C125B1C49B18B00D1DB6A /* Main.storyboard in Resources */,
 				C09C12621C49B1F800D1DB6A /* game.scnassets in Resources */,
+				C0CB8C5F1C8E7BE600CB9656 /* pickup.png in Resources */,
 				C0A3AD601C87F5C00068075E /* Character.scnassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0A46BA51C7E97AB00B85414 /* Props.swift in Sources */,
+				C02699E31C91288F004E392E /* LiftingControls.swift in Sources */,
 				C074B0E61C39C3BF00EF4E76 /* RoomView.swift in Sources */,
 				C03D043A1C48B536009C33F2 /* LiftableObject.swift in Sources */,
 				C04215B81C2FA6A70006413C /* RoomViewController.swift in Sources */,
@@ -351,6 +370,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C02699E41C91288F004E392E /* LiftingControls.swift in Sources */,
 				C09C12601C49B1EA00D1DB6A /* RoomViewController.swift in Sources */,
 				C06A1CC81C8CD7A800A4B2F9 /* CharacterActions.swift in Sources */,
 				C0A46BA61C7E97AB00B85414 /* Props.swift in Sources */,
