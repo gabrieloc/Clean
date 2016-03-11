@@ -111,9 +111,9 @@ class RoomView : SCNView {
 		if liftableObjects.values.contains(object) {
 			// Update control node position
 		} else {
-//			let pickup = SKSpriteNode(imageNamed: "pickup.png")
-			let liftNode = SKShapeNode(ellipseOfSize: CGSize(width: 50, height: 50))
-			liftNode.strokeColor = blueColor()
+//			let liftNode = SKSpriteNode(imageNamed: "CleanKit.scnassets/controls/lift.png")
+//			liftNode.setScale(0.5)
+			let liftNode = SKShapeNode(circleOfRadius: 20)
 			liftNode.position = positionForLiftableObject(object)
 			overlayNode.addChild(liftNode)
 			

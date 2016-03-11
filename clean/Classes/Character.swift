@@ -20,10 +20,11 @@ class Character {
 		node = characterScene.rootNode
 		
 		let (min, max) = node.boundingBox
-		let collisionCapsuleRadius = CGFloat(max.x - min.x) * 0.3
+		let collisionCapsuleWidth = CGFloat(max.x - min.x) * 0.6
 		let collisionCapsuleHeight = CGFloat(self.height())
+		let collisionCapsuleLength = CGFloat(max.x - min.x) * 0.3
 		
-		let collidorGeometry = SCNCapsule(capRadius: collisionCapsuleRadius, height: collisionCapsuleHeight)
+		let collidorGeometry = SCNBox(width: collisionCapsuleWidth, height: collisionCapsuleHeight, length: collisionCapsuleLength, chamferRadius: 0)
 		let characterCollisionNode = SCNNode()
 		characterCollisionNode.name = "collision"
 		characterCollisionNode.position = SCNVector3(0.0, collisionCapsuleHeight * 0.51, 0.0)
