@@ -50,6 +50,12 @@
 		C0B17D321C630E61005259F6 /* CleanKit.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C0B17D311C630E61005259F6 /* CleanKit.scnassets */; };
 		C0B17D331C630E61005259F6 /* CleanKit.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C0B17D311C630E61005259F6 /* CleanKit.scnassets */; };
 		C0BE88101C7A3C0500B43860 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FAB7481C758B74004102A8 /* Colors.swift */; };
+		C0D9C4861C927ECE00D3DB29 /* fluid.scnp in Resources */ = {isa = PBXBuildFile; fileRef = C0D9C4841C927ECE00D3DB29 /* fluid.scnp */; };
+		C0D9C4871C927ECE00D3DB29 /* fluid.scnp in Resources */ = {isa = PBXBuildFile; fileRef = C0D9C4841C927ECE00D3DB29 /* fluid.scnp */; };
+		C0D9C4881C927ECE00D3DB29 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D9C4851C927ECE00D3DB29 /* spark.png */; };
+		C0D9C4891C927ECE00D3DB29 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D9C4851C927ECE00D3DB29 /* spark.png */; };
+		C0E04C6F1CAA20D0007FBFD7 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E04C6E1CAA20D0007FBFD7 /* Vehicle.swift */; };
+		C0E04C701CAA20D0007FBFD7 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E04C6E1CAA20D0007FBFD7 /* Vehicle.swift */; };
 		C0FAB7491C758B74004102A8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FAB7481C758B74004102A8 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +93,9 @@
 		C0A3AD5E1C87F5C00068075E /* Character.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Character.scnassets; sourceTree = "<group>"; };
 		C0A46BA41C7E97AB00B85414 /* Props.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Props.swift; path = Classes/Props.swift; sourceTree = "<group>"; };
 		C0B17D311C630E61005259F6 /* CleanKit.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = CleanKit.scnassets; sourceTree = "<group>"; };
+		C0D9C4841C927ECE00D3DB29 /* fluid.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; name = fluid.scnp; path = Classes/fluid.scnp; sourceTree = "<group>"; };
+		C0D9C4851C927ECE00D3DB29 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = Classes/spark.png; sourceTree = "<group>"; };
+		C0E04C6E1CAA20D0007FBFD7 /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Vehicle.swift; path = Classes/Vehicle.swift; sourceTree = "<group>"; };
 		C0FAB7481C758B74004102A8 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = Classes/Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,9 +175,12 @@
 				C074B0EB1C39E8AC00EF4E76 /* Controls.swift */,
 				C04215B71C2FA6A70006413C /* RoomViewController.swift */,
 				C074B0E51C39C3BF00EF4E76 /* RoomView.swift */,
+				C0D9C4841C927ECE00D3DB29 /* fluid.scnp */,
+				C0D9C4851C927ECE00D3DB29 /* spark.png */,
 				C0FAB7481C758B74004102A8 /* Colors.swift */,
 				C0A46BA31C7E966E00B85414 /* Props */,
 				C075D7441C6F9B360016E091 /* Scenes */,
+				C0E04C711CAA20E0007FBFD7 /* Vehicle */,
 				C044A0DB1C5F177600E37938 /* Character */,
 				C074B0E31C39B92000EF4E76 /* SceneKitExtensions.swift */,
 			);
@@ -178,10 +190,10 @@
 		C044A0DB1C5F177600E37938 /* Character */ = {
 			isa = PBXGroup;
 			children = (
-				C06653131C5556AE0028D091 /* Dropzone.swift */,
 				C074B0E11C39B6CE00EF4E76 /* Character.swift */,
 				C06A1CC61C8CD7A800A4B2F9 /* CharacterActions.swift */,
 				C044A0D81C5F176E00E37938 /* CharacterLifting.swift */,
+				C06653131C5556AE0028D091 /* Dropzone.swift */,
 			);
 			name = Character;
 			sourceTree = "<group>";
@@ -236,6 +248,14 @@
 			children = (
 			);
 			name = assets;
+			sourceTree = "<group>";
+		};
+		C0E04C711CAA20E0007FBFD7 /* Vehicle */ = {
+			isa = PBXGroup;
+			children = (
+				C0E04C6E1CAA20D0007FBFD7 /* Vehicle.swift */,
+			);
+			name = Vehicle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,6 +337,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0D9C4861C927ECE00D3DB29 /* fluid.scnp in Resources */,
+				C0D9C4881C927ECE00D3DB29 /* spark.png in Resources */,
 				C042158A1C2FA68B0006413C /* art.scnassets in Resources */,
 				C04215941C2FA68B0006413C /* LaunchScreen.storyboard in Resources */,
 				C0095E761C361A9400C48D4C /* game.scnassets in Resources */,
@@ -336,6 +358,8 @@
 				C0B17D331C630E61005259F6 /* CleanKit.scnassets in Resources */,
 				C09C125B1C49B18B00D1DB6A /* Main.storyboard in Resources */,
 				C09C12621C49B1F800D1DB6A /* game.scnassets in Resources */,
+				C0D9C4891C927ECE00D3DB29 /* spark.png in Resources */,
+				C0D9C4871C927ECE00D3DB29 /* fluid.scnp in Resources */,
 				C0A3AD601C87F5C00068075E /* Character.scnassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,6 +378,7 @@
 				C04215B81C2FA6A70006413C /* RoomViewController.swift in Sources */,
 				C075D7421C6F9B330016E091 /* Playground.swift in Sources */,
 				C042158C1C2FA68B0006413C /* GameViewController.swift in Sources */,
+				C0E04C6F1CAA20D0007FBFD7 /* Vehicle.swift in Sources */,
 				C09DCA9A1C713F3500F4DD30 /* Washroom.swift in Sources */,
 				C074B0E21C39B6CE00EF4E76 /* Character.swift in Sources */,
 				C06653141C5556AE0028D091 /* Dropzone.swift in Sources */,
@@ -378,6 +403,7 @@
 				C09DCA9B1C713F3500F4DD30 /* Washroom.swift in Sources */,
 				C09C12631C49B20700D1DB6A /* LiftableObject.swift in Sources */,
 				C06653151C5556B50028D091 /* Dropzone.swift in Sources */,
+				C0E04C701CAA20D0007FBFD7 /* Vehicle.swift in Sources */,
 				C044A0DA1C5F177100E37938 /* CharacterLifting.swift in Sources */,
 				C09C12641C49B20700D1DB6A /* Controls.swift in Sources */,
 				C09C12611C49B1EE00D1DB6A /* RoomView.swift in Sources */,
