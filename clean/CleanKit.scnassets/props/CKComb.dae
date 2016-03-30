@@ -4,14 +4,14 @@
   <contributor>
    <authoring_tool>SceneKit Collada Exporter v1.0</authoring_tool>
   </contributor>
-  <created>2016-02-25T03:09:54Z</created>
-  <modified>2016-02-25T03:09:54Z</modified>
+  <created>2016-03-29T03:06:58Z</created>
+  <modified>2016-03-29T03:06:58Z</modified>
   <unit meter="1.000000"/>
   <up_axis>Z_UP</up_axis>
  </asset>
  <library_images>
   <image id="image1">
-   <init_from>textures/CKComb.png</init_from>
+   <init_from>../textures/CKComb.png</init_from>
   </image>
  </library_images>
  <library_materials>
@@ -25,14 +25,14 @@
  <library_effects>
   <effect id="effect_material2">
    <profile_COMMON>
-    <newparam sid="ID3_image1_surface">
+    <newparam sid="ID2_image1_surface">
      <surface type="2D">
       <init_from>image1</init_from>
      </surface>
     </newparam>
-    <newparam sid="ID3_image1">
+    <newparam sid="ID2_image1">
      <sampler2D>
-      <source>ID3_image1_surface</source>
+      <source>ID2_image1_surface</source>
       <wrap_s>CLAMP</wrap_s>
       <wrap_t>CLAMP</wrap_t>
       <minfilter>LINEAR</minfilter>
@@ -43,7 +43,7 @@
     <technique sid="common">
      <blinn>
       <diffuse>
-       <texture texture="ID3_image1" texcoord="CHANNEL2"/>
+       <texture texture="ID2_image1" texcoord="CHANNEL2"/>
       </diffuse>
       <shininess>
        <float>0.022516</float>

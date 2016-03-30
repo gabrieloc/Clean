@@ -21,24 +21,20 @@ class Playground : SCNScene {
 		
 		self.character = character
 		rootNode.addChildNode(character.node)
-		character.node.position = SCNVector3Make(0, 5.0, 0);
+		character.node.position = SCNVector3Make(0, 5.0, 0)
+		
+		let truck = Vehicle(type: .CKTruck)
+		rootNode.addChildNode(truck)
+		truck.position = SCNVector3Make(4, 0, 0)
 
 		scene.rootNode.enumerateChildNodesUsingBlock { (node, _) in
 			if node != character.node {
 				self.setupCollisionNode(node)
 			}
 		}
-		
-//		seedPropGeometry(10)
-		
-		let objects:[Prop] = [.CKComb, .CKCream, .CKFoam, .CKMouthwash, .CKRazor, .CKSoapDish, .CKSoap, .CKToothbrush, .CKToothpaste, .CKWax]
-		for (index, prop) in objects.enumerate() {
-			let object = LiftableObject(propName: prop)
-			let x = (sin(Float(index % 4) * Float(M_PI_2)) * Float(index))// * 5.0
-			let z = (cos(Float(index % 4) * Float(M_PI_2)) * Float(index))// * 5.0
-			object.position = SCNVector3(x, 0, z)
-			rootNode.addChildNode(object)
-		}
+
+//		let objects:[Prop] = [.CKComb, .CKCream, .CKFoam, .CKMouthwash, .CKRazor, .CKSoapDish, .CKSoap, .CKToothbrush, .CKToothpaste, .CKWax]
+//		seedPropGeometry(objects)
 	}
 	
 	func setupCollisionNode(node : SCNNode) {
@@ -55,7 +51,7 @@ class Playground : SCNScene {
 		super.init(coder: aDecoder)
 	}
 	
-	func seedPropGeometry(count: NSInteger) {
+	func seedPrimitiveGeometry(count: NSInteger) {
 		for index in 0...count {
 			let object = LiftableObject.randomObjectWithHeight(CGFloat(arc4random_uniform(UInt32(index))) * 0.1)
 			object.position = SCNVector3(
@@ -63,6 +59,16 @@ class Playground : SCNScene {
 				10.0,
 				CGFloat(arc4random_uniform(UInt32(index))))
 			self.rootNode.addChildNode(object)
+		}
+	}
+	
+	func seedPropGeometry(objects: [Prop]) {
+		for (index, prop) in objects.enumerate() {
+			let object = LiftableObject(propName: prop)
+			let x = (sin(Float(index % 4) * Float(M_PI_2)) * Float(index))// * 5.0
+			let z = (cos(Float(index % 4) * Float(M_PI_2)) * Float(index))// * 5.0
+			object.position = SCNVector3(x, 0, z)
+			rootNode.addChildNode(object)
 		}
 	}
 }

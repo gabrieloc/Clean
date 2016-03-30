@@ -12,6 +12,7 @@ import GameController
 
 let BitmaskCollision = 1 << 2
 let BitmaskLiftable  = 1 << 3
+let BitmaskDrivable = 1 << 4
 
 #if os(iOS) || os(tvOS)
 	import UIKit
@@ -113,6 +114,10 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 //			}
 			// TODO: make triggered by button
 //			self.liftableObjectSelected(matching as! LiftableObject)
+		}
+		contact.match(category: BitmaskDrivable) { (matching, _) in
+			let vehicle = Vehicle.vehicleFromCollisionNode(matching)
+			self.character.beginDriving(vehicle)
 		}
 	}
 	

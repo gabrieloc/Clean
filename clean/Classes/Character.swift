@@ -29,12 +29,13 @@ class Character {
 		characterCollisionNode.name = "collision"
 		characterCollisionNode.position = SCNVector3(0.0, collisionCapsuleHeight * 0.51, 0.0)
 		characterCollisionNode.physicsBody = SCNPhysicsBody(type: .Kinematic, shape:SCNPhysicsShape(geometry: collidorGeometry, options:nil))
-		characterCollisionNode.physicsBody!.contactTestBitMask = BitmaskCollision | BitmaskLiftable
+		characterCollisionNode.physicsBody!.contactTestBitMask = BitmaskCollision | BitmaskLiftable | BitmaskDrivable
 		node.addChildNode(characterCollisionNode)
 	}
 	
 	let node: SCNNode
 	var lifting: LiftableObject?
+	var driving: Vehicle?
 	
 	var dropzone : Dropzone!
 	var dropZoneVisible: Bool = false {

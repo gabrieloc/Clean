@@ -16,6 +16,8 @@ enum Action: String {
 	case Jump = "jump"
 	case Fall = "fall"
 	
+	case Drive = "drive"
+	
 	func identifier() -> String {
 		return identifier(false)
 	}
@@ -26,12 +28,20 @@ enum Action: String {
 		
 		if isLifting && self != .Lift && self != .Drop {
 			name = "\(self.rawValue)-lifting"
-		} else {
+		}
+		else {
 			name = self.rawValue
 		}
 		
 		return "Character.scnassets/actions/\(name).dae"
 	}
+	
+//	func drivingIdentifier(isDriving: Bool) -> String {
+//		"enterTruckLeft"
+//		"exitTruckLeft"
+//		"enterTruckRight"
+//		"exitTruckRight"
+//	}
 	
 	func transitionDurationFromAction(fromAction: Action, isLifting: Bool) -> CGFloat {
 		

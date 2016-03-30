@@ -28,9 +28,8 @@ extension LiftableObject {
 		
 		self.init()
 		
-		let propName = "CleanKit.scnassets/props/\(propName.rawValue).dae"
-		let scene = SCNScene(named: propName)!
-		self.addChildNode(scene.rootNode.childNodes[0])
+		let propNode = CKPropNodeNamed(propName.rawValue)
+		self.addChildNode(propNode)
 		
 		self.physicsBody = SCNPhysicsBody(type: .Dynamic, shape: SCNPhysicsShape(node: self, options: nil))
 		self.physicsBody!.categoryBitMask = BitmaskLiftable

@@ -19,6 +19,10 @@ extension SCNNode {
 			return (min, max)
 		}
 	}
+	func collisionNode() -> SCNNode {
+		let collisionNode = childNodeWithName("collisionMesh", recursively: true)!
+		return collisionNode
+	}
 }
 
 extension SCNPhysicsContact {
