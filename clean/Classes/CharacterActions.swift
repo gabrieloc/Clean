@@ -36,13 +36,6 @@ enum Action: String {
 		return "Character.scnassets/actions/\(name).dae"
 	}
 	
-//	func drivingIdentifier(isDriving: Bool) -> String {
-//		"enterTruckLeft"
-//		"exitTruckLeft"
-//		"enterTruckRight"
-//		"exitTruckRight"
-//	}
-	
 	func transitionDurationFromAction(fromAction: Action, isLifting: Bool) -> CGFloat {
 		
 		if self == .Idle && (isLifting || fromAction == .Jump) {

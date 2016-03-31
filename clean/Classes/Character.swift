@@ -36,6 +36,7 @@ class Character {
 	let node: SCNNode
 	var lifting: LiftableObject?
 	var driving: Vehicle?
+	var vehicleEntrance: VehicleEntrance = .None
 	
 	var dropzone : Dropzone!
 	var dropZoneVisible: Bool = false {
@@ -187,11 +188,18 @@ class Character {
 	
 	// MARK: Animations
 	
+	func identifierForNewAction(action: Action) -> String {
+		if action == .Drive {
+			return action.drivingIdentifier(isDriving(), entrance: vehicleEntrance)
+		} else {
+			return action.identifier(isLifting)
+		}
+	}
+	
 	var currentAction: Action = .Idle
 	func transitionToAction(action: Action) {
-		let key = action.identifier(isLifting)
+		let key = identifierForNewAction(action)
 		if node.animationForKey(key) == nil  {
-//			print(key)
 			node.addAnimation(characterAnimationForAction(action), forKey: key)
 			for oldKey in node.animationKeys {
 				if oldKey != key {
@@ -203,7 +211,7 @@ class Character {
 	}
 	
 	func characterAnimationForAction(action: Action) -> CAAnimation! {
-		let name = action.identifier(isLifting)
+		let name = identifierForNewAction(action)
 		let animation = CAAnimation.animationWithSceneNamed(name)!
 		animation.fadeInDuration = action.transitionDurationFromAction(currentAction, isLifting: isLifting)
 		

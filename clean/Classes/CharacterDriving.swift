@@ -8,21 +8,53 @@
 
 import SceneKit
 
+extension Action {
+	func drivingIdentifier(isDriving: Bool, entrance: VehicleEntrance) -> String {
+		
+		var name: String
+		
+		switch entrance {
+		case .Driver:
+			name = isDriving ? "enterTruckLeft" : "enterTruckRight"
+		case .Passenger:
+			name = isDriving ? "enterTruckRight" : "exitTruckRight"
+		case .Trunk:
+			name = isDriving ? "enterTruckBack" : "exitTruckBack"
+		case .None:
+			return ""
+		}
+		
+		return "Character.scnassets/driving/\(name).dae"
+	}
+}
+
 extension Character {
 	
-	func beginDriving(vehicle: Vehicle) {
+	func beginDrivingVehicle(vehicle: Vehicle, entrance: VehicleEntrance) {
 		
-		// TODO: calculate which side to enter from
+		if isDriving() || entrance == .None {
+			return
+		}
 		
 		driving = vehicle
+		vehicleEntrance = entrance
 		
 		transitionToAction(.Drive)
 	}
 	
 	func endDriving() {
+
+		if !isDriving() {
+			return
+		}
 		
-		// TODO: calculate which side to exit from
+		driving = nil
+		vehicleEntrance = .None
 		
 		transitionToAction(.Idle)
+	}
+
+	func isDriving() -> Bool {
+		return driving != nil
 	}
 }

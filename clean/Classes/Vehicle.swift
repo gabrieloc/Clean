@@ -12,6 +12,13 @@ enum VehicleType: String {
 	case CKTruck
 }
 
+enum VehicleEntrance: Int {
+	case None
+	case Driver
+	case Passenger
+	case Trunk
+}
+
 class Vehicle: SCNNode {
 	
 	convenience init(type: VehicleType) {
@@ -32,5 +39,23 @@ class Vehicle: SCNNode {
 		let truckNode = collisionNode.parentNode!
 		let vehicle = truckNode.parentNode!
 		return vehicle as! Vehicle
+	}
+	
+	func entranceFromContactPoint(contactPoint: SCNVector3) -> VehicleEntrance {
+		
+		let localPoint = self.convertPosition(contactPoint, fromNode: nil)
+		let (min, max) = boundingBox
+		let sidePadding: CGFloat = 0.1
+		let sideIntersection = localPoint.x < (min.x + sidePadding) || localPoint.x > (max.x - sidePadding)
+		let trunkIntersection = -localPoint.z < min.z
+		
+		if (sideIntersection) {
+			return localPoint.x > 0 ? .Passenger : .Driver
+		}
+		else if (trunkIntersection) {
+			return .Trunk
+		}
+	
+		return .None
 	}
 }

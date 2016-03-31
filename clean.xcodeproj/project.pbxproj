@@ -52,8 +52,6 @@
 		C0BE88101C7A3C0500B43860 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FAB7481C758B74004102A8 /* Colors.swift */; };
 		C0D9C4861C927ECE00D3DB29 /* fluid.scnp in Resources */ = {isa = PBXBuildFile; fileRef = C0D9C4841C927ECE00D3DB29 /* fluid.scnp */; };
 		C0D9C4871C927ECE00D3DB29 /* fluid.scnp in Resources */ = {isa = PBXBuildFile; fileRef = C0D9C4841C927ECE00D3DB29 /* fluid.scnp */; };
-		C0D9C4881C927ECE00D3DB29 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D9C4851C927ECE00D3DB29 /* spark.png */; };
-		C0D9C4891C927ECE00D3DB29 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D9C4851C927ECE00D3DB29 /* spark.png */; };
 		C0E04C6F1CAA20D0007FBFD7 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E04C6E1CAA20D0007FBFD7 /* Vehicle.swift */; };
 		C0E04C701CAA20D0007FBFD7 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E04C6E1CAA20D0007FBFD7 /* Vehicle.swift */; };
 		C0E04C731CAA2610007FBFD7 /* CleanKitHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E04C721CAA2610007FBFD7 /* CleanKitHelpers.swift */; };
@@ -98,7 +96,6 @@
 		C0A46BA41C7E97AB00B85414 /* Props.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Props.swift; path = Classes/Props.swift; sourceTree = "<group>"; };
 		C0B17D311C630E61005259F6 /* CleanKit.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = CleanKit.scnassets; sourceTree = "<group>"; };
 		C0D9C4841C927ECE00D3DB29 /* fluid.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; name = fluid.scnp; path = Classes/fluid.scnp; sourceTree = "<group>"; };
-		C0D9C4851C927ECE00D3DB29 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = Classes/spark.png; sourceTree = "<group>"; };
 		C0E04C6E1CAA20D0007FBFD7 /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Vehicle.swift; path = Classes/Vehicle.swift; sourceTree = "<group>"; };
 		C0E04C721CAA2610007FBFD7 /* CleanKitHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CleanKitHelpers.swift; path = Classes/CleanKitHelpers.swift; sourceTree = "<group>"; };
 		C0E04C751CAA3247007FBFD7 /* CharacterDriving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CharacterDriving.swift; path = Classes/CharacterDriving.swift; sourceTree = "<group>"; };
@@ -182,7 +179,6 @@
 				C04215B71C2FA6A70006413C /* RoomViewController.swift */,
 				C074B0E51C39C3BF00EF4E76 /* RoomView.swift */,
 				C0D9C4841C927ECE00D3DB29 /* fluid.scnp */,
-				C0D9C4851C927ECE00D3DB29 /* spark.png */,
 				C0FAB7481C758B74004102A8 /* Colors.swift */,
 				C0E04C721CAA2610007FBFD7 /* CleanKitHelpers.swift */,
 				C0A46BA31C7E966E00B85414 /* Props */,
@@ -346,7 +342,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0D9C4861C927ECE00D3DB29 /* fluid.scnp in Resources */,
-				C0D9C4881C927ECE00D3DB29 /* spark.png in Resources */,
 				C042158A1C2FA68B0006413C /* art.scnassets in Resources */,
 				C04215941C2FA68B0006413C /* LaunchScreen.storyboard in Resources */,
 				C0095E761C361A9400C48D4C /* game.scnassets in Resources */,
@@ -366,7 +361,6 @@
 				C0B17D331C630E61005259F6 /* CleanKit.scnassets in Resources */,
 				C09C125B1C49B18B00D1DB6A /* Main.storyboard in Resources */,
 				C09C12621C49B1F800D1DB6A /* game.scnassets in Resources */,
-				C0D9C4891C927ECE00D3DB29 /* spark.png in Resources */,
 				C0D9C4871C927ECE00D3DB29 /* fluid.scnp in Resources */,
 				C0A3AD601C87F5C00068075E /* Character.scnassets in Resources */,
 			);

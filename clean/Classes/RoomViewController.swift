@@ -117,7 +117,8 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 		}
 		contact.match(category: BitmaskDrivable) { (matching, _) in
 			let vehicle = Vehicle.vehicleFromCollisionNode(matching)
-			self.character.beginDriving(vehicle)
+			let entrance = vehicle.entranceFromContactPoint(contact.contactPoint)
+			self.character.beginDrivingVehicle(vehicle, entrance: entrance)
 		}
 	}
 	
