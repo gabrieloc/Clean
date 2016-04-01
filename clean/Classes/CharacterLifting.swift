@@ -26,7 +26,6 @@ extension Character {
 		}
 		transitionToAction(.Lift)
 
-		
 		let location = positionForLiftedObject(object)
 		let delay = SCNAction.waitForDuration(ONE_FRAME * 5)
 		let lift = SCNAction.moveTo(location, duration: ONE_FRAME * 5)

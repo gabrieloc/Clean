@@ -55,16 +55,19 @@ class Character {
 	
 	static let speedFactor = Float(3.0)
 	private var groundType = GroundType.InTheAir
+	internal var previousDirection = float3()
 	private var previousUpdateTime = NSTimeInterval(0.0)
-	private var accelerationY = SCNFloat(0.0) // gravity simulation
+	private var accelerationY: Float = 0.0 // gravity simulation
+	internal var vehicleAcceleration: Float = 0.0
 	private var isFalling = false
 	
-	private var directionAngle: SCNFloat = 0.0 {
+	internal var directionAngle: SCNFloat = 0.0 {
 		didSet {
 			if directionAngle != oldValue {
 				let rotation = SCNAction.rotateToX(0.0, y: CGFloat(directionAngle), z: 0.0, duration: 0.2, shortestUnitArc: true)
 				node.runAction(rotation)
 				lifting?.runAction(rotation)
+				driving?.runAction(rotation)
 			}
 		}
 	}
@@ -132,16 +135,6 @@ class Character {
 		updateAltitude(scene, deltaTime: deltaTime)
 	}
 	
-	private var vehicleAcceleration: Float = 0.0
-	private func driveInDirection(direction: float3, deltaTime: NSTimeInterval) {
-		
-		let acceleration: Float = 0.15
-		vehicleAcceleration += Float(deltaTime) * acceleration
-		vehicleAcceleration = min(vehicleAcceleration, 50.0)
-		
-		node.position = SCNVector3(float3(node.position) + direction * vehicleAcceleration)
-	}
-	
 	private func walkInDirection(direction: float3, deltaTime: NSTimeInterval) {
 		
 		let characterSpeed = Float(deltaTime) * Character.speedFactor
@@ -180,17 +173,17 @@ class Character {
 		if let result = results.first {
 			let groundAltitude = result.worldCoordinates.y
 			let threshold = SCNFloat(1e-5)
-			let gravityAcceleration = SCNFloat(0.18)
+			let gravityAcceleration: Float = 0.18
 			
 			if groundAltitude < position.y - threshold {
-				accelerationY += SCNFloat(deltaTime) * gravityAcceleration
+				accelerationY += Float(deltaTime) * gravityAcceleration
 				isFalling = groundAltitude < position.y - 0.2
 				groundType = isFalling ? .InTheAir : .Surface
 			}
 			else {
 				accelerationY = 0
 			}
-			position.y -= accelerationY
+			position.y -= SCNFloat(accelerationY)
 			if groundAltitude > position.y {
 				accelerationY = 0
 				position.y = groundAltitude
@@ -202,8 +195,8 @@ class Character {
 	// MARK: Animations
 	
 	func identifierForNewAction(action: Action) -> String {
-		if action == .Drive {
-			return action.drivingIdentifier(isDriving(), entrance: vehicleEntrance)
+		if action == .EnterVehicle || action == .ExitVehicle {
+			return action.identiferForNewVehicleAction(action, entrance: vehicleEntrance)
 		} else {
 			return action.identifier(isLifting)
 		}
@@ -212,10 +205,20 @@ class Character {
 	var currentAction: Action = .Idle
 	
 	func transitionToAction(action: Action) {
+		transitionToAction(action, completion: nil)
+	}
+	
+	func transitionToAction(action: Action, completion: (() -> Void)?) {
 		let key = identifierForNewAction(action)
 		if node.animationForKey(key) == nil  {
-			print(action)
+			
+			CATransaction.begin()
+			CATransaction.setCompletionBlock({ 
+				completion?()
+			})
 			node.addAnimation(characterAnimationForAction(action), forKey: key)
+			CATransaction.commit()
+			
 			for oldKey in node.animationKeys {
 				if oldKey != key {
 					node.removeAnimationForKey(oldKey, fadeOutDuration: action.transitionDurationFromAction(currentAction, isLifting: isLifting))

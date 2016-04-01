@@ -195,8 +195,8 @@
 			children = (
 				C074B0E11C39B6CE00EF4E76 /* Character.swift */,
 				C0E04C751CAA3247007FBFD7 /* CharacterDriving.swift */,
-				C06A1CC61C8CD7A800A4B2F9 /* CharacterActions.swift */,
 				C044A0D81C5F176E00E37938 /* CharacterLifting.swift */,
+				C06A1CC61C8CD7A800A4B2F9 /* CharacterActions.swift */,
 				C06653131C5556AE0028D091 /* Dropzone.swift */,
 			);
 			name = Character;

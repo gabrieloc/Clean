@@ -12,11 +12,11 @@ enum VehicleType: String {
 	case CKTruck
 }
 
-enum VehicleEntrance: Int {
-	case None
-	case Driver
-	case Passenger
-	case Trunk
+enum VehicleEntrance: String {
+	case None = ""
+	case Driver = "DriverSide"
+	case Passenger = "PassengerSide"
+	case Trunk = "Trunk"
 }
 
 class Vehicle: SCNNode {
@@ -57,5 +57,13 @@ class Vehicle: SCNNode {
 		}
 	
 		return .None
+	}
+	
+	func beginDrivingFromEntrance(entrance: VehicleEntrance) {
+		
+	}
+	
+	func endDrivingFromEntrance(entrance: VehicleEntrance) {
+		
 	}
 }

@@ -9,7 +9,7 @@
 import SceneKit
 
 extension Action {
-	func drivingIdentifier(isDriving: Bool, entrance: VehicleEntrance) -> String {
+	func identifierForVehicle(isDriving: Bool, entrance: VehicleEntrance) -> String {
 		
 		var name: String
 		
@@ -36,10 +36,13 @@ extension Character {
 			return
 		}
 		
-		driving = vehicle
-		vehicleEntrance = entrance
+		vehicle.beginDrivingFromEntrance(entrance)
+		self.vehicleEntrance = entrance
+		self.driving = vehicle
 		
-		self.transitionToAction(.Drive)
+		self.transitionToAction(.EnterVehicle) { () -> Void in
+			self.transitionToAction(.Drive)
+		}
 	}
 	
 	func endDriving() {
@@ -48,13 +51,41 @@ extension Character {
 			return
 		}
 		
+		self.transitionToAction(.Idle)
+		driving!.endDrivingFromEntrance(vehicleEntrance)
 		driving = nil
 		vehicleEntrance = .None
-		
-		self.transitionToAction(.Idle)
 	}
 
 	func isDriving() -> Bool {
 		return driving != nil
+	}
+	
+	internal func driveInDirection(direction: float3, deltaTime: NSTimeInterval) {
+		
+		let acceleration: Float = 0.15
+		var newDirection = float3()
+		
+		if direction.x == 0 && direction.y == 0 {
+			// TODO: decelerate
+			vehicleAcceleration *= Float(deltaTime) * 0.9
+			previousDirection = previousDirection * vehicleAcceleration
+			newDirection = previousDirection
+			vehicleAcceleration = max(vehicleAcceleration, 0.0)
+		}
+		else {
+			vehicleAcceleration += Float(deltaTime) * acceleration
+			vehicleAcceleration = min(vehicleAcceleration, 0.25)
+			previousDirection = direction
+			newDirection = direction * vehicleAcceleration
+			
+			directionAngle = SCNFloat(atan2(direction.x, direction.z))
+			print(directionAngle)
+		}
+		
+		let position = SCNVector3(float3(node.position) + newDirection)
+		node.position = position
+		driving!.position = position
+		
 	}
 }

@@ -16,6 +16,8 @@ enum Action: String {
 	case Jump = "jump"
 	case Fall = "fall"
 	
+	case EnterVehicle = "enterVehicle"
+	case ExitVehicle = "exitVehicle"
 	case Drive = "drive"
 	
 	func identifier() -> String {
@@ -33,6 +35,12 @@ enum Action: String {
 			name = self.rawValue
 		}
 		
+		return "Character.scnassets/actions/\(name).dae"
+	}
+	
+	func identiferForNewVehicleAction(action: Action, entrance: VehicleEntrance) -> String {
+		
+		let name = "\(action.rawValue)\(entrance.rawValue)"
 		return "Character.scnassets/actions/\(name).dae"
 	}
 	
