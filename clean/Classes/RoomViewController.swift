@@ -86,7 +86,7 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 		
 		let scene = roomView.scene!
 		let direction = characterDirection()
-		character.walkInDirection(direction, time: time, scene: scene)
+		character.moveInDirection(direction, time: time, scene: scene)
 
 		roomView.cameraNode.runAction(SCNAction.moveTo(character.node.position, duration: 0.5))
 		

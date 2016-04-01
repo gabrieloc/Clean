@@ -57,6 +57,7 @@ class Character {
 	private var groundType = GroundType.InTheAir
 	private var previousUpdateTime = NSTimeInterval(0.0)
 	private var accelerationY = SCNFloat(0.0) // gravity simulation
+	private var isFalling = false
 	
 	private var directionAngle: SCNFloat = 0.0 {
 		didSet {
@@ -114,32 +115,61 @@ class Character {
 		return results.count > 0
 	}
 	
-	func walkInDirection(direction: float3, time: NSTimeInterval, scene: SCNScene) -> SCNNode? {
-
+	func moveInDirection(direction: float3, time: NSTimeInterval, scene: SCNScene) {
+		
 		if currentAction == .Lift || currentAction == .Drop || currentAction == .Jump {
-			return nil
+			return
 		}
 		
-		if previousUpdateTime == 0.0 {
-			previousUpdateTime = time
-		}
-		
-		let deltaTime = Float(min(time - previousUpdateTime, 1.0 / 60.0))
-		let characterSpeed = deltaTime * Character.speedFactor
+		let deltaTime: NSTimeInterval = min(time - previousUpdateTime, 1.0 / 60.0)
 		previousUpdateTime = time
 		
+		
+		if isDriving() {
+			driveInDirection(direction, deltaTime: deltaTime)
+		} else {
+			walkInDirection(direction, deltaTime: deltaTime)
+		}
+		
+		updateAltitude(scene, deltaTime: deltaTime)
+	}
+	
+	private var vehicleAcceleration: Float = 0.0
+	private func driveInDirection(direction: float3, deltaTime: NSTimeInterval) {
+		
+		let acceleration: Float = 0.15
+		vehicleAcceleration += Float(deltaTime) * acceleration
+		vehicleAcceleration = min(vehicleAcceleration, 50.0)
+		
+		node.position = SCNVector3(float3(node.position) + direction * vehicleAcceleration)
+	}
+	
+	private func walkInDirection(direction: float3, deltaTime: NSTimeInterval) {
+		
+		let characterSpeed = Float(deltaTime) * Character.speedFactor
 		let isWalking = direction.x != 0.0 || direction.z != 0.0
-		var isFalling = false //TODO
-
+		
 		if (isWalking) {
 			node.position = SCNVector3(float3(node.position) + direction * characterSpeed)
 			directionAngle = SCNFloat(atan2(direction.x, direction.z))
 		}
 		
 		lifting?.position = positionForLiftedObject(lifting!)
-
+		
+		if isFalling {
+			transitionToAction(.Fall)
+		} else if isWalking {
+			transitionToAction(.Walk)
+		} else {
+			transitionToAction(.Idle)
+		}
+	}
+	
+	private func updateAltitude(scene: SCNScene, deltaTime: NSTimeInterval) {
+		
 		var position = node.position
-
+		print(position)
+		
 		var p0 = position
 		var p1 = position
 		
@@ -147,19 +177,21 @@ class Character {
 		let maxJump = SCNFloat(10.0)
 		p0.y -= maxJump
 		p1.y += maxRise
-
+		
 		let results = scene.physicsWorld.rayTestWithSegmentFromPoint(p1, toPoint: p0, options:[SCNPhysicsTestCollisionBitMaskKey: BitmaskCollision, SCNPhysicsTestSearchModeKey: SCNPhysicsTestSearchModeClosest])
-
+		
 		if let result = results.first {
 			let groundAltitude = result.worldCoordinates.y
 			let threshold = SCNFloat(1e-5)
 			let gravityAcceleration = SCNFloat(0.18)
-
+			
 			if groundAltitude < position.y - threshold {
 				accelerationY += SCNFloat(deltaTime) * gravityAcceleration // approximation of acceleration for a delta time.
 				if groundAltitude < position.y - 0.2 { // transition to falling if ground is more than 0.2 away
 					groundType = .InTheAir
 					isFalling = true
+				} else {
+					isFalling = false
 				}
 			}
 			else {
@@ -172,18 +204,6 @@ class Character {
 			}
 			node.position = position
 		}
-		
-		node.position = position
-		
-		if isFalling {
-			transitionToAction(.Fall)
-		} else if isWalking {
-			transitionToAction(.Walk)
-		} else {
-			transitionToAction(.Idle)
-		}
-		
-		return nil
 	}
 	
 	// MARK: Animations
