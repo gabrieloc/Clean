@@ -124,13 +124,11 @@ class Character {
 		let deltaTime: NSTimeInterval = min(time - previousUpdateTime, 1.0 / 60.0)
 		previousUpdateTime = time
 		
-		
 		if isDriving() {
 			driveInDirection(direction, deltaTime: deltaTime)
 		} else {
 			walkInDirection(direction, deltaTime: deltaTime)
 		}
-		
 		updateAltitude(scene, deltaTime: deltaTime)
 	}
 	
@@ -168,7 +166,6 @@ class Character {
 	private func updateAltitude(scene: SCNScene, deltaTime: NSTimeInterval) {
 		
 		var position = node.position
-		print(position)
 		
 		var p0 = position
 		var p1 = position
@@ -186,13 +183,9 @@ class Character {
 			let gravityAcceleration = SCNFloat(0.18)
 			
 			if groundAltitude < position.y - threshold {
-				accelerationY += SCNFloat(deltaTime) * gravityAcceleration // approximation of acceleration for a delta time.
-				if groundAltitude < position.y - 0.2 { // transition to falling if ground is more than 0.2 away
-					groundType = .InTheAir
-					isFalling = true
-				} else {
-					isFalling = false
-				}
+				accelerationY += SCNFloat(deltaTime) * gravityAcceleration
+				isFalling = groundAltitude < position.y - 0.2
+				groundType = isFalling ? .InTheAir : .Surface
 			}
 			else {
 				accelerationY = 0
@@ -217,9 +210,11 @@ class Character {
 	}
 	
 	var currentAction: Action = .Idle
+	
 	func transitionToAction(action: Action) {
 		let key = identifierForNewAction(action)
 		if node.animationForKey(key) == nil  {
+			print(action)
 			node.addAnimation(characterAnimationForAction(action), forKey: key)
 			for oldKey in node.animationKeys {
 				if oldKey != key {

@@ -39,7 +39,7 @@ extension Character {
 		driving = vehicle
 		vehicleEntrance = entrance
 		
-		transitionToAction(.Drive)
+		self.transitionToAction(.Drive)
 	}
 	
 	func endDriving() {
@@ -51,7 +51,7 @@ extension Character {
 		driving = nil
 		vehicleEntrance = .None
 		
-		transitionToAction(.Idle)
+		self.transitionToAction(.Idle)
 	}
 
 	func isDriving() -> Bool {
