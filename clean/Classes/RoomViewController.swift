@@ -22,7 +22,7 @@ let BitmaskDrivable = 1 << 4
 	typealias ViewController = NSViewController
 #endif
 
-class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsContactDelegate {
+class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsContactDelegate, CharacterDelegate {
 
 	var roomView: RoomView {
 		return view as! RoomView
@@ -53,6 +53,8 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 		scene.physicsWorld.contactDelegate = self
 		roomView.delegate = self
 		setupGameControllers()
+		
+		character.delegate = self
 	}
 	
 	private func liftableObjectSelected(liftable: LiftableObject) {
@@ -139,5 +141,30 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 			characterPosition += positionOffset
 			replacementPosition = SCNVector3(characterPosition)
 		}
+	}
+	
+	// MARK: CharacterDelegate
+	
+	func character(character: Character, willTransitionToAction: Action) {
+
+		var zoomLevel: Double
+		
+		if willTransitionToAction == .Fall || willTransitionToAction == .Lift {
+			zoomLevel = 2.5
+		}
+		else if willTransitionToAction == .Drive {
+			zoomLevel = 4.0
+		}
+		else {
+			zoomLevel = 2.0
+		}
+		
+		print("camera zoom \(zoomLevel)")
+		
+		SCNTransaction.begin()
+		SCNTransaction.setAnimationDuration(1.0)
+		roomView.cameraNode.camera!.orthographicScale = zoomLevel
+		SCNTransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut))
+		SCNTransaction.commit()
 	}
 }

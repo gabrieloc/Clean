@@ -13,6 +13,10 @@ enum GroundType : Int {
 	case Surface
 }
 
+protocol CharacterDelegate: NSObjectProtocol {
+	func character(character: Character, willTransitionToAction: Action)
+}
+
 class Character {
 	
 	init() {
@@ -34,6 +38,7 @@ class Character {
 	}
 	
 	let node: SCNNode
+	var delegate: CharacterDelegate?
 	var lifting: LiftableObject?
 	var driving: Vehicle?
 	var vehicleEntrance: VehicleEntrance = .None
@@ -162,12 +167,20 @@ class Character {
 		
 		lifting?.position = positionForLiftedObject(lifting!)
 		
+		var newAction: Action
+		
 		if isFalling {
-			transitionToAction(.Fall)
-		} else if isWalking {
-			transitionToAction(.Walk)
-		} else {
-			transitionToAction(.Idle)
+			newAction = .Fall
+		}
+		else if isWalking {
+			newAction = .Walk
+		}
+		else {
+			newAction = .Idle
+		}
+		
+		if currentAction != newAction {
+			transitionToAction(newAction)
 		}
 	}
 	
@@ -224,6 +237,9 @@ class Character {
 	}
 	
 	func transitionToAction(action: Action, completion: (() -> Void)?) {
+		
+		delegate?.character(self, willTransitionToAction: action)
+		
 		let key = identifierForNewAction(action)
 		if node.animationForKey(key) == nil  {
 			
