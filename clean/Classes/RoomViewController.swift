@@ -145,6 +145,7 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 	
 	// MARK: CharacterDelegate
 	
+	private var lastZoomLevel = Double()
 	func character(character: Character, willTransitionToAction: Action) {
 
 		var zoomLevel: Double
@@ -159,12 +160,12 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 			zoomLevel = 2.0
 		}
 		
-		print("camera zoom \(zoomLevel)")
-		
-		SCNTransaction.begin()
-		SCNTransaction.setAnimationDuration(1.0)
-		roomView.cameraNode.camera!.orthographicScale = zoomLevel
-		SCNTransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut))
-		SCNTransaction.commit()
+		if lastZoomLevel != zoomLevel {
+			SCNTransaction.begin()
+			SCNTransaction.setAnimationDuration(1.0)
+			roomView.cameraNode.camera!.orthographicScale = zoomLevel
+			SCNTransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut))
+			SCNTransaction.commit()
+		}
 	}
 }
