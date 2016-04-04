@@ -73,13 +73,13 @@ extension Character {
 		} else {
 			vehicleAcceleration += Float(deltaTime) * -speed * powf(vehicleAcceleration + 0.7, 4.0)
 			if isReversing {
-				vehicleAcceleration = max(vehicleAcceleration, -0.08)
+				vehicleAcceleration = max(vehicleAcceleration, -0.05)
 			} else {
-				vehicleAcceleration = min(vehicleAcceleration, 0.2)
+				vehicleAcceleration = min(vehicleAcceleration, 0.1)
 			}
 			newDirection -= directionInfluence * vehicleAcceleration * 10
 			previousDirection = newDirection
-		}		
+		}
 		directionAngle = CGFloat((newDirection * Float(M_PI)) / 180.0)
 		let position = node.convertPosition(SCNVector3(0, 0, vehicleAcceleration), toNode: nil)
 		node.position = position
