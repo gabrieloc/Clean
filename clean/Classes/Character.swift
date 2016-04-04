@@ -55,16 +55,17 @@ class Character {
 	
 	static let speedFactor = Float(3.0)
 	private var groundType = GroundType.InTheAir
-	internal var previousDirection = float3()
 	private var previousUpdateTime = NSTimeInterval(0.0)
 	private var accelerationY: Float = 0.0 // gravity simulation
 	internal var vehicleAcceleration: Float = 0.0
+	internal var previousDirection: Float = 0.0
 	private var isFalling = false
 	
 	internal var directionAngle: SCNFloat = 0.0 {
 		didSet {
 			if directionAngle != oldValue {
-				let rotation = SCNAction.rotateToX(0.0, y: CGFloat(directionAngle), z: 0.0, duration: 0.2, shortestUnitArc: true)
+				let duration = isDriving() ? 0.0 : 0.2
+				let rotation = SCNAction.rotateToX(0.0, y: CGFloat(directionAngle), z: 0.0, duration: duration, shortestUnitArc: true)
 				node.runAction(rotation)
 				lifting?.runAction(rotation)
 				driving?.runAction(rotation)
@@ -118,7 +119,7 @@ class Character {
 		return results.count > 0
 	}
 	
-	func moveInDirection(direction: float3, time: NSTimeInterval, scene: SCNScene) {
+	func directionalInputChanged(input: float2,  pov: SCNNode, time: NSTimeInterval, scene: SCNScene) {
 		
 		if currentAction == .Lift || currentAction == .Drop || currentAction == .Jump {
 			return
@@ -128,11 +129,25 @@ class Character {
 		previousUpdateTime = time
 		
 		if isDriving() {
-			driveInDirection(direction, deltaTime: deltaTime)
+			driveInDirection(input.x, speed: input.y, deltaTime: deltaTime)
 		} else {
+			let directionalInput = float3(input.x, 0.0, input.y)
+			let direction = convertInputDirection(directionalInput, cameraNode: pov)
 			walkInDirection(direction, deltaTime: deltaTime)
 		}
 		updateAltitude(scene, deltaTime: deltaTime)
+	}
+	
+	private func convertInputDirection(direction: float3, cameraNode: SCNNode) -> float3 {
+		// Convert input coordinates into 3d
+		let p1 = cameraNode.convertPosition(SCNVector3(direction), toNode: nil)
+		let p0 = cameraNode.convertPosition(SCNVector3Zero, toNode: nil)
+		var convertedDirection = float3(Float(p1.x - p0.x), 0.0, Float(p1.z - p0.z))
+		
+		if convertedDirection.x != 0.0 || convertedDirection.y != 0.0 {
+			convertedDirection = normalize(convertedDirection)
+		}
+		return convertedDirection
 	}
 	
 	private func walkInDirection(direction: float3, deltaTime: NSTimeInterval) {

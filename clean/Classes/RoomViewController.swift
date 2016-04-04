@@ -55,24 +55,6 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 		setupGameControllers()
 	}
 	
-	// MARK: Character Movement
-	
-	private func characterDirection() -> float3 {
-		let controllerDirection = self.controllerDirection()
-		var direction = float3(controllerDirection.x, 0.0, controllerDirection.y)
-		if let pov = roomView.pointOfView {
-			let p1 = pov.presentationNode.convertPosition(SCNVector3(direction), toNode: nil)
-			let p0 = pov.presentationNode.convertPosition(SCNVector3Zero, toNode: nil)
-			direction = float3(Float(p1.x - p0.x), 0.0, Float(p1.z - p0.z))
-			
-			if direction.x != 0.0 || direction.z != 0.0 {
-				direction = normalize(direction)
-			}
-		}
-		
-		return direction
-	}
-	
 	private func liftableObjectSelected(liftable: LiftableObject) {
 		self.character.liftObject(liftable)
 	}
@@ -85,8 +67,9 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 		maxPenetrationDistance = 0
 		
 		let scene = roomView.scene!
-		let direction = characterDirection()
-		self.character.moveInDirection(direction, time: time, scene: scene)
+		let input = controllerDirection()
+		let pov = roomView.pointOfView!
+		self.character.directionalInputChanged(input, pov: pov.presentationNode, time: time, scene: scene)
 
 		roomView.cameraNode.runAction(SCNAction.moveTo(character.node.position, duration: 0.5))
 		
