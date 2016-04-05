@@ -69,7 +69,7 @@ class Character {
 	internal var directionAngle: SCNFloat = 0.0 {
 		didSet {
 			if directionAngle != oldValue {
-				let duration = isDriving() ? 0.0 : 0.2
+				let duration = isDriving ? 0.0 : 0.2
 				let rotation = SCNAction.rotateToX(0.0, y: CGFloat(directionAngle), z: 0.0, duration: duration, shortestUnitArc: true)
 				node.runAction(rotation)
 				lifting?.runAction(rotation)
@@ -124,7 +124,7 @@ class Character {
 		return results.count > 0
 	}
 	
-	func directionalInputChanged(input: float2,  pov: SCNNode, time: NSTimeInterval, scene: SCNScene) {
+	func directionalInputChanged(input: float2, pov: SCNNode, time: NSTimeInterval, scene: SCNScene) {
 		
 		if currentAction == .Lift || currentAction == .Drop || currentAction == .Jump {
 			return
@@ -133,7 +133,7 @@ class Character {
 		let deltaTime: NSTimeInterval = min(time - previousUpdateTime, 1.0 / 60.0)
 		previousUpdateTime = time
 		
-		if isDriving() {
+		if isDriving {
 			driveInDirection(input.x, speed: input.y, deltaTime: deltaTime)
 		} else {
 			let directionalInput = float3(input.x, 0.0, input.y)
@@ -141,6 +141,16 @@ class Character {
 			walkInDirection(direction, deltaTime: deltaTime)
 		}
 		updateAltitude(scene, deltaTime: deltaTime)
+	}
+	
+	func actionInputSelected() {
+		
+		if isLifting {
+			self.dropObject()
+		}
+		else if isDriving {
+			self.endDriving()
+		}
 	}
 	
 	private func convertInputDirection(direction: float3, cameraNode: SCNNode) -> float3 {

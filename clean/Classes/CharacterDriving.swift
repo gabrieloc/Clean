@@ -8,38 +8,17 @@
 
 import SceneKit
 
-extension Action {
-	func identifierForVehicle(isDriving: Bool, entrance: VehicleEntrance) -> String {
-		
-		var name: String
-		
-		switch entrance {
-		case .Driver:
-			name = isDriving ? "enterTruckLeft" : "enterTruckRight"
-		case .Passenger:
-			name = isDriving ? "enterTruckRight" : "exitTruckRight"
-		case .Trunk:
-			name = isDriving ? "enterTruckBack" : "exitTruckBack"
-		case .None:
-			return ""
-		}
-		
-		return "Character.scnassets/driving/\(name).dae"
-	}
-}
-
 extension Character {
 	
 	func beginDrivingVehicle(vehicle: Vehicle, entrance: VehicleEntrance) {
 		
-		if isDriving() || entrance == .None {
+		if isDriving || entrance == .None {
 			return
 		}
 		
 		vehicle.beginDrivingFromEntrance(entrance)
-		self.vehicleEntrance = entrance
 		self.driving = vehicle
-		
+		self.vehicleEntrance = entrance
 		self.transitionToAction(.EnterVehicle) { () -> Void in
 			self.transitionToAction(.Drive)
 		}
@@ -47,18 +26,25 @@ extension Character {
 	
 	func endDriving() {
 
-		if !isDriving() {
+		if !isDriving {
 			return
 		}
 		
-		self.transitionToAction(.Idle)
-		driving!.endDrivingFromEntrance(vehicleEntrance)
+		
+		vehicleEntrance = .Driver
+		self.transitionToAction(.ExitVehicle) { () -> Void in
+			self.transitionToAction(.Idle)
+		}
+		// TODO: exit based off side closest to camera
+		driving!.endDrivingFromEntrance(.Driver)
 		driving = nil
 		vehicleEntrance = .None
 	}
 
-	func isDriving() -> Bool {
-		return driving != nil
+	var isDriving: Bool {
+		get {
+			return driving != nil
+		}
 	}
 	
 	internal func driveInDirection(directionInfluence: Float, speed: Float, deltaTime: NSTimeInterval) {

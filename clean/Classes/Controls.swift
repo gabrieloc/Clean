@@ -115,8 +115,9 @@ extension RoomViewController {
 				controllerStoredDirection += direction.vector
 			}
 			return true
-		} else if (theEvent.keyCode == Space) {
-			self.character.dropObject()
+		}
+		else if (theEvent.keyCode == Space) {
+			self.character.actionInputSelected()
 			return true
 		}
 		
