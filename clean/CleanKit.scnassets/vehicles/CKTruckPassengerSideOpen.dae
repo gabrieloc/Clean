@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.77.0 commit date:2016-03-18, commit time:12:34, hash:22a2853</authoring_tool>
     </contributor>
-    <created>2016-04-03T23:04:32</created>
-    <modified>2016-04-03T23:04:32</modified>
+    <created>2016-04-05T21:59:25</created>
+    <modified>2016-04-05T21:59:25</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -15,7 +15,7 @@
   <library_animations>
     <animation id="Truck_Armature_root_pose_matrix">
       <source id="Truck_Armature_root_pose_matrix-input">
-        <float_array id="Truck_Armature_root_pose_matrix-input-array" count="5">0.4166666 0.625 0.7916667 1.25 1.5</float_array>
+        <float_array id="Truck_Armature_root_pose_matrix-input-array" count="5">0.625 0.8333333 1 1.458333 1.708333</float_array>
         <technique_common>
           <accessor source="#Truck_Armature_root_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
@@ -47,7 +47,7 @@
     </animation>
     <animation id="Truck_Armature_door_l_pose_matrix">
       <source id="Truck_Armature_door_l_pose_matrix-input">
-        <float_array id="Truck_Armature_door_l_pose_matrix-input-array" count="5">0.4166666 0.625 0.7916667 1.25 1.5</float_array>
+        <float_array id="Truck_Armature_door_l_pose_matrix-input-array" count="5">0.625 0.8333333 1 1.458333 1.708333</float_array>
         <technique_common>
           <accessor source="#Truck_Armature_door_l_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
@@ -55,7 +55,7 @@
         </technique_common>
       </source>
       <source id="Truck_Armature_door_l_pose_matrix-output">
-        <float_array id="Truck_Armature_door_l_pose_matrix-output-array" count="80">0.6056532 -0.7957287 0 -0.509899 0.7957287 0.6056532 0 -1.361682 0 0 1 0.1600001 0 0 0 1 0.6056532 -0.7957287 0 -0.509899 0.7957287 0.6056532 0 -1.361682 0 0 1 0.1600001 0 0 0 1 0.6056532 -0.7957287 0 -0.509899 0.7957287 0.6056532 0 -1.361682 0 0 1 0.1600001 0 0 0 1 0.6056532 -0.7957287 0 -0.509899 0.7957287 0.6056532 0 -1.361682 0 0 1 0.1600001 0 0 0 1 0.6056532 -0.7957287 0 -0.509899 0.7957287 0.6056532 0 -1.361682 0 0 1 0.1600001 0 0 0 1</float_array>
+        <float_array id="Truck_Armature_door_l_pose_matrix-output-array" count="80">0.9999752 0.007043783 0 -0.509899 -0.007043783 0.9999752 0 -1.361682 0 0 1 0.1600001 0 0 0 1 0.6684571 -0.7437506 0 -0.509899 0.7437506 0.6684571 0 -1.361682 0 0 1 0.1600001 0 0 0 1 0.6056201 -0.7957538 0 -0.509899 0.7957538 0.6056201 0 -1.361682 0 0 1 0.1600001 0 0 0 1 0.6684571 -0.7437506 0 -0.509899 0.7437506 0.6684571 0 -1.361682 0 0 1 0.1600001 0 0 0 1 0.9999752 0.007043783 0 -0.509899 -0.007043783 0.9999752 0 -1.361682 0 0 1 0.1600001 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Truck_Armature_door_l_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -79,7 +79,7 @@
     </animation>
     <animation id="Truck_Armature_door_r_pose_matrix">
       <source id="Truck_Armature_door_r_pose_matrix-input">
-        <float_array id="Truck_Armature_door_r_pose_matrix-input-array" count="5">0.4166666 0.625 0.7916667 1.25 1.5</float_array>
+        <float_array id="Truck_Armature_door_r_pose_matrix-input-array" count="5">0.625 0.8333333 1 1.458333 1.708333</float_array>
         <technique_common>
           <accessor source="#Truck_Armature_door_r_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
@@ -87,7 +87,7 @@
         </technique_common>
       </source>
       <source id="Truck_Armature_door_r_pose_matrix-output">
-        <float_array id="Truck_Armature_door_r_pose_matrix-output-array" count="80">0.9999751 0.007043841 0 0.4901685 -0.007043841 0.9999751 0 -1.355624 0 0 1 0.1600001 0 0 0 1 0.6579131 0.7530937 0 0.4901685 -0.7530937 0.6579132 0 -1.355624 0 0 1 0.1600001 0 0 0 1 0.5943776 0.8041857 0 0.4901685 -0.8041857 0.5943777 0 -1.355624 0 0 1 0.1600001 0 0 0 1 0.6579132 0.7530937 0 0.4901685 -0.7530936 0.6579133 0 -1.355624 0 0 1 0.1600001 0 0 0 1 0.9999751 0.007043841 0 0.4901685 -0.007043841 0.9999751 0 -1.355624 0 0 1 0.1600001 0 0 0 1</float_array>
+        <float_array id="Truck_Armature_door_r_pose_matrix-output-array" count="80">0.9999751 0.007043841 0 0.4901685 -0.007043841 0.9999751 0 -1.355624 0 0 1 0.1600001 0 0 0 1 0.9999751 0.007043841 0 0.4901685 -0.007043841 0.9999751 0 -1.355624 0 0 1 0.1600001 0 0 0 1 0.9999751 0.007043841 0 0.4901685 -0.007043841 0.9999751 0 -1.355624 0 0 1 0.1600001 0 0 0 1 0.9999751 0.007043841 0 0.4901685 -0.007043841 0.9999751 0 -1.355624 0 0 1 0.1600001 0 0 0 1 0.9999751 0.007043841 0 0.4901685 -0.007043841 0.9999751 0 -1.355624 0 0 1 0.1600001 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Truck_Armature_door_r_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -111,7 +111,7 @@
     </animation>
     <animation id="Truck_Armature_trunk_pose_matrix">
       <source id="Truck_Armature_trunk_pose_matrix-input">
-        <float_array id="Truck_Armature_trunk_pose_matrix-input-array" count="5">0.4166666 0.625 0.7916667 1.25 1.5</float_array>
+        <float_array id="Truck_Armature_trunk_pose_matrix-input-array" count="5">0.625 0.8333333 1 1.458333 1.708333</float_array>
         <technique_common>
           <accessor source="#Truck_Armature_trunk_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
@@ -143,7 +143,7 @@
     </animation>
     <animation id="Truck_Armature_trunkdoor_pose_matrix">
       <source id="Truck_Armature_trunkdoor_pose_matrix-input">
-        <float_array id="Truck_Armature_trunkdoor_pose_matrix-input-array" count="5">0.4166666 0.625 0.7916667 1.25 1.5</float_array>
+        <float_array id="Truck_Armature_trunkdoor_pose_matrix-input-array" count="5">0.625 0.8333333 1 1.458333 1.708333</float_array>
         <technique_common>
           <accessor source="#Truck_Armature_trunkdoor_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
@@ -175,7 +175,7 @@
     </animation>
     <animation id="Truck_Armature_wheels_direction_front_pose_matrix">
       <source id="Truck_Armature_wheels_direction_front_pose_matrix-input">
-        <float_array id="Truck_Armature_wheels_direction_front_pose_matrix-input-array" count="5">0.4166666 0.625 0.7916667 1.25 1.5</float_array>
+        <float_array id="Truck_Armature_wheels_direction_front_pose_matrix-input-array" count="5">0.625 0.8333333 1 1.458333 1.708333</float_array>
         <technique_common>
           <accessor source="#Truck_Armature_wheels_direction_front_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
@@ -207,7 +207,7 @@
     </animation>
     <animation id="Truck_Armature_wheels_rotation_front_pose_matrix">
       <source id="Truck_Armature_wheels_rotation_front_pose_matrix-input">
-        <float_array id="Truck_Armature_wheels_rotation_front_pose_matrix-input-array" count="5">0.4166666 0.625 0.7916667 1.25 1.5</float_array>
+        <float_array id="Truck_Armature_wheels_rotation_front_pose_matrix-input-array" count="5">0.625 0.8333333 1 1.458333 1.708333</float_array>
         <technique_common>
           <accessor source="#Truck_Armature_wheels_rotation_front_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
@@ -239,7 +239,7 @@
     </animation>
     <animation id="Truck_Armature_wheels_direction_back_pose_matrix">
       <source id="Truck_Armature_wheels_direction_back_pose_matrix-input">
-        <float_array id="Truck_Armature_wheels_direction_back_pose_matrix-input-array" count="5">0.4166666 0.625 0.7916667 1.25 1.5</float_array>
+        <float_array id="Truck_Armature_wheels_direction_back_pose_matrix-input-array" count="5">0.625 0.8333333 1 1.458333 1.708333</float_array>
         <technique_common>
           <accessor source="#Truck_Armature_wheels_direction_back_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
@@ -271,7 +271,7 @@
     </animation>
     <animation id="Truck_Armature_wheels_rotation_back_pose_matrix">
       <source id="Truck_Armature_wheels_rotation_back_pose_matrix-input">
-        <float_array id="Truck_Armature_wheels_rotation_back_pose_matrix-input-array" count="5">0.4166666 0.625 0.7916667 1.25 1.5</float_array>
+        <float_array id="Truck_Armature_wheels_rotation_back_pose_matrix-input-array" count="5">0.625 0.8333333 1 1.458333 1.708333</float_array>
         <technique_common>
           <accessor source="#Truck_Armature_wheels_rotation_back_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>

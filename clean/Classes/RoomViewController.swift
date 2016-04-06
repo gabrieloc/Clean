@@ -154,7 +154,7 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 			zoomLevel = 2.5
 		}
 		else if willTransitionToAction == .Drive {
-			zoomLevel = 4.0
+			zoomLevel = 3.0
 		}
 		else {
 			zoomLevel = 2.0

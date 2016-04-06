@@ -69,12 +69,28 @@ class Character {
 	internal var directionAngle: SCNFloat = 0.0 {
 		didSet {
 			if directionAngle != oldValue {
-				let duration = isDriving ? 0.0 : 0.2
-				let rotation = SCNAction.rotateToX(0.0, y: CGFloat(directionAngle), z: 0.0, duration: duration, shortestUnitArc: true)
-				node.runAction(rotation)
-				lifting?.runAction(rotation)
-				driving?.runAction(rotation)
+				updateDirection()
 			}
+		}
+	}
+	
+	internal func updateDirection() {
+		updateDirectionAnimated(true)
+	}
+	
+	internal func updateDirectionAnimated(animated: Bool) {
+	
+		let duration = animated ? 0.2 : 0.0
+		let rotation = SCNAction.rotateToX(0.0, y: CGFloat(directionAngle), z: 0.0, duration: duration, shortestUnitArc: true)
+		
+		if isDriving {
+			let characterRotation = SCNAction.rotateToX(0, y: directionAngle - SCNFloat(M_PI_2), z: 0, duration: duration, shortestUnitArc: true)
+			node.runAction(characterRotation)
+			driving!.runAction(rotation)
+		}
+		else {
+			node.runAction(rotation)
+			lifting?.runAction(rotation)
 		}
 	}
 	
@@ -139,8 +155,8 @@ class Character {
 			let directionalInput = float3(input.x, 0.0, input.y)
 			let direction = convertInputDirection(directionalInput, cameraNode: pov)
 			walkInDirection(direction, deltaTime: deltaTime)
+			updateAltitude(scene, deltaTime: deltaTime)
 		}
-		updateAltitude(scene, deltaTime: deltaTime)
 	}
 	
 	func actionInputSelected() {
@@ -173,6 +189,7 @@ class Character {
 		if (isWalking) {
 			node.position = SCNVector3(float3(node.position) + direction * characterSpeed)
 			directionAngle = SCNFloat(atan2(direction.x, direction.z))
+			updateDirection()
 		}
 		
 		lifting?.position = positionForLiftedObject(lifting!)
@@ -253,12 +270,12 @@ class Character {
 		let key = identifierForNewAction(action)
 		if node.animationForKey(key) == nil  {
 			
-			CATransaction.begin()
-			CATransaction.setCompletionBlock({ 
+			SCNTransaction.begin()
+			SCNTransaction.setCompletionBlock({
 				completion?()
 			})
 			node.addAnimation(characterAnimationForAction(action), forKey: key)
-			CATransaction.commit()
+			SCNTransaction.commit()
 			
 			for oldKey in node.animationKeys {
 				if oldKey != key {
@@ -273,10 +290,12 @@ class Character {
 		let name = identifierForNewAction(action)
 		let animation = CAAnimation.animationWithSceneNamed(name)!
 		animation.fadeInDuration = action.transitionDurationFromAction(currentAction, isLifting: isLifting)
+//		animation.fadeOutDuration = 0.5
+		animation.fillMode = kCAFillModeForwards
+		animation.removedOnCompletion = false
 		
-		if action != .Lift && action != .Drop && action != .Jump && action != .Fall {
-			animation.repeatCount = Float.infinity
-		}
+		let seamlessAnimations: [Action] = [.Idle, .Walk]
+		animation.repeatCount = seamlessAnimations.contains(action) ? Float.infinity : 1.0
 		
 		if action == .Walk {
 			animation.speed = Character.speedFactor

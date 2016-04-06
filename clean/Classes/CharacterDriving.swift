@@ -18,7 +18,7 @@ extension Character {
 		
 		vehicle.beginDrivingFromEntrance(entrance)
 		self.driving = vehicle
-		self.vehicleEntrance = entrance
+		self.vehicleEntrance = entrance		
 		self.transitionToAction(.EnterVehicle) { () -> Void in
 			self.transitionToAction(.Drive)
 		}
@@ -30,15 +30,18 @@ extension Character {
 			return
 		}
 		
-		
+		// TODO: exit based off side closest to camera
 		vehicleEntrance = .Driver
+		self.driving!.endDrivingFromEntrance(vehicleEntrance)
 		self.transitionToAction(.ExitVehicle) { () -> Void in
+			self.driving = nil
+			self.vehicleEntrance = .None
+			
+			self.directionAngle += SCNFloat(M_PI_2)
+			self.updateDirectionAnimated(false)
+			
 			self.transitionToAction(.Idle)
 		}
-		// TODO: exit based off side closest to camera
-		driving!.endDrivingFromEntrance(.Driver)
-		driving = nil
-		vehicleEntrance = .None
 	}
 
 	var isDriving: Bool {
@@ -53,7 +56,7 @@ extension Character {
 		let isReversing = vehicleAcceleration < 0
 		let directionMultiplier: Float = isReversing ? 1.0 : -1.0
 		
-		if speed == 0.0 {
+		if speed == 0.0 || self.currentAction != .Drive {
 			vehicleAcceleration += Float(deltaTime) * powf(vehicleAcceleration + 0.5, 2.0) * directionMultiplier
 			vehicleAcceleration = directionMultiplier > 0 ? min(0.0, vehicleAcceleration) : max(0.0, vehicleAcceleration)
 		} else {
@@ -68,8 +71,13 @@ extension Character {
 		previousDirection = newDirection
 		
 		directionAngle = CGFloat((newDirection * Float(M_PI)) / 180.0)
-		let position = node.convertPosition(SCNVector3(0, 0, vehicleAcceleration), toNode: nil)
-		node.position = position
-		driving!.position = position
+		updateDirectionAnimated(false)
+		
+		let vehicleOffset = float3(0, 0, vehicleAcceleration)
+		let vehiclePosition = driving!.convertPosition(SCNVector3(vehicleOffset), toNode: nil)
+		let characterOffset = float3(1.4, 0.0, 0.5)
+		let characterPosition = driving!.convertPosition(SCNVector3(vehicleOffset + characterOffset), toNode: nil)
+		node.position = characterPosition
+		driving!.position = vehiclePosition	
 	}
 }

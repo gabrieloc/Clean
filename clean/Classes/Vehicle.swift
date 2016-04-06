@@ -50,7 +50,7 @@ class Vehicle: SCNNode {
 		let trunkIntersection = -localPoint.z < min.z
 		
 		if (sideIntersection) {
-			return localPoint.x > 0 ? .Passenger : .Driver
+			return localPoint.x > 0 ? .Driver : .Passenger
 		}
 		else if (trunkIntersection) {
 			return .Trunk
@@ -60,10 +60,24 @@ class Vehicle: SCNNode {
 	}
 	
 	func beginDrivingFromEntrance(entrance: VehicleEntrance) {
-		
+		addAnimationForEntrance(entrance, open: true)
 	}
 	
 	func endDrivingFromEntrance(entrance: VehicleEntrance) {
+		addAnimationForEntrance(entrance, open: false)
+	}
+	
+	private func addAnimationForEntrance(entrance: VehicleEntrance, open: Bool) {
 		
+		let state = open ? "Open" : "Close"
+		let name = "CKTruck\(entrance.rawValue)\(state).dae"
+		
+		if (animationForKey(name) != nil) {
+			return
+		}
+		
+		let path = "CleanKit.scnassets/vehicles/\(name)"
+		let animation = CAAnimation.animationWithSceneNamed(path)!
+		addAnimation(animation, forKey: name)
 	}
 }
