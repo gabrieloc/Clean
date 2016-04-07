@@ -21,11 +21,21 @@ enum VehicleEntrance: String {
 
 class Vehicle: SCNNode {
 	
+	private var bodyNode: SCNNode!
+	private var frontDirectionNode: SCNNode!
+	private var backDirectionNode: SCNNode!
+	
 	convenience init(type: VehicleType) {
 		self.init()
 		
 		let truckNode = CKVehicleNodeNamed(type.rawValue)
 		addChildNode(truckNode)
+		
+		let geometryNode = truckNode.childNodeWithName("geometry", recursively: true)!
+		let armature = geometryNode.skinner!.skeleton!
+		bodyNode = armature.childNodeWithName("body", recursively: false)
+		frontDirectionNode = armature.childNodeWithName("wheels.direction.front", recursively: false)!
+		backDirectionNode = armature.childNodeWithName("wheels.direction.back", recursively: false)!
 		
 		let collisionNode = truckNode.collisionNode()
 		let shape = SCNPhysicsShape(geometry: collisionNode.geometry!, options:nil)
@@ -33,6 +43,22 @@ class Vehicle: SCNNode {
 		collisionNode.physicsBody!.categoryBitMask = BitmaskDrivable
 		collisionNode.geometry = nil
 		collisionNode.hidden = false
+	}
+	
+	var directionAngle: CGFloat = 0.0 {
+		didSet {
+			
+//			print(directionAngle)
+			frontDirectionNode.runAction(SCNAction.rotateToX(0, y: directionAngle, z: 0, duration: 0, shortestUnitArc: true))
+			
+			self.runAction(SCNAction.rotateToX(0, y: directionAngle, z: 0, duration: 0, shortestUnitArc: true))
+//			backDirectionNode.runAction(SCNAction.rotateToX(0, y: directionAngle * 0.95, z: 0, duration: 0, shortestUnitArc: true))
+			
+//			self.rotation = SCNVector4(x: 0, y: 1, z: 0, w: CGFloat(2 * M_PI))
+//			rootNode.rotation = SCNVector4(x: 0, y: 0.9, z: 0, w: CGFloat(2 * M_PI))
+//			frontDirectionNode.rotation = SCNVector4(x: 0, y: 1.0, z: 0, w: CGFloat(2 * M_PI))
+//			backDirectionNode.rotation = SCNVector4(x: 0, y: 0.9, z: 0, w: CGFloat(2 * M_PI))
+		}
 	}
 	
 	class func vehicleFromCollisionNode(collisionNode: SCNNode) -> Vehicle {

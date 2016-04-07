@@ -52,14 +52,15 @@ extension Character {
 	
 	internal func driveInDirection(directionInfluence: Float, speed: Float, deltaTime: NSTimeInterval) {
 		
-		var newDirection = previousDirection
 		let isReversing = vehicleAcceleration < 0
 		let directionMultiplier: Float = isReversing ? 1.0 : -1.0
 		
 		if speed == 0.0 || self.currentAction != .Drive {
-			vehicleAcceleration += Float(deltaTime) * powf(vehicleAcceleration + 0.5, 2.0) * directionMultiplier
+			vehicleAcceleration += Float(deltaTime) * powf(vehicleAcceleration + 0.1, 1.5) * directionMultiplier
 			vehicleAcceleration = directionMultiplier > 0 ? min(0.0, vehicleAcceleration) : max(0.0, vehicleAcceleration)
-		} else {
+			vehicleSteerDelta = 0.0
+		}
+		else {
 			vehicleAcceleration += Float(deltaTime) * -speed * powf(vehicleAcceleration + 0.7, 4.0)
 			if isReversing {
 				vehicleAcceleration = max(vehicleAcceleration, -0.05)
@@ -67,10 +68,14 @@ extension Character {
 				vehicleAcceleration = min(vehicleAcceleration, 0.15)
 			}
 		}
-		newDirection -= directionInfluence * vehicleAcceleration * 10.0
-		previousDirection = newDirection
 		
-		directionAngle = CGFloat((newDirection * Float(M_PI)) / 180.0)
+		if directionInfluence != 0.0 {
+			vehicleSteerDelta = max(-15, min(15, vehicleSteerDelta + directionInfluence * 0.5))
+		} else {
+			vehicleSteerDelta -= vehicleSteerDelta * vehicleAcceleration
+		}
+		vehicleDirectionAngle -= vehicleSteerDelta * vehicleAcceleration
+		directionAngle = vehicleDirectionAngle.degreesToRadians
 		updateDirectionAnimated(false)
 		
 		let vehicleOffset = float3(0, 0, vehicleAcceleration)

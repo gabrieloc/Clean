@@ -63,7 +63,8 @@ class Character {
 	private var previousUpdateTime = NSTimeInterval(0.0)
 	private var accelerationY: Float = 0.0 // gravity simulation
 	internal var vehicleAcceleration: Float = 0.0
-	internal var previousDirection: Float = 0.0
+	internal var vehicleDirectionAngle: Float = 0.0
+	internal var vehicleSteerDelta: Float = 0.0
 	private var isFalling = false
 	
 	internal var directionAngle: SCNFloat = 0.0 {
@@ -79,16 +80,15 @@ class Character {
 	}
 	
 	internal func updateDirectionAnimated(animated: Bool) {
-	
-		let duration = animated ? 0.2 : 0.0
-		let rotation = SCNAction.rotateToX(0.0, y: CGFloat(directionAngle), z: 0.0, duration: duration, shortestUnitArc: true)
 		
 		if isDriving {
-			let characterRotation = SCNAction.rotateToX(0, y: directionAngle - SCNFloat(M_PI_2), z: 0, duration: duration, shortestUnitArc: true)
+			let characterRotation = SCNAction.rotateToX(0, y: directionAngle - SCNFloat(M_PI_2), z: 0, duration: 0, shortestUnitArc: true)
 			node.runAction(characterRotation)
-			driving!.runAction(rotation)
+			driving!.directionAngle = CGFloat(directionAngle)
 		}
 		else {
+			let duration = animated ? 0.2 : 0.0
+			let rotation = SCNAction.rotateToX(0.0, y: CGFloat(directionAngle), z: 0.0, duration: duration, shortestUnitArc: true)
 			node.runAction(rotation)
 			lifting?.runAction(rotation)
 		}

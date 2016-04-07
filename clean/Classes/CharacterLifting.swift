@@ -61,7 +61,7 @@ extension Character {
 		
 		let object = lifting!
 		
-		let k1r = SCNAction.rotateByX(-5.degreesToRadians, y: 0, z: 0, duration: ONE_FRAME)
+		let k1r = SCNAction.rotateByX(Float(-5).degreesToRadians, y: 0, z: 0, duration: ONE_FRAME)
 		let k1p = SCNAction.moveByX(0, y: 0, z: -0.5, duration: k1r.duration)
 		let k1 = SCNAction.group([k1p, k1r])
 		
@@ -69,15 +69,15 @@ extension Character {
 		let k2p = SCNAction.moveByX(0, y: 0, z: 0.5, duration: k2r.duration)
 		let k2 = SCNAction.group([k2p, k2r])
 		
-		let k3r = SCNAction.rotateByX(20.degreesToRadians, y: 0, z: 0, duration: ONE_FRAME * 2)
+		let k3r = SCNAction.rotateByX(Float(20).degreesToRadians, y: 0, z: 0, duration: ONE_FRAME * 2)
 		let k3p = SCNAction.moveTo(finalPositionForObject(object, offset: 0.4), duration: k3r.duration)
 		let k3 = SCNAction.group([k3p, k3r])
 		
-		let k4r = SCNAction.rotateByX(5.degreesToRadians, y: 0, z: 0, duration: ONE_FRAME * 2)
+		let k4r = SCNAction.rotateByX(Float(5).degreesToRadians, y: 0, z: 0, duration: ONE_FRAME * 2)
 		let k4p = SCNAction.moveTo(finalPositionForObject(object, offset: 0.2), duration: k4r.duration)
 		let k4 = SCNAction.group([k4p, k4r])
 		
-		let k5r = SCNAction.rotateByX(-20.degreesToRadians, y: 0, z: 0, duration: ONE_FRAME * 8)
+		let k5r = SCNAction.rotateByX(Float(-20).degreesToRadians, y: 0, z: 0, duration: ONE_FRAME * 8)
 		let k5p = SCNAction.moveTo(finalPositionForObject(object, offset: 0), duration: k5r.duration)
 		let k5 = SCNAction.group([k5p, k5r])
 		k5.timingMode = .EaseOut

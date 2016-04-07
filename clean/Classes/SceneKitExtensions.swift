@@ -45,7 +45,7 @@ extension float2 {
 	}
 }
 
-extension Int {
+extension Float {
 	var degreesToRadians : CGFloat {
 		return CGFloat(self) * CGFloat(M_PI) / 180.0
 	}
