@@ -54,15 +54,15 @@ extension Character {
 	internal func driveInDirection(directionInfluence: Float, speed: Float, deltaTime: NSTimeInterval) {
 		
 		let kMaxForwardAcceleration: Float = 0.15
+		let kMaxSteerAngleDegrees: Float = 15.0
 		
 		if directionInfluence != 0.0 {
 			vehicleSteerDelta = vehicleSteerDelta + directionInfluence * 0.5
-		} else {
-			vehicleSteerDelta *= (vehicleAcceleration / (kMaxForwardAcceleration * 1.05))
-			print(vehicleSteerDelta, vehicleAcceleration)
 		}
-		vehicleSteerDelta = max(-15, min(15, vehicleSteerDelta))
-//		print(vehicleSteerDelta)
+		else {
+			vehicleSteerDelta *= (vehicleAcceleration / (kMaxForwardAcceleration * 1.05))
+		}
+		vehicleSteerDelta = max(-kMaxSteerAngleDegrees, min(kMaxSteerAngleDegrees, vehicleSteerDelta))
 
 		let isReversing = vehicleAcceleration < 0
 		let directionMultiplier: Float = isReversing ? 1.0 : -1.0
