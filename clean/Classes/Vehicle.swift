@@ -33,9 +33,9 @@ class Vehicle: SCNNode {
 		
 		let geometryNode = truckNode.childNodeWithName("geometry", recursively: true)!
 		let armature = geometryNode.skinner!.skeleton!
-		bodyNode = armature.childNodeWithName("body", recursively: false)
-		frontDirectionNode = armature.childNodeWithName("wheels.direction.front", recursively: false)!
-		backDirectionNode = armature.childNodeWithName("wheels.direction.back", recursively: false)!
+		bodyNode = armature.childNodeWithName("body", recursively: true)
+		frontDirectionNode = armature.childNodeWithName("wheels_direction_front", recursively: true)!
+		backDirectionNode = armature.childNodeWithName("wheels_direction_back", recursively: true)!
 		
 		let collisionNode = truckNode.collisionNode()
 		let shape = SCNPhysicsShape(geometry: collisionNode.geometry!, options:nil)
@@ -48,10 +48,17 @@ class Vehicle: SCNNode {
 	var directionAngle: CGFloat = 0.0 {
 		didSet {
 			
-//			print(directionAngle)
-			frontDirectionNode.runAction(SCNAction.rotateToX(0, y: directionAngle, z: 0, duration: 0, shortestUnitArc: true))
+			// TODO: prevent axles from rotating more than +-20º
+			// TODO: make back axle rotate
+			// TODO: make wheels spin
+			// TODO: make body respond to acceleration
+
+//			let frontDirectionAngleRadians = Float(max(-20, min(20, directionAngle))).degreesToRadians
+			let directionAngleRadians = Float(directionAngle).degreesToRadians
+//			print(directionAngle, frontDirectionAngleRadians)
+//			frontDirectionNode.runAction(SCNAction.rotateToX(0, y: CGFloat(frontDirectionAngleRadians), z: 0, duration: 0, shortestUnitArc: true))
 			
-			self.runAction(SCNAction.rotateToX(0, y: directionAngle, z: 0, duration: 0, shortestUnitArc: true))
+			self.runAction(SCNAction.rotateToX(0, y: CGFloat(directionAngleRadians), z: 0, duration: 0, shortestUnitArc: true))
 //			backDirectionNode.runAction(SCNAction.rotateToX(0, y: directionAngle * 0.95, z: 0, duration: 0, shortestUnitArc: true))
 			
 //			self.rotation = SCNVector4(x: 0, y: 1, z: 0, w: CGFloat(2 * M_PI))

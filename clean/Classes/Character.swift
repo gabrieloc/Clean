@@ -67,9 +67,10 @@ class Character {
 	internal var vehicleSteerDelta: Float = 0.0
 	private var isFalling = false
 	
-	internal var directionAngle: SCNFloat = 0.0 {
+	// Angle in degrees
+	internal var directionAngleDegrees: Float = 0.0 {
 		didSet {
-			if directionAngle != oldValue {
+			if directionAngleDegrees != oldValue {
 				updateDirection()
 			}
 		}
@@ -81,14 +82,16 @@ class Character {
 	
 	internal func updateDirectionAnimated(animated: Bool) {
 		
+		let directionRadians: CGFloat = CGFloat(directionAngleDegrees.degreesToRadians)
+		
 		if isDriving {
-			let characterRotation = SCNAction.rotateToX(0, y: directionAngle - SCNFloat(M_PI_2), z: 0, duration: 0, shortestUnitArc: true)
+			let characterRotation = SCNAction.rotateToX(0, y: directionRadians - SCNFloat(M_PI_2), z: 0, duration: 0, shortestUnitArc: true)
 			node.runAction(characterRotation)
-			driving!.directionAngle = CGFloat(directionAngle)
+			driving!.directionAngle = CGFloat(directionAngleDegrees)
 		}
 		else {
 			let duration = animated ? 0.2 : 0.0
-			let rotation = SCNAction.rotateToX(0.0, y: CGFloat(directionAngle), z: 0.0, duration: duration, shortestUnitArc: true)
+			let rotation = SCNAction.rotateToX(0.0, y: directionRadians, z: 0.0, duration: duration, shortestUnitArc: true)
 			node.runAction(rotation)
 			lifting?.runAction(rotation)
 		}
@@ -188,7 +191,7 @@ class Character {
 		
 		if (isWalking) {
 			node.position = SCNVector3(float3(node.position) + direction * characterSpeed)
-			directionAngle = SCNFloat(atan2(direction.x, direction.z))
+			directionAngleDegrees = atan2(direction.x, direction.z).radiansToDegrees
 			updateDirection()
 		}
 		

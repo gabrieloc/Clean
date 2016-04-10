@@ -37,7 +37,7 @@ extension Character {
 			self.driving = nil
 			self.vehicleEntrance = .None
 			
-			self.directionAngle += SCNFloat(M_PI_2)
+			self.directionAngleDegrees += Float(M_PI_2).radiansToDegrees
 			self.updateDirectionAnimated(false)
 			
 			self.transitionToAction(.Idle)
@@ -50,32 +50,38 @@ extension Character {
 		}
 	}
 	
+	
 	internal func driveInDirection(directionInfluence: Float, speed: Float, deltaTime: NSTimeInterval) {
 		
+		let kMaxForwardAcceleration: Float = 0.15
+		
+		if directionInfluence != 0.0 {
+			vehicleSteerDelta = vehicleSteerDelta + directionInfluence * 0.5
+		} else {
+			vehicleSteerDelta *= (vehicleAcceleration / (kMaxForwardAcceleration * 1.05))
+			print(vehicleSteerDelta, vehicleAcceleration)
+		}
+		vehicleSteerDelta = max(-15, min(15, vehicleSteerDelta))
+//		print(vehicleSteerDelta)
+
 		let isReversing = vehicleAcceleration < 0
 		let directionMultiplier: Float = isReversing ? 1.0 : -1.0
 		
 		if speed == 0.0 || self.currentAction != .Drive {
 			vehicleAcceleration += Float(deltaTime) * powf(vehicleAcceleration + 0.1, 1.5) * directionMultiplier
 			vehicleAcceleration = directionMultiplier > 0 ? min(0.0, vehicleAcceleration) : max(0.0, vehicleAcceleration)
-			vehicleSteerDelta = 0.0
 		}
 		else {
 			vehicleAcceleration += Float(deltaTime) * -speed * powf(vehicleAcceleration + 0.7, 4.0)
 			if isReversing {
 				vehicleAcceleration = max(vehicleAcceleration, -0.05)
 			} else {
-				vehicleAcceleration = min(vehicleAcceleration, 0.15)
+				vehicleAcceleration = min(vehicleAcceleration, kMaxForwardAcceleration)
 			}
 		}
 		
-		if directionInfluence != 0.0 {
-			vehicleSteerDelta = max(-15, min(15, vehicleSteerDelta + directionInfluence * 0.5))
-		} else {
-			vehicleSteerDelta -= vehicleSteerDelta * vehicleAcceleration
-		}
 		vehicleDirectionAngle -= vehicleSteerDelta * vehicleAcceleration
-		directionAngle = vehicleDirectionAngle.degreesToRadians
+		directionAngleDegrees = vehicleDirectionAngle
 		updateDirectionAnimated(false)
 		
 		let vehicleOffset = float3(0, 0, vehicleAcceleration)
