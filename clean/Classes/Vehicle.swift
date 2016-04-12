@@ -19,11 +19,18 @@ enum VehicleEntrance: String {
 	case Trunk = "Trunk"
 }
 
+
+enum VehicleWheel: String {
+	case FrontRight = "wheel.front.r"
+	case FrontLeft = "wheel.front.l"
+	case BackRight = "wheel.back.r"
+	case BackLeft = "wheel.back.l"
+}
+
 class Vehicle: SCNNode {
 	
+	private var armatureNode: SCNNode!
 	private var bodyNode: SCNNode!
-	private var frontDirectionNode: SCNNode!
-	private var backDirectionNode: SCNNode!
 	
 	convenience init(type: VehicleType) {
 		self.init()
@@ -32,15 +39,13 @@ class Vehicle: SCNNode {
 		addChildNode(truckNode)
 		
 		let geometryNode = truckNode.childNodeWithName("geometry", recursively: true)!
-		let armature = geometryNode.skinner!.skeleton!
-		bodyNode = armature.childNodeWithName("body", recursively: true)
-		frontDirectionNode = armature.childNodeWithName("wheels_direction_front", recursively: true)!
-		backDirectionNode = armature.childNodeWithName("wheels_direction_back", recursively: true)!
+		armatureNode = geometryNode.skinner!.skeleton!
+		bodyNode = armatureNode.childNodeWithName("body", recursively: true)
 		
 		let collisionNode = truckNode.collisionNode()
 		let shape = SCNPhysicsShape(geometry: collisionNode.geometry!, options:nil)
 		collisionNode.physicsBody = SCNPhysicsBody(type: .Kinematic, shape: shape)
-		collisionNode.physicsBody!.categoryBitMask = BitmaskDrivable
+		collisionNode.physicsBody!.categoryBitMask = BitmaskCollision | BitmaskDrivable
 		collisionNode.geometry = nil
 		collisionNode.hidden = false
 	}
@@ -49,23 +54,16 @@ class Vehicle: SCNNode {
 		didSet {
 			
 			// TODO: prevent axles from rotating more than +-20º
-			// TODO: make back axle rotate
 			// TODO: make wheels spin
 			// TODO: make body respond to acceleration
 
-//			let frontDirectionAngleRadians = Float(max(-20, min(20, directionAngle))).degreesToRadians
 			let directionAngleRadians = Float(directionAngle).degreesToRadians
-//			print(directionAngle, frontDirectionAngleRadians)
-//			frontDirectionNode.runAction(SCNAction.rotateToX(0, y: CGFloat(frontDirectionAngleRadians), z: 0, duration: 0, shortestUnitArc: true))
-			
 			self.runAction(SCNAction.rotateToX(0, y: CGFloat(directionAngleRadians), z: 0, duration: 0, shortestUnitArc: true))
-//			backDirectionNode.runAction(SCNAction.rotateToX(0, y: directionAngle * 0.95, z: 0, duration: 0, shortestUnitArc: true))
-			
-//			self.rotation = SCNVector4(x: 0, y: 1, z: 0, w: CGFloat(2 * M_PI))
-//			rootNode.rotation = SCNVector4(x: 0, y: 0.9, z: 0, w: CGFloat(2 * M_PI))
-//			frontDirectionNode.rotation = SCNVector4(x: 0, y: 1.0, z: 0, w: CGFloat(2 * M_PI))
-//			backDirectionNode.rotation = SCNVector4(x: 0, y: 0.9, z: 0, w: CGFloat(2 * M_PI))
 		}
+	}
+	
+	func wheelNode(name: VehicleWheel) -> SCNNode {
+		return armatureNode.childNodeWithName(name.rawValue, recursively: true)!
 	}
 	
 	class func vehicleFromCollisionNode(collisionNode: SCNNode) -> Vehicle {

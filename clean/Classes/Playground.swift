@@ -33,8 +33,8 @@ class Playground : SCNScene {
 			}
 		}
 
-//		let objects:[Prop] = [.CKComb, .CKCream, .CKFoam, .CKMouthwash, .CKRazor, .CKSoapDish, .CKSoap, .CKToothbrush, .CKToothpaste, .CKWax]
-//		seedPropGeometry(objects)
+		let objects:[Prop] = [.CKComb, .CKCream, .CKFoam, .CKMouthwash, .CKRazor, .CKSoapDish, .CKSoap, .CKToothbrush, .CKToothpaste, .CKWax]
+		seedPropGeometry(objects)
 	}
 	
 	func setupCollisionNode(node : SCNNode) {
