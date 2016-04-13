@@ -42,6 +42,7 @@ class Character {
 	var lifting: LiftableObject?
 	var driving: Vehicle?
 	var vehicleEntrance: VehicleEntrance = .None
+	var adjustingFlatbed: Bool = false
 	
 	var dropzone : Dropzone!
 	var dropZoneVisible: Bool = false {
@@ -153,8 +154,14 @@ class Character {
 		previousUpdateTime = time
 		
 		if isDriving {
-			driveInDirection(input.x, speed: input.y, deltaTime: deltaTime)
-		} else {
+			var speed = input.y
+			if adjustingFlatbed {
+				adjustFlatbed(input.y, deltaTime: deltaTime)
+				speed = 0
+			}
+			driveInDirection(input.x, speed: speed, deltaTime: deltaTime)
+		}
+		else {
 			let directionalInput = float3(input.x, 0.0, input.y)
 			let direction = convertInputDirection(directionalInput, cameraNode: pov)
 			walkInDirection(direction, deltaTime: deltaTime)
@@ -162,13 +169,20 @@ class Character {
 		}
 	}
 	
-	func actionInputSelected() {
+	func actionInput(input: ActionInput, selected: Bool) {
 		
-		if isLifting {
-			self.dropObject()
-		}
-		else if isDriving {
-			self.endDriving()
+		switch input {
+		case .ButtonA:
+			if isLifting {
+				self.dropObject()
+			}
+			else if isDriving {
+				self.endDriving()
+			}
+		case .ButtonB:
+			if isDriving {
+				adjustingFlatbed = selected
+			}
 		}
 	}
 	

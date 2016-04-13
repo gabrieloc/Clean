@@ -31,6 +31,8 @@ class Vehicle: SCNNode {
 	
 	private var armatureNode: SCNNode!
 	private var bodyNode: SCNNode!
+	private var flatBedNode: SCNNode!
+	private var collisionNode: SCNNode!
 	
 	convenience init(type: VehicleType) {
 		self.init()
@@ -40,12 +42,13 @@ class Vehicle: SCNNode {
 		
 		let geometryNode = truckNode.childNodeWithName("geometry", recursively: true)!
 		armatureNode = geometryNode.skinner!.skeleton!
-		bodyNode = armatureNode.childNodeWithName("body", recursively: true)
+		bodyNode = armatureNode.childNodeWithName("body", recursively: true)!
+		flatBedNode = armatureNode.childNodeWithName("flatbed", recursively: true)!
 		
-		let collisionNode = truckNode.collisionNode()
-		let shape = SCNPhysicsShape(geometry: collisionNode.geometry!, options:nil)
+		collisionNode = truckNode.collisionNode()
+		let shape = SCNPhysicsShape(geometry: collisionNode.geometry!, options:[SCNPhysicsShapeTypeKey: SCNPhysicsShapeTypeConcavePolyhedron])
 		collisionNode.physicsBody = SCNPhysicsBody(type: .Kinematic, shape: shape)
-		collisionNode.physicsBody!.categoryBitMask = BitmaskCollision | BitmaskDrivable
+		collisionNode.physicsBody!.categoryBitMask = BitmaskDrivable //| BitmaskCollision
 		collisionNode.geometry = nil
 		collisionNode.hidden = false
 	}
@@ -62,6 +65,13 @@ class Vehicle: SCNNode {
 		}
 	}
 	
+	var flatbedAngle: CGFloat = 0.0 {
+		didSet {
+			let flatbedAngleRadians = Float(flatbedAngle).degreesToRadians + Float(M_PI)
+			flatBedNode.runAction(SCNAction.rotateToX(CGFloat(flatbedAngleRadians), y: 0, z: CGFloat(M_PI), duration: 0, shortestUnitArc: true))
+		}
+	}
+	
 	func wheelNode(name: VehicleWheel) -> SCNNode {
 		return armatureNode.childNodeWithName(name.rawValue, recursively: true)!
 	}
@@ -75,8 +85,8 @@ class Vehicle: SCNNode {
 	func entranceFromContactPoint(contactPoint: SCNVector3) -> VehicleEntrance {
 		
 		let localPoint = self.convertPosition(contactPoint, fromNode: nil)
-		let (min, max) = boundingBox
-		let sidePadding: CGFloat = 0.1
+		let (min, max) =  collisionNode.boundingBox
+		let sidePadding: CGFloat = 0.01
 		let sideIntersection = localPoint.x < (min.x + sidePadding) || localPoint.x > (max.x - sidePadding)
 		let trunkIntersection = -localPoint.z < min.z
 		

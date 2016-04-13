@@ -10,6 +10,11 @@ import simd
 import SceneKit
 import GameController
 
+enum ActionInput {
+	case ButtonA
+	case ButtonB
+}
+
 #if os(OSX)
 	
 protocol KeyboardAndMouseEventsDelegate {
@@ -17,13 +22,14 @@ protocol KeyboardAndMouseEventsDelegate {
 	func keyUp(view: NSView, theEvent: NSEvent) -> Bool
 }
 	
-let Space : UInt16 = 49
-	
-private enum KeyboardDirection : UInt16 {
+private enum KeyboardInput : UInt16 {
 	case Left   = 123
 	case Right  = 124
 	case Down   = 125
 	case Up     = 126
+	case Space  = 49
+	case Z      = 6
+	case X      = 7
 	
 	var vector : float2 {
 		switch self {
@@ -31,7 +37,23 @@ private enum KeyboardDirection : UInt16 {
 		case .Down:  return float2( 0,  1)
 		case .Left:  return float2(-1,  0)
 		case .Right: return float2( 1,  0)
+		default:     return float2()
 		}
+	}
+	
+	var isDirectional: Bool {
+		return [.Left, .Right, .Down, .Up].contains(self)
+	}
+	
+	var isActionInput: Bool {
+		return [.Z, .X].contains(self)
+	}
+	
+	var actionInput: ActionInput {
+		if self == .Z {
+			return .ButtonA
+		}
+		return .ButtonB
 	}
 }
 
@@ -110,24 +132,29 @@ extension RoomViewController {
 	#if os(OSX)
 
 	func keyDown(view: NSView, theEvent: NSEvent) -> Bool {
-		if let direction = KeyboardDirection(rawValue: theEvent.keyCode) {
+		if let key = KeyboardInput(rawValue: theEvent.keyCode) {
 			if !theEvent.ARepeat {
-				controllerStoredDirection += direction.vector
+				if key.isDirectional {
+					controllerStoredDirection += key.vector
+				}
+				else if key.isActionInput {
+					self.character.actionInput(key.actionInput, selected:true)
+				}
 			}
 			return true
 		}
-		else if (theEvent.keyCode == Space) {
-			self.character.actionInputSelected()
-			return true
-		}
-		
 		return false
 	}
 	
 	func keyUp(view: NSView, theEvent: NSEvent) -> Bool {
-		if let direction = KeyboardDirection(rawValue: theEvent.keyCode) {
+		if let key = KeyboardInput(rawValue: theEvent.keyCode) {
 			if !theEvent.ARepeat {
-				controllerStoredDirection -= direction.vector
+				if key.isDirectional {
+					controllerStoredDirection -= key.vector
+				}
+				else if key.isActionInput {
+					self.character.actionInput(key.actionInput, selected:false)
+				}
 			}
 			return true
 		}

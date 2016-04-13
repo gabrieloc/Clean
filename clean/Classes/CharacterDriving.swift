@@ -17,6 +17,7 @@ extension Character {
 		}
 		
 		vehicle.beginDrivingFromEntrance(entrance)
+		self.adjustingFlatbed = false
 		self.driving = vehicle
 		self.vehicleEntrance = entrance		
 		self.transitionToAction(.EnterVehicle) { () -> Void in
@@ -50,6 +51,14 @@ extension Character {
 		}
 	}
 	
+	internal func adjustFlatbed(amount: Float, deltaTime: NSTimeInterval) {
+		
+		let kMaxFlatbedAngleDegrees: Float = 30.0
+		let amountDelta = amount * 0.5
+		var newAngle = Float(driving!.flatbedAngle) - amountDelta
+		newAngle = max(0, min(kMaxFlatbedAngleDegrees, newAngle))
+		driving!.flatbedAngle = CGFloat(newAngle)
+	}
 	
 	internal func driveInDirection(directionInfluence: Float, speed: Float, deltaTime: NSTimeInterval) {
 		
@@ -86,7 +95,7 @@ extension Character {
 		
 		let vehicleOffset = float3(0, 0, vehicleAcceleration)
 		let vehiclePosition = driving!.convertPosition(SCNVector3(vehicleOffset), toNode: nil)
-		let characterOffset = float3(1.4, 0.0, 0.5)
+		let characterOffset = float3(1.4, 0.0, -0.2)
 		let characterPosition = driving!.convertPosition(SCNVector3(vehicleOffset + characterOffset), toNode: nil)
 		node.position = characterPosition
 		driving!.position = vehiclePosition	
