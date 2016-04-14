@@ -57,10 +57,6 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 		character.delegate = self
 	}
 	
-	private func liftableObjectSelected(liftable: LiftableObject) {
-		self.character.liftObject(liftable)
-	}
-	
 	// MARK: SCNSceneRendererDelegate
 	
 	func renderer(renderer: SCNSceneRenderer, updateAtTime time: NSTimeInterval) {
@@ -93,17 +89,14 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 			self.characterNode(other, hitWall: matching, withContact: contact)
 		}
 		contact.match(category: BitmaskLiftable) { (matching, _) in
-//			if self.character.isFacingLiftableObject(self.roomView.scene!) == true {
-				let liftableObject = matching as! LiftableObject
-				self.roomView.presentControlsForLiftableObject(liftableObject)
-//			}
-			// TODO: make triggered by button
-//			self.liftableObjectSelected(matching as! LiftableObject)
+			let liftableObject = matching as! LiftableObject
+			self.roomView.presentControlsForNode(liftableObject as SCNNode)
+			self.character.interactable = liftableObject
 		}
 		contact.match(category: BitmaskDrivable) { (matching, _) in
 			let vehicle = Vehicle.vehicleFromCollisionNode(matching)
-			let entrance = vehicle.entranceFromContactPoint(contact.contactPoint)
-			self.character.beginDrivingVehicle(vehicle, entrance: entrance)
+			self.roomView.presentControlsForNode(vehicle as SCNNode)
+			self.character.interactable = vehicle
 		}
 	}
 	

@@ -16,10 +16,11 @@ extension Character {
 			return
 		}
 		
+		self.interactable = nil
 		vehicle.beginDrivingFromEntrance(entrance)
 		self.adjustingFlatbed = false
 		self.driving = vehicle
-		self.vehicleEntrance = entrance		
+		self.storedEntrance = entrance
 		self.transitionToAction(.EnterVehicle) { () -> Void in
 			self.transitionToAction(.Drive)
 		}
@@ -32,11 +33,11 @@ extension Character {
 		}
 		
 		// TODO: exit based off side closest to camera
-		vehicleEntrance = .Driver
-		self.driving!.endDrivingFromEntrance(vehicleEntrance)
+		storedEntrance = .Driver
+		self.driving!.endDrivingFromEntrance(storedEntrance)
 		self.transitionToAction(.ExitVehicle) { () -> Void in
 			self.driving = nil
-			self.vehicleEntrance = .None
+			self.storedEntrance = .None
 			
 			self.directionAngleDegrees += Float(M_PI_2).radiansToDegrees
 			self.updateDirectionAnimated(false)

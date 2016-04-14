@@ -14,10 +14,12 @@ extension Character {
 	
 	// MARK: Lifting
 	
-	var isLifting : Bool {
-		get {
-			return lifting != nil
-		}
+	func heightWhileLifting() -> Float {
+		return height() + 0.4
+	}
+	
+	var isLifting: Bool {
+		return lifting != nil
 	}
 
 	func liftObject(object:LiftableObject) {
@@ -33,6 +35,9 @@ extension Character {
 		let liftAction = SCNAction.sequence([delay, lift])
 		liftAction.timingMode = .EaseOut
 		
+		object.physicsBody?.affectedByGravity = false
+		
+		self.interactable = nil
 		object.runAction(liftAction) { () -> Void in
 			self.lifting = object
 			self.transitionToAction(.Idle)
@@ -41,7 +46,7 @@ extension Character {
 	
 	func positionForLiftedObject(object: LiftableObject) -> SCNVector3! {
 		let characterPosition = SCNVector3ToFloat3(node.position)
-		let liftingPosition = SCNVector3(characterPosition.x, height(), characterPosition.z)
+		let liftingPosition = SCNVector3(characterPosition.x, heightWhileLifting(), characterPosition.z)
 		return liftingPosition
 	}
 
@@ -60,29 +65,17 @@ extension Character {
 		}
 		
 		let object = lifting!
+		object.physicsBody?.affectedByGravity = true
 		
 		let k1r = SCNAction.rotateByX(CGFloat(Float(-5).degreesToRadians), y: 0, z: 0, duration: ONE_FRAME)
 		let k1p = SCNAction.moveByX(0, y: 0, z: -0.5, duration: k1r.duration)
 		let k1 = SCNAction.group([k1p, k1r])
 		
 		let k2r = SCNAction.rotateByX(0, y: 0, z: 0, duration: ONE_FRAME * 3)
-		let k2p = SCNAction.moveByX(0, y: 0, z: 0.5, duration: k2r.duration)
+		let k2p = SCNAction.moveTo(finalPositionForObject(object, offset: 0), duration: ONE_FRAME * 3)
 		let k2 = SCNAction.group([k2p, k2r])
 		
-		let k3r = SCNAction.rotateByX(CGFloat(Float(20).degreesToRadians), y: 0, z: 0, duration: ONE_FRAME * 2)
-		let k3p = SCNAction.moveTo(finalPositionForObject(object, offset: 0.4), duration: k3r.duration)
-		let k3 = SCNAction.group([k3p, k3r])
-		
-		let k4r = SCNAction.rotateByX(CGFloat(Float(5).degreesToRadians), y: 0, z: 0, duration: ONE_FRAME * 2)
-		let k4p = SCNAction.moveTo(finalPositionForObject(object, offset: 0.2), duration: k4r.duration)
-		let k4 = SCNAction.group([k4p, k4r])
-		
-		let k5r = SCNAction.rotateByX(CGFloat(Float(-20).degreesToRadians), y: 0, z: 0, duration: ONE_FRAME * 8)
-		let k5p = SCNAction.moveTo(finalPositionForObject(object, offset: 0), duration: k5r.duration)
-		let k5 = SCNAction.group([k5p, k5r])
-		k5.timingMode = .EaseOut
-		
-		let actions = SCNAction.sequence([k1, k2, k3, k4, k5])
+		let actions = SCNAction.sequence([k1, k2])//, k3, k4, k5])
 		
 		object.runAction(actions) {
 			self.lifting = nil

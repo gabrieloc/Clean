@@ -39,23 +39,12 @@ class Character {
 	
 	let node: SCNNode
 	var delegate: CharacterDelegate?
+	
+	var interactable: AnyObject?
 	var lifting: LiftableObject?
 	var driving: Vehicle?
-	var vehicleEntrance: VehicleEntrance = .None
+	var storedEntrance: VehicleEntrance = .None
 	var adjustingFlatbed: Bool = false
-	
-	var dropzone : Dropzone!
-	var dropZoneVisible: Bool = false {
-		didSet {
-			if dropZoneVisible && dropzone == nil {
-				dropzone = Dropzone()
-				node.addChildNode(dropzone)
-			} else if dropzone != nil {
-				dropzone.removeFromParentNode()
-				dropzone = nil
-			}
-		}
-	}
 	
 	// MARK: Movement
 	
@@ -173,8 +162,18 @@ class Character {
 		
 		switch input {
 		case .ButtonA:
+			if !selected {
+				return
+			}
+			
 			if isLifting {
 				self.dropObject()
+			}
+			else if let liftable = interactable as? LiftableObject {
+				self.liftObject(liftable)
+			}
+			else if let vehicle = interactable as? Vehicle {
+				self.beginDrivingVehicle(vehicle, entrance: storedEntrance)
 			}
 			else if isDriving {
 				self.endDriving()
@@ -268,7 +267,7 @@ class Character {
 	
 	func identifierForNewAction(action: Action) -> String {
 		if action == .EnterVehicle || action == .ExitVehicle {
-			return action.identiferForNewVehicleAction(action, entrance: vehicleEntrance)
+			return action.identiferForNewVehicleAction(action, entrance: storedEntrance)
 		} else {
 			return action.identifier(isLifting)
 		}
@@ -286,7 +285,7 @@ class Character {
 		
 		let key = identifierForNewAction(action)
 		if node.animationForKey(key) == nil  {
-			
+			print(action)
 			SCNTransaction.begin()
 			SCNTransaction.setCompletionBlock({
 				completion?()

@@ -97,32 +97,34 @@ class RoomView : SCNView {
 	
 	func update2DOverlay() {
 		
-		liftableObjects.forEach { (node, object) -> () in
-			node.position = positionForLiftableObject(object)
+		controllableNodes.forEach { (node, object) -> () in
+			node.position = positionForNode(object)
 		}
 	}
 	
 	// MARK: Controls
 	
-	private var liftableObjects = [SKNode: LiftableObject]()
+	private var controllableNodes = [SKNode: SCNNode]()
 	
-	func presentControlsForLiftableObject(object: LiftableObject) {
+	func presentControlsForNode(node: SCNNode) {
 
-		if liftableObjects.values.contains(object) {
+		if controllableNodes.values.contains(node) {
 			// Update control node position
 		} else {
-//			let liftNode = SKSpriteNode(imageNamed: "CleanKit.scnassets/controls/lift.png")
-//			liftNode.setScale(0.5)
 			let liftNode = SKShapeNode(circleOfRadius: 20)
-			liftNode.position = positionForLiftableObject(object)
+			liftNode.position = positionForNode(node)
 			overlayNode.addChild(liftNode)
 			
-			liftableObjects[liftNode] = object
+			controllableNodes.forEach { (node, _) -> () in
+				node.removeFromParent()
+				controllableNodes.removeValueForKey(node)
+			}
+			controllableNodes[liftNode] = node
 		}
 	}
 	
-	internal func positionForLiftableObject(object: LiftableObject) -> CGPoint {
-		let projectedPosition = projectPoint(object.presentationNode.position)
+	internal func positionForNode(node: SCNNode) -> CGPoint {
+		let projectedPosition = projectPoint(node.presentationNode.position)
 		return CGPoint(x: projectedPosition.x, y: projectedPosition.y)
 	}
 }
