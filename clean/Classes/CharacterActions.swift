@@ -47,7 +47,7 @@ enum Action: String {
 	func transitionDurationFromAction(fromAction: Action, isLifting: Bool) -> CGFloat {
 		if self == .Drive || fromAction == .Drive {
 			return 0.0
-		} else if self == .Idle && (isLifting || fromAction == .Jump) {
+		} else if self == .Idle && fromAction == .Jump {
 			return 0.01
 		}
 		else if self == .Lift || self == .Drop || self == .Jump {

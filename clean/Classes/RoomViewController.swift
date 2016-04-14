@@ -161,4 +161,9 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 			SCNTransaction.commit()
 		}
 	}
+	
+	func character(character: Character, didFinishInteractingWithObject: AnyObject) {
+		let node = didFinishInteractingWithObject as! SCNNode
+		roomView.dismissControlsForNode(node)
+	}
 }

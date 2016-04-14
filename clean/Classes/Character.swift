@@ -15,6 +15,7 @@ enum GroundType : Int {
 
 protocol CharacterDelegate: NSObjectProtocol {
 	func character(character: Character, willTransitionToAction: Action)
+	func character(character: Character, didFinishInteractingWithObject: AnyObject)
 }
 
 class Character {
@@ -41,8 +42,16 @@ class Character {
 	var delegate: CharacterDelegate?
 	
 	var interactable: AnyObject?
-	var lifting: LiftableObject?
-	var driving: Vehicle?
+	var lifting: LiftableObject? {
+		didSet {
+			interactable = lifting
+		}
+	}
+	var driving: Vehicle? {
+		didSet {
+			interactable = driving
+		}
+	}
 	var storedEntrance: VehicleEntrance = .None
 	var adjustingFlatbed: Bool = false
 	
@@ -285,7 +294,6 @@ class Character {
 		
 		let key = identifierForNewAction(action)
 		if node.animationForKey(key) == nil  {
-			print(action)
 			SCNTransaction.begin()
 			SCNTransaction.setCompletionBlock({
 				completion?()

@@ -97,29 +97,36 @@ class RoomView : SCNView {
 	
 	func update2DOverlay() {
 		
-		controllableNodes.forEach { (node, object) -> () in
+		controllableNodes.forEach { (object, node) -> () in
 			node.position = positionForNode(object)
 		}
 	}
 	
 	// MARK: Controls
 	
-	private var controllableNodes = [SKNode: SCNNode]()
+	private var controllableNodes = [SCNNode: SKNode]()
 	
 	func presentControlsForNode(node: SCNNode) {
 
-		if controllableNodes.values.contains(node) {
+		if controllableNodes[node] != nil {
 			// Update control node position
 		} else {
-			let liftNode = SKShapeNode(circleOfRadius: 20)
-			liftNode.position = positionForNode(node)
-			overlayNode.addChild(liftNode)
+			let controlNode = SKShapeNode(circleOfRadius: 20)
+			controlNode.position = positionForNode(node)
+			overlayNode.addChild(controlNode)
 			
-			controllableNodes.forEach { (node, _) -> () in
-				node.removeFromParent()
-				controllableNodes.removeValueForKey(node)
-			}
-			controllableNodes[liftNode] = node
+			controllableNodes.forEach({ (object: SCNNode, controls: SKNode) in
+				controls.removeFromParent()
+				controllableNodes.removeValueForKey(object)
+			})
+			controllableNodes[node] = controlNode
+		}
+	}
+	
+	func dismissControlsForNode(node: SCNNode) {
+		if let controlNode = controllableNodes[node] {
+			controlNode.removeFromParent()
+			controllableNodes[node] = nil
 		}
 	}
 	
