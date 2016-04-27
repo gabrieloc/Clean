@@ -27,11 +27,11 @@ extension SCNNode {
 
 extension SCNPhysicsContact {
 	func match(category category: Int, block: (matching: SCNNode, other: SCNNode) -> Void) {
-		if self.nodeA.physicsBody!.categoryBitMask == category {
+		if self.nodeA.physicsBody!.categoryBitMask & category != 0 {
 			block(matching: self.nodeA, other: self.nodeB)
 		}
 		
-		if self.nodeB.physicsBody!.categoryBitMask == category {
+		if self.nodeB.physicsBody!.categoryBitMask & category != 0 {
 			block(matching: self.nodeB, other: self.nodeA)
 		}
 	}

@@ -97,6 +97,7 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 			let vehicle = Vehicle.vehicleFromCollisionNode(matching)
 			self.roomView.presentControlsForNode(vehicle as SCNNode)
 			self.character.interactable = vehicle
+			self.character.storedEntrance = vehicle.entranceFromContactPoint(contact.contactPoint)
 		}
 	}
 	

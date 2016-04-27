@@ -48,7 +48,7 @@ class Vehicle: SCNNode {
 		collisionNode = truckNode.collisionNode()
 		let shape = SCNPhysicsShape(geometry: collisionNode.geometry!, options:[SCNPhysicsShapeTypeKey: SCNPhysicsShapeTypeConcavePolyhedron])
 		collisionNode.physicsBody = SCNPhysicsBody(type: .Kinematic, shape: shape)
-		collisionNode.physicsBody!.categoryBitMask = BitmaskDrivable //| BitmaskCollision
+		collisionNode.physicsBody!.categoryBitMask = BitmaskDrivable | BitmaskCollision
 		collisionNode.geometry = nil
 		collisionNode.hidden = false
 	}

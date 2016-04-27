@@ -25,7 +25,7 @@ class Character {
 		node = characterScene.rootNode
 		
 		let (min, max) = node.boundingBox
-		let collisionCapsuleWidth = CGFloat(max.x - min.x) * 0.6
+		let collisionCapsuleWidth = CGFloat(max.x - min.x)
 		let collisionCapsuleHeight = CGFloat(self.height())
 		let collisionCapsuleLength = CGFloat(max.x - min.x) * 0.3
 		

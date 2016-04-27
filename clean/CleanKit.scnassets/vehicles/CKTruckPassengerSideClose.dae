@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.77.0 commit date:2016-03-18, commit time:12:34, hash:22a2853</authoring_tool>
     </contributor>
-    <created>2016-04-08T16:18:57</created>
-    <modified>2016-04-08T16:18:57</modified>
+    <created>2016-04-28T01:18:30</created>
+    <modified>2016-04-28T01:18:30</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -23,7 +23,7 @@
         </technique_common>
       </source>
       <source id="Truck_Armature_body_pose_matrix-output">
-        <float_array id="Truck_Armature_body_pose_matrix-output-array" count="80">0.9999752 -0.007043793 0 2.94969e-4 0.007043793 0.9999752 0 -0.04986256 0 0 1 0.6 0 0 0 1 0.9999752 -0.007043793 0 2.94969e-4 0.007043793 0.9999752 0 -0.04986256 0 0 1 0.6 0 0 0 1 0.9999752 -0.007043793 0 2.94969e-4 0.007043793 0.9999752 0 -0.04986256 0 0 1 0.6 0 0 0 1 0.9999752 -0.007043793 0 2.94969e-4 0.007043793 0.9999752 0 -0.04986256 0 0 1 0.6 0 0 0 1 0.9999752 -0.007043793 0 2.94969e-4 0.007043793 0.9999752 0 -0.04986256 0 0 1 0.6 0 0 0 1</float_array>
+        <float_array id="Truck_Armature_body_pose_matrix-output-array" count="80">0.9999752 -0.007043793 0 2.94969e-4 0.007043793 0.9999752 0 0.8001374 0 0 1 0.6 0 0 0 1 0.9999752 -0.007043793 0 2.94969e-4 0.007043793 0.9999752 0 0.8001374 0 0 1 0.6 0 0 0 1 0.9999752 -0.007043793 0 2.94969e-4 0.007043793 0.9999752 0 0.8001374 0 0 1 0.6 0 0 0 1 0.9999752 -0.007043793 0 2.94969e-4 0.007043793 0.9999752 0 0.8001374 0 0 1 0.6 0 0 0 1 0.9999752 -0.007043793 0 2.94969e-4 0.007043793 0.9999752 0 0.8001374 0 0 1 0.6 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Truck_Armature_body_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -55,7 +55,7 @@
         </technique_common>
       </source>
       <source id="Truck_Armature_door_l_pose_matrix-output">
-        <float_array id="Truck_Armature_door_l_pose_matrix-output-array" count="80">0.9999752 0.007043783 0 -0.509899 -0.007043783 0.9999752 0 -1.361682 0 0 1 0.1600001 0 0 0 1 0.6684571 -0.7437506 0 -0.509899 0.7437506 0.6684571 0 -1.361682 0 0 1 0.1600001 0 0 0 1 0.6056201 -0.7957538 0 -0.509899 0.7957538 0.6056201 0 -1.361682 0 0 1 0.1600001 0 0 0 1 0.6684571 -0.7437506 0 -0.509899 0.7437506 0.6684571 0 -1.361682 0 0 1 0.1600001 0 0 0 1 0.9999752 0.007043783 0 -0.509899 -0.007043783 0.9999752 0 -1.361682 0 0 1 0.1600001 0 0 0 1</float_array>
+        <float_array id="Truck_Armature_door_l_pose_matrix-output-array" count="80">0.9999752 0.007043783 0 -0.5098991 -0.007043783 0.9999752 0 -1.361682 0 0 1 0.1600001 0 0 0 1 0.6684571 -0.7437506 0 -0.5098991 0.7437506 0.6684571 0 -1.361682 0 0 1 0.1600001 0 0 0 1 0.6056201 -0.7957538 0 -0.5098991 0.7957538 0.6056201 0 -1.361682 0 0 1 0.1600001 0 0 0 1 0.6684571 -0.7437506 0 -0.5098991 0.7437506 0.6684571 0 -1.361682 0 0 1 0.1600001 0 0 0 1 0.9999752 0.007043783 0 -0.5098991 -0.007043783 0.9999752 0 -1.361682 0 0 1 0.1600001 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Truck_Armature_door_l_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -87,7 +87,7 @@
         </technique_common>
       </source>
       <source id="Truck_Armature_door_r_pose_matrix-output">
-        <float_array id="Truck_Armature_door_r_pose_matrix-output-array" count="80">0.9999751 0.007043841 0 0.4901685 -0.007043841 0.9999751 0 -1.355624 0 0 1 0.1600001 0 0 0 1 0.9999751 0.007043841 0 0.4901685 -0.007043841 0.9999751 0 -1.355624 0 0 1 0.1600001 0 0 0 1 0.9999751 0.007043841 0 0.4901685 -0.007043841 0.9999751 0 -1.355624 0 0 1 0.1600001 0 0 0 1 0.9999751 0.007043841 0 0.4901685 -0.007043841 0.9999751 0 -1.355624 0 0 1 0.1600001 0 0 0 1 0.9999751 0.007043841 0 0.4901685 -0.007043841 0.9999751 0 -1.355624 0 0 1 0.1600001 0 0 0 1</float_array>
+        <float_array id="Truck_Armature_door_r_pose_matrix-output-array" count="80">0.9999751 0.007043841 0 0.4901685 -0.007043841 0.9999751 0 -1.355624 0 0 1 0.16 0 0 0 1 0.9999751 0.007043841 0 0.4901685 -0.007043841 0.9999751 0 -1.355624 0 0 1 0.16 0 0 0 1 0.9999751 0.007043841 0 0.4901685 -0.007043841 0.9999751 0 -1.355624 0 0 1 0.16 0 0 0 1 0.9999751 0.007043841 0 0.4901685 -0.007043841 0.9999751 0 -1.355624 0 0 1 0.16 0 0 0 1 0.9999751 0.007043841 0 0.4901685 -0.007043841 0.9999751 0 -1.355624 0 0 1 0.16 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Truck_Armature_door_r_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -119,7 +119,7 @@
         </technique_common>
       </source>
       <source id="Truck_Armature_trunk_pose_matrix-output">
-        <float_array id="Truck_Armature_trunk_pose_matrix-output-array" count="80">0.9999751 0.007043784 0 -0.007973674 -0.007043784 0.9999751 0 -1.090108 0 0 1 -0.0999999 0 0 0 1 0.9999751 0.007043784 0 -0.007973674 -0.007043784 0.9999751 0 -1.090108 0 0 1 -0.0999999 0 0 0 1 0.9999751 0.007043784 0 -0.007973674 -0.007043784 0.9999751 0 -1.090108 0 0 1 -0.0999999 0 0 0 1 0.9999751 0.007043784 0 -0.007973674 -0.007043784 0.9999751 0 -1.090108 0 0 1 -0.0999999 0 0 0 1 0.9999751 0.007043784 0 -0.007973674 -0.007043784 0.9999751 0 -1.090108 0 0 1 -0.0999999 0 0 0 1</float_array>
+        <float_array id="Truck_Armature_trunk_pose_matrix-output-array" count="80">-1.000878 -0.007043638 0 0.005692924 0.007043638 -0.9999751 0 1.081368 0 0 1 -0.0999999 0 0 0 1 -1.000878 -0.007043638 0 0.005692924 0.007043638 -0.9999751 0 1.081368 0 0 1 -0.0999999 0 0 0 1 -1.000878 -0.007043638 0 0.005692924 0.007043638 -0.9999751 0 1.081368 0 0 1 -0.0999999 0 0 0 1 -1.000878 -0.007043638 0 0.005692924 0.007043638 -0.9999751 0 1.081368 0 0 1 -0.0999999 0 0 0 1 -1.000878 -0.007043638 0 0.005692924 0.007043638 -0.9999751 0 1.081368 0 0 1 -0.0999999 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Truck_Armature_trunk_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -151,7 +151,7 @@
         </technique_common>
       </source>
       <source id="Truck_Armature_trunkdoor_pose_matrix-output">
-        <float_array id="Truck_Armature_trunkdoor_pose_matrix-output-array" count="80">1 0 -8.38191e-9 -0.001629117 -8.3819e-9 0 -1 -0.04985285 0 1 0 0.07980257 0 0 0 1 1 0 -8.38191e-9 -0.001629117 -8.3819e-9 0 -1 -0.04985285 0 1 0 0.07980257 0 0 0 1 1 0 -8.38191e-9 -0.001629117 -8.3819e-9 0 -1 -0.04985285 0 1 0 0.07980257 0 0 0 1 1 0 -8.38191e-9 -0.001629117 -8.3819e-9 0 -1 -0.04985285 0 1 0 0.07980257 0 0 0 1 1 0 -8.38191e-9 -0.001629117 -8.3819e-9 0 -1 -0.04985285 0 1 0 0.07980257 0 0 0 1</float_array>
+        <float_array id="Truck_Armature_trunkdoor_pose_matrix-output-array" count="80">-1 -1.51018e-7 -6.60123e-15 -0.001627692 1.50995e-7 -1 -4.37114e-8 -0.1516593 0 -4.37114e-8 1 0.07980257 0 0 0 1 -1 -1.51018e-7 -6.60123e-15 -0.001627692 1.50995e-7 -1 -4.37114e-8 -0.1516593 0 -4.37114e-8 1 0.07980257 0 0 0 1 -1 -1.51018e-7 -6.60123e-15 -0.001627692 1.50995e-7 -1 -4.37114e-8 -0.1516593 0 -4.37114e-8 1 0.07980257 0 0 0 1 -1 -1.51018e-7 -6.60123e-15 -0.001627692 1.50995e-7 -1 -4.37114e-8 -0.1516593 0 -4.37114e-8 1 0.07980257 0 0 0 1 -1 -1.51018e-7 -6.60123e-15 -0.001627692 1.50995e-7 -1 -4.37114e-8 -0.1516593 0 -4.37114e-8 1 0.07980257 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Truck_Armature_trunkdoor_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -173,133 +173,133 @@
       </sampler>
       <channel source="#Truck_Armature_trunkdoor_pose_matrix-sampler" target="trunkdoor/transform"/>
     </animation>
-    <animation id="Truck_Armature_wheels_direction_front_pose_matrix">
-      <source id="Truck_Armature_wheels_direction_front_pose_matrix-input">
-        <float_array id="Truck_Armature_wheels_direction_front_pose_matrix-input-array" count="5">0.4166666 0.625 0.7916667 1.25 1.5</float_array>
+    <animation id="Truck_Armature_wheel_back_l_pose_matrix">
+      <source id="Truck_Armature_wheel_back_l_pose_matrix-input">
+        <float_array id="Truck_Armature_wheel_back_l_pose_matrix-input-array" count="5">0.4166666 0.625 0.7916667 1.25 1.5</float_array>
         <technique_common>
-          <accessor source="#Truck_Armature_wheels_direction_front_pose_matrix-input-array" count="5" stride="1">
+          <accessor source="#Truck_Armature_wheel_back_l_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
-      <source id="Truck_Armature_wheels_direction_front_pose_matrix-output">
-        <float_array id="Truck_Armature_wheels_direction_front_pose_matrix-output-array" count="80">0.9999752 0.007043791 0 -0.008107465 -0.007043791 0.9999751 0 -0.7552388 0 0 1 -0.3512817 0 0 0 1 0.9999752 0.007043791 0 -0.008107465 -0.007043791 0.9999751 0 -0.7552388 0 0 1 -0.3512817 0 0 0 1 0.9999752 0.007043791 0 -0.008107465 -0.007043791 0.9999751 0 -0.7552388 0 0 1 -0.3512817 0 0 0 1 0.9999752 0.007043791 0 -0.008107465 -0.007043791 0.9999751 0 -0.7552388 0 0 1 -0.3512817 0 0 0 1 0.9999752 0.007043791 0 -0.008107465 -0.007043791 0.9999751 0 -0.7552388 0 0 1 -0.3512817 0 0 0 1</float_array>
+      <source id="Truck_Armature_wheel_back_l_pose_matrix-output">
+        <float_array id="Truck_Armature_wheel_back_l_pose_matrix-output-array" count="80">0.9999752 0.007043809 0 0.3477043 -0.007043809 0.9999753 0 0.8288058 0 0 1 -0.3483503 0 0 0 1 0.9999752 0.007043809 0 0.3477043 -0.007043809 0.9999753 0 0.8288058 0 0 1 -0.3483503 0 0 0 1 0.9999752 0.007043809 0 0.3477043 -0.007043809 0.9999753 0 0.8288058 0 0 1 -0.3483503 0 0 0 1 0.9999752 0.007043809 0 0.3477043 -0.007043809 0.9999753 0 0.8288058 0 0 1 -0.3483503 0 0 0 1 0.9999752 0.007043809 0 0.3477043 -0.007043809 0.9999753 0 0.8288058 0 0 1 -0.3483503 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#Truck_Armature_wheels_direction_front_pose_matrix-output-array" count="5" stride="16">
+          <accessor source="#Truck_Armature_wheel_back_l_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
-      <source id="Truck_Armature_wheels_direction_front_pose_matrix-interpolation">
-        <Name_array id="Truck_Armature_wheels_direction_front_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+      <source id="Truck_Armature_wheel_back_l_pose_matrix-interpolation">
+        <Name_array id="Truck_Armature_wheel_back_l_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#Truck_Armature_wheels_direction_front_pose_matrix-interpolation-array" count="5" stride="1">
+          <accessor source="#Truck_Armature_wheel_back_l_pose_matrix-interpolation-array" count="5" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
       </source>
-      <sampler id="Truck_Armature_wheels_direction_front_pose_matrix-sampler">
-        <input semantic="INPUT" source="#Truck_Armature_wheels_direction_front_pose_matrix-input"/>
-        <input semantic="OUTPUT" source="#Truck_Armature_wheels_direction_front_pose_matrix-output"/>
-        <input semantic="INTERPOLATION" source="#Truck_Armature_wheels_direction_front_pose_matrix-interpolation"/>
+      <sampler id="Truck_Armature_wheel_back_l_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Truck_Armature_wheel_back_l_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Truck_Armature_wheel_back_l_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Truck_Armature_wheel_back_l_pose_matrix-interpolation"/>
       </sampler>
-      <channel source="#Truck_Armature_wheels_direction_front_pose_matrix-sampler" target="wheels_direction_front/transform"/>
+      <channel source="#Truck_Armature_wheel_back_l_pose_matrix-sampler" target="wheel_back_l/transform"/>
     </animation>
-    <animation id="Truck_Armature_wheels_rotation_front_pose_matrix">
-      <source id="Truck_Armature_wheels_rotation_front_pose_matrix-input">
-        <float_array id="Truck_Armature_wheels_rotation_front_pose_matrix-input-array" count="5">0.4166666 0.625 0.7916667 1.25 1.5</float_array>
+    <animation id="Truck_Armature_wheel_back_r_pose_matrix">
+      <source id="Truck_Armature_wheel_back_r_pose_matrix-input">
+        <float_array id="Truck_Armature_wheel_back_r_pose_matrix-input-array" count="5">0.4166666 0.625 0.7916667 1.25 1.5</float_array>
         <technique_common>
-          <accessor source="#Truck_Armature_wheels_rotation_front_pose_matrix-input-array" count="5" stride="1">
+          <accessor source="#Truck_Armature_wheel_back_r_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
-      <source id="Truck_Armature_wheels_rotation_front_pose_matrix-output">
-        <float_array id="Truck_Armature_wheels_rotation_front_pose_matrix-output-array" count="80">0.003396725 0.002923941 -0.9999899 0.001645839 -0.9999884 0.003396796 -0.003386789 0.3314501 0.003386859 0.9999898 0.002935461 0.004561633 0 0 0 1 0.003396725 0.002923941 -0.9999899 0.001645839 -0.9999884 0.003396796 -0.003386789 0.3314501 0.003386859 0.9999898 0.002935461 0.004561633 0 0 0 1 0.003396725 0.002923941 -0.9999899 0.001645839 -0.9999884 0.003396796 -0.003386789 0.3314501 0.003386859 0.9999898 0.002935461 0.004561633 0 0 0 1 0.003396725 0.002923941 -0.9999899 0.001645839 -0.9999884 0.003396796 -0.003386789 0.3314501 0.003386859 0.9999898 0.002935461 0.004561633 0 0 0 1 0.003396725 0.002923941 -0.9999899 0.001645839 -0.9999884 0.003396796 -0.003386789 0.3314501 0.003386859 0.9999898 0.002935461 0.004561633 0 0 0 1</float_array>
+      <source id="Truck_Armature_wheel_back_r_pose_matrix-output">
+        <float_array id="Truck_Armature_wheel_back_r_pose_matrix-output-array" count="80">0.9999752 0.007043804 0 -0.3365842 -0.007043804 0.9999753 0 0.8336259 0 0 1 -0.3483503 0 0 0 1 0.9999752 0.007043804 0 -0.3365842 -0.007043804 0.9999753 0 0.8336259 0 0 1 -0.3483503 0 0 0 1 0.9999752 0.007043804 0 -0.3365842 -0.007043804 0.9999753 0 0.8336259 0 0 1 -0.3483503 0 0 0 1 0.9999752 0.007043804 0 -0.3365842 -0.007043804 0.9999753 0 0.8336259 0 0 1 -0.3483503 0 0 0 1 0.9999752 0.007043804 0 -0.3365842 -0.007043804 0.9999753 0 0.8336259 0 0 1 -0.3483503 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#Truck_Armature_wheels_rotation_front_pose_matrix-output-array" count="5" stride="16">
+          <accessor source="#Truck_Armature_wheel_back_r_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
-      <source id="Truck_Armature_wheels_rotation_front_pose_matrix-interpolation">
-        <Name_array id="Truck_Armature_wheels_rotation_front_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+      <source id="Truck_Armature_wheel_back_r_pose_matrix-interpolation">
+        <Name_array id="Truck_Armature_wheel_back_r_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#Truck_Armature_wheels_rotation_front_pose_matrix-interpolation-array" count="5" stride="1">
+          <accessor source="#Truck_Armature_wheel_back_r_pose_matrix-interpolation-array" count="5" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
       </source>
-      <sampler id="Truck_Armature_wheels_rotation_front_pose_matrix-sampler">
-        <input semantic="INPUT" source="#Truck_Armature_wheels_rotation_front_pose_matrix-input"/>
-        <input semantic="OUTPUT" source="#Truck_Armature_wheels_rotation_front_pose_matrix-output"/>
-        <input semantic="INTERPOLATION" source="#Truck_Armature_wheels_rotation_front_pose_matrix-interpolation"/>
+      <sampler id="Truck_Armature_wheel_back_r_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Truck_Armature_wheel_back_r_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Truck_Armature_wheel_back_r_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Truck_Armature_wheel_back_r_pose_matrix-interpolation"/>
       </sampler>
-      <channel source="#Truck_Armature_wheels_rotation_front_pose_matrix-sampler" target="wheels_rotation_front/transform"/>
+      <channel source="#Truck_Armature_wheel_back_r_pose_matrix-sampler" target="wheel_back_r/transform"/>
     </animation>
-    <animation id="Truck_Armature_wheels_direction_back_pose_matrix">
-      <source id="Truck_Armature_wheels_direction_back_pose_matrix-input">
-        <float_array id="Truck_Armature_wheels_direction_back_pose_matrix-input-array" count="5">0.4166666 0.625 0.7916667 1.25 1.5</float_array>
+    <animation id="Truck_Armature_wheel_front_l_pose_matrix">
+      <source id="Truck_Armature_wheel_front_l_pose_matrix-input">
+        <float_array id="Truck_Armature_wheel_front_l_pose_matrix-input-array" count="5">0.4166666 0.625 0.7916667 1.25 1.5</float_array>
         <technique_common>
-          <accessor source="#Truck_Armature_wheels_direction_back_pose_matrix-input-array" count="5" stride="1">
+          <accessor source="#Truck_Armature_wheel_front_l_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
-      <source id="Truck_Armature_wheels_direction_back_pose_matrix-output">
-        <float_array id="Truck_Armature_wheels_direction_back_pose_matrix-output-array" count="80">0.9999752 0.007043791 0 0.003469223 -0.007043791 0.9999751 0 0.8882508 0 0 1 -0.3455686 0 0 0 1 0.9999752 0.007043791 0 0.003469223 -0.007043791 0.9999751 0 0.8882508 0 0 1 -0.3455686 0 0 0 1 0.9999752 0.007043791 0 0.003469223 -0.007043791 0.9999751 0 0.8882508 0 0 1 -0.3455686 0 0 0 1 0.9999752 0.007043791 0 0.003469223 -0.007043791 0.9999751 0 0.8882508 0 0 1 -0.3455686 0 0 0 1 0.9999752 0.007043791 0 0.003469223 -0.007043791 0.9999751 0 0.8882508 0 0 1 -0.3455686 0 0 0 1</float_array>
+      <source id="Truck_Armature_wheel_front_l_pose_matrix-output">
+        <float_array id="Truck_Armature_wheel_front_l_pose_matrix-output-array" count="80">1 0 0 0.3421528 0 1 0 0.001161158 0 0 1 0.2516497 0 0 0 1 1 0 0 0.3421528 0 1 0 0.001161158 0 0 1 0.2516497 0 0 0 1 1 0 0 0.3421528 0 1 0 0.001161158 0 0 1 0.2516497 0 0 0 1 1 0 0 0.3421528 0 1 0 0.001161158 0 0 1 0.2516497 0 0 0 1 1 0 0 0.3421528 0 1 0 0.001161158 0 0 1 0.2516497 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#Truck_Armature_wheels_direction_back_pose_matrix-output-array" count="5" stride="16">
+          <accessor source="#Truck_Armature_wheel_front_l_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
-      <source id="Truck_Armature_wheels_direction_back_pose_matrix-interpolation">
-        <Name_array id="Truck_Armature_wheels_direction_back_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+      <source id="Truck_Armature_wheel_front_l_pose_matrix-interpolation">
+        <Name_array id="Truck_Armature_wheel_front_l_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#Truck_Armature_wheels_direction_back_pose_matrix-interpolation-array" count="5" stride="1">
+          <accessor source="#Truck_Armature_wheel_front_l_pose_matrix-interpolation-array" count="5" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
       </source>
-      <sampler id="Truck_Armature_wheels_direction_back_pose_matrix-sampler">
-        <input semantic="INPUT" source="#Truck_Armature_wheels_direction_back_pose_matrix-input"/>
-        <input semantic="OUTPUT" source="#Truck_Armature_wheels_direction_back_pose_matrix-output"/>
-        <input semantic="INTERPOLATION" source="#Truck_Armature_wheels_direction_back_pose_matrix-interpolation"/>
+      <sampler id="Truck_Armature_wheel_front_l_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Truck_Armature_wheel_front_l_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Truck_Armature_wheel_front_l_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Truck_Armature_wheel_front_l_pose_matrix-interpolation"/>
       </sampler>
-      <channel source="#Truck_Armature_wheels_direction_back_pose_matrix-sampler" target="wheels_direction_back/transform"/>
+      <channel source="#Truck_Armature_wheel_front_l_pose_matrix-sampler" target="wheel_front_l/transform"/>
     </animation>
-    <animation id="Truck_Armature_wheels_rotation_back_pose_matrix">
-      <source id="Truck_Armature_wheels_rotation_back_pose_matrix-input">
-        <float_array id="Truck_Armature_wheels_rotation_back_pose_matrix-input-array" count="5">0.4166666 0.625 0.7916667 1.25 1.5</float_array>
+    <animation id="Truck_Armature_wheel_front_r_pose_matrix">
+      <source id="Truck_Armature_wheel_front_r_pose_matrix-input">
+        <float_array id="Truck_Armature_wheel_front_r_pose_matrix-input-array" count="5">0.4166666 0.625 0.7916667 1.25 1.5</float_array>
         <technique_common>
-          <accessor source="#Truck_Armature_wheels_rotation_back_pose_matrix-input-array" count="5" stride="1">
+          <accessor source="#Truck_Armature_wheel_front_r_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
-      <source id="Truck_Armature_wheels_rotation_back_pose_matrix-output">
-        <float_array id="Truck_Armature_wheels_rotation_back_pose_matrix-output-array" count="80">-3.9494e-7 -8.33167e-4 0.9999996 0.002505672 0.9999902 -0.004402627 -3.27327e-6 0.3445868 0.004402628 0.9999899 8.33168e-4 0.001387894 0 0 0 1 -3.9494e-7 -8.33167e-4 0.9999996 0.002505672 0.9999902 -0.004402627 -3.27327e-6 0.3445868 0.004402628 0.9999899 8.33168e-4 0.001387894 0 0 0 1 -3.9494e-7 -8.33167e-4 0.9999996 0.002505672 0.9999902 -0.004402627 -3.27327e-6 0.3445868 0.004402628 0.9999899 8.33168e-4 0.001387894 0 0 0 1 -3.9494e-7 -8.33167e-4 0.9999996 0.002505672 0.9999902 -0.004402627 -3.27327e-6 0.3445868 0.004402628 0.9999899 8.33168e-4 0.001387894 0 0 0 1 -3.9494e-7 -8.33167e-4 0.9999996 0.002505672 0.9999902 -0.004402627 -3.27327e-6 0.3445868 0.004402628 0.9999899 8.33168e-4 0.001387894 0 0 0 1</float_array>
+      <source id="Truck_Armature_wheel_front_r_pose_matrix-output">
+        <float_array id="Truck_Armature_wheel_front_r_pose_matrix-output-array" count="80">1 0 0 -0.3421528 0 1 0 0.001161158 0 0 1 0.2516497 0 0 0 1 1 0 0 -0.3421528 0 1 0 0.001161158 0 0 1 0.2516497 0 0 0 1 1 0 0 -0.3421528 0 1 0 0.001161158 0 0 1 0.2516497 0 0 0 1 1 0 0 -0.3421528 0 1 0 0.001161158 0 0 1 0.2516497 0 0 0 1 1 0 0 -0.3421528 0 1 0 0.001161158 0 0 1 0.2516497 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#Truck_Armature_wheels_rotation_back_pose_matrix-output-array" count="5" stride="16">
+          <accessor source="#Truck_Armature_wheel_front_r_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
-      <source id="Truck_Armature_wheels_rotation_back_pose_matrix-interpolation">
-        <Name_array id="Truck_Armature_wheels_rotation_back_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+      <source id="Truck_Armature_wheel_front_r_pose_matrix-interpolation">
+        <Name_array id="Truck_Armature_wheel_front_r_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#Truck_Armature_wheels_rotation_back_pose_matrix-interpolation-array" count="5" stride="1">
+          <accessor source="#Truck_Armature_wheel_front_r_pose_matrix-interpolation-array" count="5" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
       </source>
-      <sampler id="Truck_Armature_wheels_rotation_back_pose_matrix-sampler">
-        <input semantic="INPUT" source="#Truck_Armature_wheels_rotation_back_pose_matrix-input"/>
-        <input semantic="OUTPUT" source="#Truck_Armature_wheels_rotation_back_pose_matrix-output"/>
-        <input semantic="INTERPOLATION" source="#Truck_Armature_wheels_rotation_back_pose_matrix-interpolation"/>
+      <sampler id="Truck_Armature_wheel_front_r_pose_matrix-sampler">
+        <input semantic="INPUT" source="#Truck_Armature_wheel_front_r_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#Truck_Armature_wheel_front_r_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#Truck_Armature_wheel_front_r_pose_matrix-interpolation"/>
       </sampler>
-      <channel source="#Truck_Armature_wheels_rotation_back_pose_matrix-sampler" target="wheels_rotation_back/transform"/>
+      <channel source="#Truck_Armature_wheel_front_r_pose_matrix-sampler" target="wheel_front_r/transform"/>
     </animation>
   </library_animations>
   <library_controllers/>
@@ -312,7 +312,7 @@
         <rotate sid="rotationX">1 0 0 0</rotate>
         <scale sid="scale">1 1 1</scale>
         <node id="body" name="body" sid="body" type="JOINT">
-          <matrix sid="transform">0.9999752 -0.007043793 0 2.94999e-4 0.007043793 0.9999752 0 -0.04986256 0 0 1 0.6 0 0 0 1</matrix>
+          <matrix sid="transform">0.9999752 -0.007043793 0 2.94999e-4 0.007043793 0.9999752 0 0.8001374 0 0 1 0.6 0 0 0 1</matrix>
           <node id="door_l" name="door.l" sid="door_l" type="JOINT">
             <matrix sid="transform">0.9999752 0.007043783 0 -0.5098991 -0.007043783 0.9999752 0 -1.361682 0 0 1 0.1600001 0 0 0 1</matrix>
           </node>
@@ -320,23 +320,23 @@
             <matrix sid="transform">0.9999752 0.007043842 0 0.4901685 -0.007043842 0.9999752 0 -1.355624 0 0 1 0.16 0 0 0 1</matrix>
           </node>
           <node id="trunk" name="trunk" sid="trunk" type="JOINT">
-            <matrix sid="transform">0.9999752 0.007043784 0 -0.007973694 -0.007043784 0.9999751 0 -1.090108 0 0 1 -0.09999996 0 0 0 1</matrix>
+            <matrix sid="transform">-1.000878 -0.007043639 0 0.005692945 0.007043639 -0.9999752 0 1.081368 0 0 1 -0.09999996 0 0 0 1</matrix>
             <node id="trunkdoor" name="trunkdoor" sid="trunkdoor" type="JOINT">
-              <matrix sid="transform">1 0 -8.3819e-9 -0.001629117 -8.3819e-9 0 -1 -0.04985285 0 1 0 0.07980257 0 0 0 1</matrix>
+              <matrix sid="transform">-1 0 1.51018e-7 -0.001627692 1.50995e-7 0 1 -0.1516593 0 1 0 0.07980257 0 0 0 1</matrix>
             </node>
           </node>
-          <node id="wheels_direction_front" name="wheels.direction.front" sid="wheels_direction_front" type="JOINT">
-            <matrix sid="transform">0.9999752 0.007043791 0 -0.008107465 -0.007043791 0.9999751 0 -0.7552388 0 0 1 -0.3512817 0 0 0 1</matrix>
-            <node id="wheels_rotation_front" name="wheels.rotation.front" sid="wheels_rotation_front" type="JOINT">
-              <matrix sid="transform">0.003396726 0.002923941 -0.9999899 0.001645843 -0.9999885 0.003396796 -0.003386789 0.3314501 0.00338686 0.9999899 0.002935461 0.004561633 0 0 0 1</matrix>
-            </node>
+          <node id="wheel_back_l" name="wheel.back.l" sid="wheel_back_l" type="JOINT">
+            <matrix sid="transform">0.9999752 0.007043804 0 0.3477043 -0.007043804 0.9999753 0 0.8288058 0 0 1 -0.3483503 0 0 0 1</matrix>
           </node>
-          <node id="wheels_direction_back" name="wheels.direction.back" sid="wheels_direction_back" type="JOINT">
-            <matrix sid="transform">0.9999752 0.007043791 0 0.003469223 -0.007043791 0.9999751 0 0.8882508 0 0 1 -0.3455686 0 0 0 1</matrix>
-            <node id="wheels_rotation_back" name="wheels.rotation.back" sid="wheels_rotation_back" type="JOINT">
-              <matrix sid="transform">-3.9494e-7 -8.33167e-4 0.9999996 0.002505672 0.9999903 -0.004402627 -3.27327e-6 0.3445867 0.004402628 0.9999899 8.33168e-4 0.001387894 0 0 0 1</matrix>
-            </node>
+          <node id="wheel_back_r" name="wheel.back.r" sid="wheel_back_r" type="JOINT">
+            <matrix sid="transform">0.9999752 0.007043804 0 -0.3365842 -0.007043804 0.9999753 0 0.8336259 0 0 1 -0.3483503 0 0 0 1</matrix>
           </node>
+        </node>
+        <node id="wheel_front_l" name="wheel.front.l" sid="wheel_front_l" type="JOINT">
+          <matrix sid="transform">1 0 0 0.3421528 0 1 0 0.001161158 0 0 1 0.2516497 0 0 0 1</matrix>
+        </node>
+        <node id="wheel_front_r" name="wheel.front.r" sid="wheel_front_r" type="JOINT">
+          <matrix sid="transform">1 0 0 -0.3421528 0 1 0 0.001161158 0 0 1 0.2516497 0 0 0 1</matrix>
         </node>
       </node>
     </visual_scene>
