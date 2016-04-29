@@ -181,11 +181,11 @@ class Character {
 			else if let liftable = interactable as? LiftableObject {
 				self.liftObject(liftable)
 			}
-			else if let vehicle = interactable as? Vehicle {
-				self.beginDrivingVehicle(vehicle, entrance: storedEntrance)
-			}
 			else if isDriving {
 				self.endDriving()
+			}
+			else if let vehicle = interactable as? Vehicle {
+				self.beginDrivingVehicle(vehicle, entrance: storedEntrance)
 			}
 		case .ButtonB:
 			if isDriving {
