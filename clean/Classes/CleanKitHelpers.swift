@@ -8,14 +8,38 @@
 
 import SceneKit
 
-func CKPropNodeNamed(name: String) -> SCNNode {
-	let path = "CleanKit.scnassets/props/\(name).dae"
-	let scene = SCNScene(named: path)!
-	return scene.rootNode.childNodes[0]
+class CleanKit {
+	
+	class func propNodeNamed(name: String) -> SCNNode {
+		let scene = SCNScene(named: CleanKit.pathForAssetNamed("\(name).dae", inDirectory: "props"))!
+		let node = scene.rootNode.childNodes[0]
+		node.applyDiffuseMaterials(name)
+		return node
+	}
+	
+	class func vehicleNodeNamed(name: String) -> SCNNode {
+		let scene = SCNScene(named: CleanKit.pathForAssetNamed("\(name).dae", inDirectory: "vehicles"))!
+		let node = scene.rootNode.childNodes[0]
+		let geometryNode = node.childNodeWithName("geometry", recursively: true)!
+		geometryNode.applyDiffuseMaterials(name)
+		return node
+	}
+	
+	private class func pathForAssetNamed(name: String, inDirectory: String) -> String! {
+		return "CleanKit.scnassets/\(inDirectory)/\(name)"
+	}
 }
 
-func CKVehicleNodeNamed(name: String) -> SCNNode {
-	let path = "CleanKit.scnassets/vehicles/\(name).dae"
-	let scene = SCNScene(named: path)!
-	return scene.rootNode.childNodes[0]
+private extension SCNNode {
+	
+	func applyDiffuseMaterials(name: String) {
+		geometry?.materials.forEach({ (material) in
+			let path = CleanKit.pathForAssetNamed("\(name).png", inDirectory: "textures")
+			material.diffuse.contents = path
+			
+			if material.name == "window" || material.name == "glass" {
+				material.transparency = 0.25
+			}
+		})
+	}
 }

@@ -28,7 +28,7 @@ extension LiftableObject {
 		
 		self.init()
 		
-		let propNode = CKPropNodeNamed(propName.rawValue)
+		let propNode = CleanKit.propNodeNamed(propName.rawValue)
 		self.addChildNode(propNode)
 		
 		self.physicsBody = SCNPhysicsBody(type: .Dynamic, shape: SCNPhysicsShape(node: self, options: nil))

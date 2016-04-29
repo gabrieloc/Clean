@@ -37,7 +37,7 @@ class Vehicle: SCNNode {
 	convenience init(type: VehicleType) {
 		self.init()
 		
-		let truckNode = CKVehicleNodeNamed(type.rawValue)
+		let truckNode = CleanKit.vehicleNodeNamed(type.rawValue)
 		addChildNode(truckNode)
 		
 		let geometryNode = truckNode.childNodeWithName("geometry", recursively: true)!
