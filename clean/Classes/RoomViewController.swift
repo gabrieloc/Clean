@@ -22,14 +22,10 @@ let BitmaskDrivable = 1 << 4
 	typealias ViewController = NSViewController
 #endif
 
-class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsContactDelegate, CharacterDelegate {
+class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsContactDelegate {
 
 	var roomView: RoomView {
 		return view as! RoomView
-	}
-	
-	var character : Character {
-		return roomView.character
 	}
 	
 	// Controls
@@ -53,118 +49,39 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 		scene.physicsWorld.contactDelegate = self
 		roomView.delegate = self
 		setupGameControllers()
-		
-		character.delegate = self
 	}
 	
 	// MARK: SCNSceneRendererDelegate
 	
-	func renderer(renderer: SCNSceneRenderer, updateAtTime time: NSTimeInterval) {
-		replacementPosition = nil
-		desiredPosition = nil
-		maxPenetrationDistance = 0
-		
-		let scene = roomView.scene!
+	func renderer(renderer: SCNSceneRenderer, updateAtTime time: NSTimeInterval) {	
 		let input = controllerDirection()
-		let pov = roomView.pointOfView!
-		self.character.directionalInputChanged(input, pov: pov.presentationNode, time: time, scene: scene)
-
-		roomView.cameraNode.runAction(SCNAction.moveTo(character.node.position, duration: 0.5))
-		
-		roomView.update2DOverlay()
+		roomView.directionalInputChanged(input, time: time)
 	}
 	
 	func renderer(renderer: SCNSceneRenderer, didSimulatePhysicsAtTime time: NSTimeInterval) {
-		if let position = desiredPosition {
-			character.jumpToPosition(position)
-		} else if let position = replacementPosition {
-			character.node.position = position
-		}
+		roomView.updateControllableWithTime(time)
+		
+//		else if let position = replacementPosition {
+//			character.node.position = position
+//		}
 	}
 
 	// MARK: SCNPhysicsContactDelegate
 	
 	func physicsWorld(world: SCNPhysicsWorld, didBeginContact contact: SCNPhysicsContact) {
 		contact.match(category: BitmaskCollision) { (matching, other) in
-			self.characterNode(other, hitWall: matching, withContact: contact)
+			self.roomView.updateContactForControllable(other, hitWall: matching, contact: contact)
 		}
-		contact.match(category: BitmaskLiftable) { (matching, _) in
-			let liftableObject = matching as! LiftableObject
-			self.roomView.presentControlsForNode(liftableObject as SCNNode)
-			self.character.interactable = liftableObject
-		}
-		contact.match(category: BitmaskDrivable) { (matching, _) in
-			let vehicle = Vehicle.vehicleFromCollisionNode(matching)
-			self.roomView.presentControlsForNode(vehicle as SCNNode)
-			self.character.interactable = vehicle
-			self.character.storedEntrance = vehicle.entranceFromContactPoint(contact.contactPoint)
+		contact.match(category: BitmaskLiftable | BitmaskDrivable) { (matching, _) in
+			self.roomView.presentControlsForInteractable(matching, contactPoint: contact.contactPoint)
 		}
 	}
 	
 	func physicsWorld(world: SCNPhysicsWorld, didUpdateContact contact: SCNPhysicsContact) {
 		contact.match(category: BitmaskCollision) { (matching, other) in
-			self.characterNode(other, hitWall: matching, withContact: contact)
+			self.roomView.updateContactForControllable(other, hitWall: matching, contact: contact)
 		}
 	}
 	
-	private var maxPenetrationDistance = CGFloat(0.1)
-	private var replacementPosition: SCNVector3?
-	private var desiredPosition: SCNVector3?
-	private let minimumJumpableHeight: CGFloat = 0.01
-	private let maximumJumpableHeight: CGFloat = 0.1
-	
-	private func characterNode(characterNode: SCNNode, hitWall wall: SCNNode, withContact contact:SCNPhysicsContact) {
-		if characterNode.parentNode != character.node {
-			return
-		}
-		
-		if maxPenetrationDistance > contact.penetrationDistance {
-			return
-		}
-		
-		maxPenetrationDistance = contact.penetrationDistance
-		
-		let elevation = CGFloat(contact.contactPoint.y) - CGFloat(character.node.position.y)
-		let isFacingWall = character.isFacingWall(roomView.scene!)
-		if isFacingWall && elevation > minimumJumpableHeight && elevation < maximumJumpableHeight {
-			desiredPosition = contact.contactPoint
-		} else {
-			var positionOffset = float3(contact.contactNormal) * Float(contact.penetrationDistance)
-			positionOffset.y = 0
-			var characterPosition = float3(character.node.position)
-			characterPosition += positionOffset
-			replacementPosition = SCNVector3(characterPosition)
-		}
-	}
-	
-	// MARK: CharacterDelegate
-	
-	private var lastZoomLevel = Double()
-	func character(character: Character, willTransitionToAction: Action) {
 
-		var zoomLevel: Double
-		
-		if willTransitionToAction == .Fall || willTransitionToAction == .Lift {
-			zoomLevel = 2.5
-		}
-		else if willTransitionToAction == .Drive {
-			zoomLevel = 3.0
-		}
-		else {
-			zoomLevel = 2.0
-		}
-		
-		if lastZoomLevel != zoomLevel {
-			SCNTransaction.begin()
-			SCNTransaction.setAnimationDuration(1.0)
-			roomView.cameraNode.camera!.orthographicScale = zoomLevel
-			SCNTransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut))
-			SCNTransaction.commit()
-		}
-	}
-	
-	func character(character: Character, didFinishInteractingWithObject: AnyObject) {
-		let node = didFinishInteractingWithObject as! SCNNode
-		roomView.dismissControlsForNode(node)
-	}
 }

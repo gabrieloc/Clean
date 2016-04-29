@@ -266,12 +266,11 @@ class Character {
 			}
 			else {
 				accelerationY = 0
-			}
-			position.y -= SCNFloat(accelerationY)
-			if groundAltitude > position.y {
-				accelerationY = 0
 				position.y = groundAltitude
 			}
+			position.y -= SCNFloat(accelerationY)
+			print(position.y)
+			
 			node.position = position
 		}
 	}

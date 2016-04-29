@@ -50,6 +50,7 @@ class LiftableObject : SCNNode {
 			let physicsBody = SCNPhysicsBody(type: .Dynamic, shape: SCNPhysicsShape(node: self, options: nil))
 			physicsBody.categoryBitMask = BitmaskLiftable
 			physicsBody.friction = 1.0
+			physicsBody.usesDefaultMomentOfInertia = false
 			self.physicsBody = physicsBody
 		}
 	}

@@ -25,7 +25,7 @@ class Playground : SCNScene {
 		
 		let truck = Vehicle(type: .CKTruck)
 		rootNode.addChildNode(truck)
-		truck.position = SCNVector3Make(4, 0, 0)
+		truck.position = SCNVector3Make(0.0, 4.0, 0)
 
 		scene.rootNode.enumerateChildNodesUsingBlock { (node, _) in
 			if node != character.node {
@@ -67,7 +67,7 @@ class Playground : SCNScene {
 			let object = LiftableObject(propName: prop)
 			let x = (sin(Float(index % 4) * Float(M_PI_2)) * Float(index))// * 5.0
 			let z = (cos(Float(index % 4) * Float(M_PI_2)) * Float(index))// * 5.0
-			object.position = SCNVector3(x, 0, z)
+			object.position = SCNVector3(x, 5.0, z)
 			rootNode.addChildNode(object)
 		}
 	}

@@ -138,7 +138,7 @@ extension RoomViewController {
 					controllerStoredDirection += key.vector
 				}
 				else if key.isActionInput {
-					self.character.actionInput(key.actionInput, selected:true)
+					roomView.actionInputChanged(key.actionInput, selected: true)
 				}
 			}
 			return true
@@ -153,7 +153,7 @@ extension RoomViewController {
 					controllerStoredDirection -= key.vector
 				}
 				else if key.isActionInput {
-					self.character.actionInput(key.actionInput, selected:false)
+					roomView.actionInputChanged(key.actionInput, selected: false)
 				}
 			}
 			return true

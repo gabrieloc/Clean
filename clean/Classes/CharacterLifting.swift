@@ -59,7 +59,7 @@ extension Character {
 		}
 		else {
 			let time = NSDate().timeIntervalSinceDate(dropForceTimer.fireDate)
-			let dropForce = max(10.0, Float(time * 10.0))
+			let dropForce = max(4.0, Float(time * 10.0))
 			print(dropForce)
 			dropObject(lifting!, force: dropForce)
 			dropForceTimer.invalidate()
