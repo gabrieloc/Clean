@@ -8,7 +8,10 @@
 
 import SceneKit
 
-let ONE_FRAME : NSTimeInterval = 0.03
+func secondsFromFrames(frames: NSInteger) -> NSTimeInterval {
+	let frameDuration = 1.0 / 60.0
+	return frameDuration * Double(frames)
+}
 
 extension Character {
 	
@@ -18,19 +21,20 @@ extension Character {
 		return lifting != nil
 	}
 
-	func liftObject(object:LiftableObject) {
-		if lifting != nil || currentAction == .Fall {
+	func liftObject(object: LiftableObject) {
+		if isLifting || currentAction == .Fall {
 			return
 		}
 
-		let location = positionForLiftedObject(object)
-		let delay = SCNAction.waitForDuration(ONE_FRAME * 5)
-		let lift = SCNAction.moveTo(location, duration: ONE_FRAME * 5)
+		let transitionDuration = NSTimeInterval(Action.Lift.transitionDurationFromAction(currentAction, isLifting: false))
+		
+		let delay = SCNAction.waitForDuration(transitionDuration)
+		let lift = SCNAction.moveTo(positionForLiftedObject(object), duration: secondsFromFrames(15))
 		
 		let liftAction = SCNAction.sequence([delay, lift])
 		liftAction.timingMode = .EaseOut
 		
-		object.physicsBody?.affectedByGravity = false
+		object.lifted = true
 		
 		self.interactable = nil
 		self.transitionToAction(.Lift) {
@@ -47,38 +51,35 @@ extension Character {
 	}
 
 	// MARK: Dropping
-	
-	func finalPositionForObject(object: LiftableObject, offset: Float) -> SCNVector3 {
-		let (min, max) = object.boundingBox
-		// TODO: Calculate how far to throw based off angle lifted from (won't always be Z axis)
-		let objectZ = self.length() + (Float(max.z - min.z) * 0.5) - offset
-		return node.convertPosition(SCNVector3(0.0, 0.0, objectZ), toNode: nil)
+
+	func dropInputSelected(selected: Bool) {
+		
+		if selected {
+			dropForceTimer = NSTimer.init(timeInterval: 1.0 / 60.0, target: self, selector: nil, userInfo: nil, repeats: true)
+		}
+		else {
+			let time = NSDate().timeIntervalSinceDate(dropForceTimer.fireDate)
+			let dropForce = max(10.0, Float(time * 10.0))
+			print(dropForce)
+			dropObject(lifting!, force: dropForce)
+			dropForceTimer.invalidate()
+		}
 	}
 	
-	func dropObject() {
-		if lifting == nil {
-			return
+	func dropObject(object: LiftableObject!, force: Float) {
+		
+		object.lifted = false
+		let delay = SCNAction.waitForDuration(0.2)
+		object.runAction(delay) { 
+			let direction = self.node.convertPosition(SCNVector3(0.0, 0.0, force), toNode: nil)
+			object.physicsBody?.applyForce(direction, impulse: true)
 		}
-		
-		let object = lifting!
-		object.physicsBody?.affectedByGravity = true
-		
-		let k1r = SCNAction.rotateByX(CGFloat(Float(-5).degreesToRadians), y: 0, z: 0, duration: ONE_FRAME * 5)
-		let k1p = SCNAction.moveByX(0, y: 0, z: -0.5, duration: k1r.duration)
-		let k1 = SCNAction.group([k1p, k1r])
-		
-		let k2r = SCNAction.rotateByX(0, y: 0, z: 0, duration: ONE_FRAME * 3)
-		let k2p = SCNAction.moveTo(finalPositionForObject(object, offset: 0), duration: ONE_FRAME * 7)
-		let k2 = SCNAction.group([k2p, k2r])
-		
-		let actions = SCNAction.sequence([k1, k2])//, k3, k4, k5])
 		
 		transitionToAction(.Drop) {
 			self.delegate?.character(self, didFinishInteractingWithObject: object)
 			self.lifting = nil
 			self.transitionToAction(.Idle)
 		}
-		object.runAction(actions)
 	}
 }
 

@@ -18,14 +18,18 @@ class CleanKit {
 	}
 	
 	class func vehicleNodeNamed(name: String) -> SCNNode {
-		let scene = SCNScene(named: CleanKit.pathForAssetNamed("\(name).dae", inDirectory: "vehicles"))!
+		let scene = SCNScene(named: CleanKit.pathForVehicleAssetNamed("\(name).dae"))!
 		let node = scene.rootNode.childNodes[0]
 		let geometryNode = node.childNodeWithName("geometry", recursively: true)!
 		geometryNode.applyDiffuseMaterials(name)
 		return node
 	}
 	
-	private class func pathForAssetNamed(name: String, inDirectory: String) -> String! {
+	class func pathForVehicleAssetNamed(name: String) -> String {
+		return CleanKit.pathForAssetNamed(name, inDirectory: "vehicles")
+	}
+	
+	internal class func pathForAssetNamed(name: String, inDirectory: String) -> String {
 		return "CleanKit.scnassets/\(inDirectory)/\(name)"
 	}
 }

@@ -21,16 +21,12 @@ extension Character {
 		self.adjustingFlatbed = false
 		self.driving = vehicle
 		self.storedEntrance = entrance
-		self.transitionToAction(.EnterVehicle) { () -> Void in
+		self.transitionToAction(.EnterVehicle) { (_) -> Void in
 			self.transitionToAction(.Drive)
 		}
 	}
 	
-	func endDriving() {
-
-		if !isDriving {
-			return
-		}
+	func endDriving(vehicle: Vehicle) {
 		
 		// TODO: exit based off side closest to camera
 		storedEntrance = .Driver

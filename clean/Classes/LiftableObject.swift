@@ -31,9 +31,26 @@ class LiftableObject : SCNNode {
 		geometry.firstMaterial = SCNMaterial()
 		geometry.firstMaterial?.diffuse.contents = blueColor()
 		object.geometry = geometry
-		object.physicsBody = SCNPhysicsBody(type: .Dynamic, shape: SCNPhysicsShape(geometry: geometry, options: nil))
-		object.physicsBody!.categoryBitMask = BitmaskLiftable
+		object.updatePhysicsBody()
 		
 		return object
+	}
+	
+	var lifted: Bool = false {
+		didSet {
+			updatePhysicsBody()
+		}
+	}
+	
+	func updatePhysicsBody() {
+		if lifted {
+			self.physicsBody?.type = .Kinematic
+		}
+		else {
+			let physicsBody = SCNPhysicsBody(type: .Dynamic, shape: SCNPhysicsShape(node: self, options: nil))
+			physicsBody.categoryBitMask = BitmaskLiftable
+			physicsBody.friction = 1.0
+			self.physicsBody = physicsBody
+		}
 	}
 }

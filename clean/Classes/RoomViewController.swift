@@ -107,11 +107,11 @@ class RoomViewController: ViewController, SCNSceneRendererDelegate, SCNPhysicsCo
 		}
 	}
 	
-	private var maxPenetrationDistance = CGFloat(0.0)
+	private var maxPenetrationDistance = CGFloat(0.1)
 	private var replacementPosition: SCNVector3?
 	private var desiredPosition: SCNVector3?
-	private let minimumJumpableHeight: CGFloat = 0.1
-	private let maximumJumpableHeight: CGFloat = 0.5
+	private let minimumJumpableHeight: CGFloat = 0.01
+	private let maximumJumpableHeight: CGFloat = 0.1
 	
 	private func characterNode(characterNode: SCNNode, hitWall wall: SCNNode, withContact contact:SCNPhysicsContact) {
 		if characterNode.parentNode != character.node {

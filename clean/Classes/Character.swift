@@ -47,6 +47,7 @@ class Character {
 			interactable = lifting
 		}
 	}
+	internal var dropForceTimer: NSTimer = NSTimer()
 	var driving: Vehicle? {
 		didSet {
 			interactable = driving
@@ -171,26 +172,29 @@ class Character {
 		
 		switch input {
 		case .ButtonA:
-			if !selected {
-				return
+
+			if isDriving && selected {
+				self.endDriving(driving!)
 			}
-			
-			if isLifting {
-				self.dropObject()
+			else if isLifting {
+				dropInputSelected(selected)
 			}
-			else if let liftable = interactable as? LiftableObject {
-				self.liftObject(liftable)
-			}
-			else if isDriving {
-				self.endDriving()
-			}
-			else if let vehicle = interactable as? Vehicle {
-				self.beginDrivingVehicle(vehicle, entrance: storedEntrance)
+			else if selected {
+				self.useInteractable(interactable)
 			}
 		case .ButtonB:
 			if isDriving {
 				adjustingFlatbed = selected
 			}
+		}
+	}
+	
+	internal func useInteractable(interactable: AnyObject?) {
+		if let liftable = interactable as? LiftableObject {
+			self.liftObject(liftable)
+		}
+		else if let vehicle = interactable as? Vehicle {
+			self.beginDrivingVehicle(vehicle, entrance: storedEntrance)
 		}
 	}
 	

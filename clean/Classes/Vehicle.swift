@@ -67,6 +67,7 @@ class Vehicle: SCNNode {
 	
 	var flatbedAngle: CGFloat = 0.0 {
 		didSet {
+			print(flatbedAngle)
 			let flatbedAngleRadians = Float(flatbedAngle).degreesToRadians + Float(M_PI)
 			flatBedNode.runAction(SCNAction.rotateToX(CGFloat(flatbedAngleRadians), y: 0, z: CGFloat(M_PI), duration: 0, shortestUnitArc: true))
 		}
@@ -117,8 +118,8 @@ class Vehicle: SCNNode {
 			return
 		}
 		
-		let path = "CleanKit.scnassets/vehicles/\(name)"
+		let path = CleanKit.pathForVehicleAssetNamed(name)
 		let animation = CAAnimation.animationWithSceneNamed(path)!
-		addAnimation(animation, forKey: name)
+//		addAnimation(animation, forKey: name)
 	}
 }

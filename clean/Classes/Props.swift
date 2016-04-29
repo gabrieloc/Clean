@@ -31,7 +31,6 @@ extension LiftableObject {
 		let propNode = CleanKit.propNodeNamed(propName.rawValue)
 		self.addChildNode(propNode)
 		
-		self.physicsBody = SCNPhysicsBody(type: .Dynamic, shape: SCNPhysicsShape(node: self, options: nil))
-		self.physicsBody!.categoryBitMask = BitmaskLiftable
+		updatePhysicsBody()
 	}
 }
